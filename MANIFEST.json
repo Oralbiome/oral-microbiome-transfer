@@ -19,10 +19,10 @@
       "sha256": "488a5c4d1fa70cc1cae574eae8397b8948440d26135faf944aea97722977fa57"
     },
     {
-      "bytes": 1176,
-      "origin": "CITATION.cff",
+      "bytes": 1191,
+      "origin": "Publication metadata update: public repository URL; all other citation bytes unchanged; original retained in source archive",
       "path": "CITATION.cff",
-      "sha256": "56cdfd743d83df41cb71eac4d12875afae85f4c9d5307614ce147982ec05cd75"
+      "sha256": "7d49b0914082963093640a55783bc7175af6c7c2ed4c08607bc6bf07650a1587"
     },
     {
       "bytes": 2531,
@@ -67,10 +67,10 @@
       "sha256": "b3eb88fd482aa1ec6cd95d3cef0213cbf2c461115641efe22ab37e37bf6456b0"
     },
     {
-      "bytes": 1135,
-      "origin": "studies/cross-population-t2d/CITATION.cff",
+      "bytes": 1150,
+      "origin": "Publication metadata update: public repository URL; all other citation bytes unchanged; original retained in source archive",
       "path": "studies/cross-population-t2d/CITATION.cff",
-      "sha256": "6a1c6305633cdd139cd3f2bc72f334925cf6eebb1fcc9ca8b2be742bbf97337e"
+      "sha256": "d245b907a0050943ee4c39545aa4d80ec1bf5001cd3534b54940ed851bb443b4"
     },
     {
       "bytes": 3974,
@@ -369,6 +369,10 @@
   ],
   "manifest_scope": "All snapshot files except this MANIFEST.json; .git is not a payload artifact.",
   "original_payload_files": 59,
+  "publication_metadata_updates": [
+    "CITATION.cff",
+    "studies/cross-population-t2d/CITATION.cff"
+  ],
   "relocated_archive_files": {
     "MANIFEST.json": "ARCHIVE_MANIFEST.json",
     "README.md": "ARCHIVE_README.md"

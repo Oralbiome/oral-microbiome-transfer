@@ -10,7 +10,7 @@ abstract: >-
 type: software
 license: MIT
 url: "https://oralbiome.scarpelli.ai/preprint.html"
-repository-code: "https://github.com/Oralbiome/oralbiome"
+repository-code: "https://github.com/Oralbiome/oral-microbiome-transfer"
 version: "working-audit-2026-10-18-web"
 keywords:
   - oral microbiome
