@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, its data, or its results, please cite it as below."
+title: "Oralbiome: A Retrospective Audit of Oral-Microbiome Diabetes-Status Transfer"
+abstract: >-
+  Working research on cross-study transfer, using an oral-only retrospective
+  reconstruction with source-study exclusions for related benchmarks. Conditional
+  uncertainty does not establish a confident South African reversal. External studies
+  informed development; results are exploratory, not clinical validation. NHANES
+  labels do not establish T2D subtype. The working manuscript is publicly hosted; no peer review is claimed.
+type: software
+license: MIT
+url: "https://oralbiome.scarpelli.ai/"
+repository-code: "https://github.com/Oralbiome/oralbiome"
+version: "working-audit-2026-10-18-web"
+keywords:
+  - oral microbiome
+  - type 2 diabetes
+  - 16S rRNA
+  - cross-population generalization
+  - domain adaptation
+  - machine learning
+authors:
+  # Emails intentionally omitted from this published artifact.
+  - family-names: Scarpelli
+    given-names: Jonathan
+  - family-names: Akhter
+    given-names: Ayesha
+    affiliation: "UC Berkeley School of Information"

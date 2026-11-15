@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "input": "data/models/processed_data_vsearch.pkl",
+  "eligibility": {
+    "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+    "eligibility_metadata_sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+    "auxiliary_input_sha256": {
+      "data/processed/unified_genus_counts.csv": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "data/interim/india_genus_counts.csv": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "data/raw/india_mumbai/labels.tsv": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "data/interim/mexico_genus_counts.csv": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "data/raw/mexico/labels.tsv": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "data/interim/sa_genus_counts.csv": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "data/raw/south_africa/labels.tsv": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50",
+      "data/processed/nhanes_demographics.csv": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "data/processed/nhanes_demographics.provenance.json": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c"
+    },
+    "transfer_contract_sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88",
+    "eligibility_code_sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "eligibility_rule": "Shanghai DT/HT oral aliases retained; DF fecal aliases excluded",
+    "excluded_fecal_rows": 129,
+    "source_n": 10228,
+    "source_cases": 1251,
+    "feature_scope": "fixed historical 139-genus rank vocabulary; retrospective"
+  },
+  "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+  "script_sha256": "0d3b1c7687b9829c23f72000e244d5d7f74c20cbafb70597d57e69ac000948d5",
+  "versions": {
+    "python": "3.11.11",
+    "numpy": "1.26.4",
+    "pandas": "3.0.5",
+    "catboost": "1.2.8",
+    "sklearn": "1.5.2"
+  },
+  "parameters": {
+    "iterations": 200,
+    "depth": 4,
+    "learning_rate": 0.1,
+    "auto_class_weights": "Balanced",
+    "verbose": false,
+    "allow_writing_files": false,
+    "thread_count": 4
+  },
+  "seed": 42,
+  "external_status": "exploratory: previously inspected during development",
+  "protocol": "5 outer stratified folds; each development fold splits 75% model fit / 25% calibration; evaluation labels never fit model or isotonic mapping",
+  "source_oof": {
+    "raw": {
+      "auc": 0.7747228528862329,
+      "brier": 0.12624984006627205,
+      "ece10": 0.1943034366597057,
+      "n": 10228,
+      "prevalence": 0.12231130230739147
+    },
+    "calibrated": {
+      "auc": 0.7694006986679789,
+      "brier": 0.07908244122824326,
+      "ece10": 0.006280978722103049,
+      "n": 10228,
+      "prevalence": 0.12231130230739147
+    },
+    "folds": [
+      {
+        "fold": 0,
+        "fit_n": 6136,
+        "calibration_n": 2046,
+        "test_n": 2046,
+        "raw": {
+          "auc": 0.7857472160356347,
+          "brier": 0.12350107785775634,
+          "ece10": 0.19329622889566542,
+          "n": 2046,
+          "prevalence": 0.12218963831867058
+        },
+        "calibrated": {
+          "auc": 0.7830879732739422,
+          "brier": 0.0778093370383995,
+          "ece10": 0.005432523315195556,
+          "n": 2046,
+          "prevalence": 0.12218963831867058
+        }
+      },
+      {
+        "fold": 1,
+        "fit_n": 6136,
+        "calibration_n": 2046,
+        "test_n": 2046,
+        "raw": {
+          "auc": 0.7623841870824053,
+          "brier": 0.12978154774494924,
+          "ece10": 0.19842846977502573,
+          "n": 2046,
+          "prevalence": 0.12218963831867058
+        },
+        "calibrated": {
+          "auc": 0.760140311804009,
+          "brier": 0.07804440500142462,
+          "ece10": 0.019303964531639475,
+          "n": 2046,
+          "prevalence": 0.12218963831867058
+        }
+      },
+      {
+        "fold": 2,
+        "fit_n": 6136,
+        "calibration_n": 2046,
+        "test_n": 2046,
+        "raw": {
+          "auc": 0.7723790076462951,
+          "brier": 0.12382270434335829,
+          "ece10": 0.1859907336853025,
+          "n": 2046,
+          "prevalence": 0.12267839687194526
+        },
+        "calibrated": {
+          "auc": 0.7703481339266888,
+          "brier": 0.0783827663316755,
+          "ece10": 0.007810579640831237,
+          "n": 2046,
+          "prevalence": 0.12267839687194526
+        }
+      },
+      {
+        "fold": 3,
+        "fit_n": 6137,
+        "calibration_n": 2046,
+        "test_n": 2045,
+        "raw": {
+          "auc": 0.784900278551532,
+          "brier": 0.12738295905656116,
+          "ece10": 0.19883668218365125,
+          "n": 2045,
+          "prevalence": 0.12224938875305623
+        },
+        "calibrated": {
+          "auc": 0.7728345403899721,
+          "brier": 0.07981136587193535,
+          "ece10": 0.01391940166511622,
+          "n": 2045,
+          "prevalence": 0.12224938875305623
+        }
+      },
+      {
+        "fold": 4,
+        "fit_n": 6137,
+        "calibration_n": 2046,
+        "test_n": 2045,
+        "raw": {
+          "auc": 0.7711041782729804,
+          "brier": 0.1267617153337486,
+          "ece10": 0.19609547791790038,
+          "n": 2045,
+          "prevalence": 0.12224938875305623
+        },
+        "calibrated": {
+          "auc": 0.7633582172701948,
+          "brier": 0.08136580417910809,
+          "ece10": 0.018251026646126732,
+          "n": 2045,
+          "prevalence": 0.12224938875305623
+        }
+      }
+    ]
+  },
+  "external_benchmarks": {
+    "holdout": {
+      "raw": {
+        "auc": 0.6432,
+        "brier": 0.3267112728710294,
+        "ece10": 0.3192683012334334,
+        "n": 50,
+        "prevalence": 0.5
+      },
+      "calibrated": {
+        "auc": 0.6487999999999999,
+        "brier": 0.25882218518649197,
+        "ece10": 0.16898670563804252,
+        "n": 50,
+        "prevalence": 0.5
+      },
+      "scope": "Oral-only source ensemble; exploratory."
+    },
+    "holdout_664107": {
+      "raw": {
+        "auc": 0.6344086021505376,
+        "brier": 0.40678348150073473,
+        "ece10": 0.44727468820145333,
+        "n": 46,
+        "prevalence": 0.32608695652173914
+      },
+      "calibrated": {
+        "auc": 0.6419354838709677,
+        "brier": 0.2589801866704116,
+        "ece10": 0.22839594041679218,
+        "n": 46,
+        "prevalence": 0.32608695652173914
+      },
+      "scope": "Oral-only source ensemble; exploratory."
+    },
+    "holdout_782768": {
+      "raw": {
+        "auc": 0.5331250000000001,
+        "brier": 0.32434243010041347,
+        "ece10": 0.27286432049167725,
+        "n": 80,
+        "prevalence": 0.5
+      },
+      "calibrated": {
+        "auc": 0.5228125,
+        "brier": 0.28330384105715006,
+        "ece10": 0.19684962511119236,
+        "n": 80,
+        "prevalence": 0.5
+      },
+      "scope": "Shanghai source rows excluded from fitting and calibration for PRJNA782768; pooled scores combine different source fits."
+    },
+    "holdout_all": {
+      "raw": {
+        "auc": 0.5901041666666667,
+        "brier": 0.34656248977624066,
+        "ece10": 0.316758556208491,
+        "n": 176,
+        "prevalence": 0.45454545454545453
+      },
+      "calibrated": {
+        "auc": 0.5775390625,
+        "brier": 0.2699915064246337,
+        "ece10": 0.17601004341755563,
+        "n": 176,
+        "prevalence": 0.45454545454545453
+      },
+      "scope": "Shanghai source rows excluded from fitting and calibration for PRJNA782768; pooled scores combine different source fits."
+    }
+  },
+  "limitations": "Calibration targets the source mixture's prevalence. It does not guarantee calibration under study/prevalence shift; external scores are exploratory and ECE is bin-dependent."
+}

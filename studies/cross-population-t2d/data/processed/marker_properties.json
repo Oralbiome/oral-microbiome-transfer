@@ -1,0 +1,1034 @@
+{
+  "n_stable": 14,
+  "n_flipper": 58,
+  "prevalence": {
+    "stable_median": 0.1977,
+    "flipper_median": 0.0215,
+    "p": 0.1881
+  },
+  "abundance": {
+    "stable_median": 0.0002,
+    "flipper_median": 0.0,
+    "p": 0.1435
+  },
+  "flipper_logit_coef_standardized": {
+    "log_prevalence": -0.435,
+    "log_abundance": -0.003
+  },
+  "medians": {
+    "prevalence": 0.0814,
+    "abundance": 7.6e-05
+  },
+  "prevalent_abundant_flippers": [
+    "Actinomyces",
+    "Veillonella",
+    "Granulicatella",
+    "Staphylococcus",
+    "Faecalibacterium",
+    "Eikenella",
+    "Peptostreptococcus",
+    "Akkermansia",
+    "Catonella",
+    "Phocaeicola",
+    "Atopobium",
+    "Bacteroides"
+  ],
+  "genera": [
+    {
+      "genus": "Faecalibacterium",
+      "prevalence": 0.1113,
+      "abundance": 0.000233,
+      "class": "flipper",
+      "abs_mean_r": 0.066
+    },
+    {
+      "genus": "Cellulosimicrobium",
+      "prevalence": 0.0033,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.018
+    },
+    {
+      "genus": "Delftia",
+      "prevalence": 0.0151,
+      "abundance": 1e-05,
+      "class": "robust_down",
+      "abs_mean_r": 0.092
+    },
+    {
+      "genus": "Mogibacterium",
+      "prevalence": 0.9105,
+      "abundance": 0.002415,
+      "class": "weak",
+      "abs_mean_r": 0.048
+    },
+    {
+      "genus": "Alloscardovia",
+      "prevalence": 0.2895,
+      "abundance": 0.000311,
+      "class": "robust_up",
+      "abs_mean_r": 0.078
+    },
+    {
+      "genus": "Bordetella",
+      "prevalence": 0.0033,
+      "abundance": 2e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.022
+    },
+    {
+      "genus": "Olsenella",
+      "prevalence": 0.3134,
+      "abundance": 0.000133,
+      "class": "weak",
+      "abs_mean_r": 0.03
+    },
+    {
+      "genus": "Haematobacter",
+      "prevalence": 0.0139,
+      "abundance": 1e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.019
+    },
+    {
+      "genus": "Dialister",
+      "prevalence": 0.8645,
+      "abundance": 0.002216,
+      "class": "weak",
+      "abs_mean_r": 0.019
+    },
+    {
+      "genus": "Porphyromonas",
+      "prevalence": 0.9583,
+      "abundance": 0.018262,
+      "class": "weak",
+      "abs_mean_r": 0.054
+    },
+    {
+      "genus": "Centipeda",
+      "prevalence": 0.0814,
+      "abundance": 6e-05,
+      "class": "weak",
+      "abs_mean_r": 0.017
+    },
+    {
+      "genus": "Mobiluncus",
+      "prevalence": 0.1458,
+      "abundance": 3.9e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.041
+    },
+    {
+      "genus": "Leptotrichia",
+      "prevalence": 0.9662,
+      "abundance": 0.019967,
+      "class": "weak",
+      "abs_mean_r": 0.13
+    },
+    {
+      "genus": "Atopobium",
+      "prevalence": 0.8969,
+      "abundance": 0.00605,
+      "class": "flipper",
+      "abs_mean_r": 0.034
+    },
+    {
+      "genus": "Bacillus",
+      "prevalence": 0.005,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.014
+    },
+    {
+      "genus": "Parvimonas",
+      "prevalence": 0.9154,
+      "abundance": 0.004741,
+      "class": "weak",
+      "abs_mean_r": 0.04
+    },
+    {
+      "genus": "Anoxybacillus",
+      "prevalence": 0.0062,
+      "abundance": 2.4e-05,
+      "class": "weak",
+      "abs_mean_r": 0.077
+    },
+    {
+      "genus": "Selenomonas",
+      "prevalence": 0.6903,
+      "abundance": 0.001247,
+      "class": "weak",
+      "abs_mean_r": 0.039
+    },
+    {
+      "genus": "Desulfobulbus",
+      "prevalence": 0.2402,
+      "abundance": 9.7e-05,
+      "class": "weak",
+      "abs_mean_r": 0.031
+    },
+    {
+      "genus": "Streptococcus",
+      "prevalence": 0.9882,
+      "abundance": 0.31404,
+      "class": "robust_up",
+      "abs_mean_r": 0.133
+    },
+    {
+      "genus": "Shuttleworthia",
+      "prevalence": 0.3966,
+      "abundance": 0.00019,
+      "class": "weak",
+      "abs_mean_r": 0.051
+    },
+    {
+      "genus": "Rothia",
+      "prevalence": 0.9825,
+      "abundance": 0.106391,
+      "class": "weak",
+      "abs_mean_r": 0.141
+    },
+    {
+      "genus": "Finegoldia",
+      "prevalence": 0.0356,
+      "abundance": 3.6e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.009
+    },
+    {
+      "genus": "Scardovia",
+      "prevalence": 0.6352,
+      "abundance": 0.001439,
+      "class": "weak",
+      "abs_mean_r": 0.023
+    },
+    {
+      "genus": "Afipia",
+      "prevalence": 0.007,
+      "abundance": 2e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.011
+    },
+    {
+      "genus": "Catonella",
+      "prevalence": 0.8205,
+      "abundance": 0.000803,
+      "class": "flipper",
+      "abs_mean_r": 0.042
+    },
+    {
+      "genus": "Micrococcus",
+      "prevalence": 0.0335,
+      "abundance": 2.1e-05,
+      "class": "weak",
+      "abs_mean_r": 0.019
+    },
+    {
+      "genus": "Dermabacter",
+      "prevalence": 0.0013,
+      "abundance": 4e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.036
+    },
+    {
+      "genus": "Capnocytophaga",
+      "prevalence": 0.9294,
+      "abundance": 0.003571,
+      "class": "flipper",
+      "abs_mean_r": 0.003
+    },
+    {
+      "genus": "Odoribacter",
+      "prevalence": 0.0749,
+      "abundance": 2.4e-05,
+      "class": "weak",
+      "abs_mean_r": 0.052
+    },
+    {
+      "genus": "Anaeroglobus",
+      "prevalence": 0.5789,
+      "abundance": 0.000811,
+      "class": "weak",
+      "abs_mean_r": 0.112
+    },
+    {
+      "genus": "Treponema",
+      "prevalence": 0.0488,
+      "abundance": 0.000387,
+      "class": "weak",
+      "abs_mean_r": 0.063
+    },
+    {
+      "genus": "Novosphingobium",
+      "prevalence": 0.018,
+      "abundance": 1.8e-05,
+      "class": "weak",
+      "abs_mean_r": 0.066
+    },
+    {
+      "genus": "Mesorhizobium",
+      "prevalence": 0.0106,
+      "abundance": 1e-06,
+      "class": "weak",
+      "abs_mean_r": 0.001
+    },
+    {
+      "genus": "Proteus",
+      "prevalence": 0.003,
+      "abundance": 1e-06,
+      "class": "weak",
+      "abs_mean_r": 0.051
+    },
+    {
+      "genus": "Ralstonia",
+      "prevalence": 0.2219,
+      "abundance": 0.000545,
+      "class": "weak",
+      "abs_mean_r": 0.016
+    },
+    {
+      "genus": "Slackia",
+      "prevalence": 0.1401,
+      "abundance": 1.3e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.014
+    },
+    {
+      "genus": "Bifidobacterium",
+      "prevalence": 0.5179,
+      "abundance": 0.000745,
+      "class": "robust_up",
+      "abs_mean_r": 0.076
+    },
+    {
+      "genus": "Paenibacillus",
+      "prevalence": 0.01,
+      "abundance": 2e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.021
+    },
+    {
+      "genus": "Eubacterium",
+      "prevalence": 0.0003,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.033
+    },
+    {
+      "genus": "Alloprevotella",
+      "prevalence": 0.9628,
+      "abundance": 0.021548,
+      "class": "weak",
+      "abs_mean_r": 0.089
+    },
+    {
+      "genus": "Aggregatibacter",
+      "prevalence": 0.6962,
+      "abundance": 0.005509,
+      "class": "flipper",
+      "abs_mean_r": 0.028
+    },
+    {
+      "genus": "Solobacterium",
+      "prevalence": 0.9267,
+      "abundance": 0.002944,
+      "class": "weak",
+      "abs_mean_r": 0.035
+    },
+    {
+      "genus": "Rhodobacter",
+      "prevalence": 0.0191,
+      "abundance": 2e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.034
+    },
+    {
+      "genus": "Victivallis",
+      "prevalence": 0.001,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.03
+    },
+    {
+      "genus": "Yersinia",
+      "prevalence": 0.0597,
+      "abundance": 6.6e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.043
+    },
+    {
+      "genus": "Campylobacter",
+      "prevalence": 0.9602,
+      "abundance": 0.00503,
+      "class": "flipper",
+      "abs_mean_r": 0.009
+    },
+    {
+      "genus": "Corynebacterium",
+      "prevalence": 0.9334,
+      "abundance": 0.005018,
+      "class": "weak",
+      "abs_mean_r": 0.126
+    },
+    {
+      "genus": "Jonquetella",
+      "prevalence": 0.0054,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.014
+    },
+    {
+      "genus": "Bacteroides",
+      "prevalence": 0.3536,
+      "abundance": 0.001439,
+      "class": "flipper",
+      "abs_mean_r": 0.032
+    },
+    {
+      "genus": "Peptococcus",
+      "prevalence": 0.6816,
+      "abundance": 0.000662,
+      "class": "flipper",
+      "abs_mean_r": 0.014
+    },
+    {
+      "genus": "Burkholderia",
+      "prevalence": 0.0438,
+      "abundance": 7.8e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.062
+    },
+    {
+      "genus": "Eikenella",
+      "prevalence": 0.3253,
+      "abundance": 0.000231,
+      "class": "flipper",
+      "abs_mean_r": 0.051
+    },
+    {
+      "genus": "Sphingomonas",
+      "prevalence": 0.0508,
+      "abundance": 0.000229,
+      "class": "weak",
+      "abs_mean_r": 0.058
+    },
+    {
+      "genus": "Schlegelella",
+      "prevalence": 0.0027,
+      "abundance": 9e-06,
+      "class": "robust_down",
+      "abs_mean_r": 0.08
+    },
+    {
+      "genus": "Mycobacterium",
+      "prevalence": 0.0402,
+      "abundance": 0.000159,
+      "class": "weak",
+      "abs_mean_r": 0.037
+    },
+    {
+      "genus": "Cardiobacterium",
+      "prevalence": 0.6927,
+      "abundance": 0.000625,
+      "class": "weak",
+      "abs_mean_r": 0.028
+    },
+    {
+      "genus": "Pedobacter",
+      "prevalence": 0.0031,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.028
+    },
+    {
+      "genus": "Helicobacter",
+      "prevalence": 0.0081,
+      "abundance": 1e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.076
+    },
+    {
+      "genus": "Moraxella",
+      "prevalence": 0.1934,
+      "abundance": 0.000428,
+      "class": "weak",
+      "abs_mean_r": 0.055
+    },
+    {
+      "genus": "Mitsuokella",
+      "prevalence": 0.0179,
+      "abundance": 8e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.007
+    },
+    {
+      "genus": "Ottowia",
+      "prevalence": 0.1721,
+      "abundance": 0.000374,
+      "class": "weak",
+      "abs_mean_r": 0.005
+    },
+    {
+      "genus": "Anaerococcus",
+      "prevalence": 0.0624,
+      "abundance": 3.3e-05,
+      "class": "weak",
+      "abs_mean_r": 0.009
+    },
+    {
+      "genus": "Dolosigranulum",
+      "prevalence": 0.0117,
+      "abundance": 2e-06,
+      "class": "weak",
+      "abs_mean_r": 0.084
+    },
+    {
+      "genus": "Simonsiella",
+      "prevalence": 0.0758,
+      "abundance": 4.8e-05,
+      "class": "weak",
+      "abs_mean_r": 0.002
+    },
+    {
+      "genus": "Oribacterium",
+      "prevalence": 0.9124,
+      "abundance": 0.003395,
+      "class": "flipper",
+      "abs_mean_r": 0.013
+    },
+    {
+      "genus": "Roseomonas",
+      "prevalence": 0.0032,
+      "abundance": 1e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.002
+    },
+    {
+      "genus": "Variovorax",
+      "prevalence": 0.0022,
+      "abundance": 0.0,
+      "class": "robust_down",
+      "abs_mean_r": 0.054
+    },
+    {
+      "genus": "Pseudoramibacter",
+      "prevalence": 0.2282,
+      "abundance": 7.6e-05,
+      "class": "robust_up",
+      "abs_mean_r": 0.069
+    },
+    {
+      "genus": "Bulleidia",
+      "prevalence": 0.3958,
+      "abundance": 0.000366,
+      "class": "weak",
+      "abs_mean_r": 0.037
+    },
+    {
+      "genus": "Sneathia",
+      "prevalence": 0.0688,
+      "abundance": 5.7e-05,
+      "class": "weak",
+      "abs_mean_r": 0.035
+    },
+    {
+      "genus": "Peptoniphilus",
+      "prevalence": 0.1186,
+      "abundance": 3.8e-05,
+      "class": "weak",
+      "abs_mean_r": 0.082
+    },
+    {
+      "genus": "Brucella",
+      "prevalence": 0.0238,
+      "abundance": 0.000398,
+      "class": "flipper",
+      "abs_mean_r": 0.001
+    },
+    {
+      "genus": "Lysinibacillus",
+      "prevalence": 0.0038,
+      "abundance": 1e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.016
+    },
+    {
+      "genus": "Microbacterium",
+      "prevalence": 0.0095,
+      "abundance": 2e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.026
+    },
+    {
+      "genus": "Ureaplasma",
+      "prevalence": 0.0057,
+      "abundance": 1e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.028
+    },
+    {
+      "genus": "Eggerthella",
+      "prevalence": 0.0047,
+      "abundance": 3e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.049
+    },
+    {
+      "genus": "Achromobacter",
+      "prevalence": 0.0035,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.049
+    },
+    {
+      "genus": "Alistipes",
+      "prevalence": 0.0456,
+      "abundance": 5.3e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.054
+    },
+    {
+      "genus": "Enhydrobacter",
+      "prevalence": 0.0022,
+      "abundance": 0.0,
+      "class": "weak",
+      "abs_mean_r": 0.056
+    },
+    {
+      "genus": "Parascardovia",
+      "prevalence": 0.1896,
+      "abundance": 0.000204,
+      "class": "weak",
+      "abs_mean_r": 0.064
+    },
+    {
+      "genus": "Cryptobacterium",
+      "prevalence": 0.3491,
+      "abundance": 9.1e-05,
+      "class": "weak",
+      "abs_mean_r": 0.07
+    },
+    {
+      "genus": "Fusobacterium",
+      "prevalence": 0.9716,
+      "abundance": 0.029919,
+      "class": "flipper",
+      "abs_mean_r": 0.01
+    },
+    {
+      "genus": "Brevundimonas",
+      "prevalence": 0.0264,
+      "abundance": 6.8e-05,
+      "class": "robust_down",
+      "abs_mean_r": 0.066
+    },
+    {
+      "genus": "Bradyrhizobium",
+      "prevalence": 0.0452,
+      "abundance": 4.6e-05,
+      "class": "weak",
+      "abs_mean_r": 0.052
+    },
+    {
+      "genus": "Serratia",
+      "prevalence": 0.0081,
+      "abundance": 1e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.091
+    },
+    {
+      "genus": "Acinetobacter",
+      "prevalence": 0.2054,
+      "abundance": 0.000515,
+      "class": "weak",
+      "abs_mean_r": 0.017
+    },
+    {
+      "genus": "Desulfovibrio",
+      "prevalence": 0.0901,
+      "abundance": 2.1e-05,
+      "class": "robust_down",
+      "abs_mean_r": 0.104
+    },
+    {
+      "genus": "Moryella",
+      "prevalence": 0.1065,
+      "abundance": 0.000133,
+      "class": "flipper",
+      "abs_mean_r": 0.021
+    },
+    {
+      "genus": "Erythrobacter",
+      "prevalence": 0.0066,
+      "abundance": 1e-05,
+      "class": "weak",
+      "abs_mean_r": 0.005
+    },
+    {
+      "genus": "Bartonella",
+      "prevalence": 0.0005,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.028
+    },
+    {
+      "genus": "Desulfomicrobium",
+      "prevalence": 0.0633,
+      "abundance": 3.5e-05,
+      "class": "weak",
+      "abs_mean_r": 0.069
+    },
+    {
+      "genus": "Aerococcus",
+      "prevalence": 0.0058,
+      "abundance": 1e-06,
+      "class": "weak",
+      "abs_mean_r": 0.004
+    },
+    {
+      "genus": "Gardnerella",
+      "prevalence": 0.0542,
+      "abundance": 4.9e-05,
+      "class": "weak",
+      "abs_mean_r": 0.055
+    },
+    {
+      "genus": "Comamonas",
+      "prevalence": 0.007,
+      "abundance": 1e-05,
+      "class": "weak",
+      "abs_mean_r": 0.037
+    },
+    {
+      "genus": "Filifactor",
+      "prevalence": 0.5715,
+      "abundance": 0.001402,
+      "class": "weak",
+      "abs_mean_r": 0.081
+    },
+    {
+      "genus": "Tannerella",
+      "prevalence": 0.7811,
+      "abundance": 0.001154,
+      "class": "weak",
+      "abs_mean_r": 0.025
+    },
+    {
+      "genus": "Gemella",
+      "prevalence": 0.9775,
+      "abundance": 0.046338,
+      "class": "weak",
+      "abs_mean_r": 0.081
+    },
+    {
+      "genus": "Veillonella",
+      "prevalence": 0.9818,
+      "abundance": 0.059714,
+      "class": "flipper",
+      "abs_mean_r": 0.094
+    },
+    {
+      "genus": "Actinomyces",
+      "prevalence": 0.9784,
+      "abundance": 0.0259,
+      "class": "flipper",
+      "abs_mean_r": 0.101
+    },
+    {
+      "genus": "Parabacteroides",
+      "prevalence": 0.0436,
+      "abundance": 4.7e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.108
+    },
+    {
+      "genus": "Lautropia",
+      "prevalence": 0.7246,
+      "abundance": 0.001697,
+      "class": "weak",
+      "abs_mean_r": 0.048
+    },
+    {
+      "genus": "Stenotrophomonas",
+      "prevalence": 0.1396,
+      "abundance": 0.00064,
+      "class": "weak",
+      "abs_mean_r": 0.062
+    },
+    {
+      "genus": "Kingella",
+      "prevalence": 0.7145,
+      "abundance": 0.000605,
+      "class": "weak",
+      "abs_mean_r": 0.058
+    },
+    {
+      "genus": "Kocuria",
+      "prevalence": 0.0177,
+      "abundance": 8e-06,
+      "class": "weak",
+      "abs_mean_r": 0.07
+    },
+    {
+      "genus": "Acidovorax",
+      "prevalence": 0.0082,
+      "abundance": 1e-06,
+      "class": "weak",
+      "abs_mean_r": 0.086
+    },
+    {
+      "genus": "Segetibacter",
+      "prevalence": 0.0014,
+      "abundance": 3e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.007
+    },
+    {
+      "genus": "Lactococcus",
+      "prevalence": 0.0556,
+      "abundance": 7.2e-05,
+      "class": "weak",
+      "abs_mean_r": 0.067
+    },
+    {
+      "genus": "Peptostreptococcus",
+      "prevalence": 0.8658,
+      "abundance": 0.003592,
+      "class": "flipper",
+      "abs_mean_r": 0.046
+    },
+    {
+      "genus": "Pseudomonas",
+      "prevalence": 0.2027,
+      "abundance": 0.000511,
+      "class": "weak",
+      "abs_mean_r": 0.061
+    },
+    {
+      "genus": "Jeotgalicoccus",
+      "prevalence": 0.0025,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.015
+    },
+    {
+      "genus": "Aquamicrobium",
+      "prevalence": 0.0038,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.029
+    },
+    {
+      "genus": "Staphylococcus",
+      "prevalence": 0.2049,
+      "abundance": 0.000187,
+      "class": "flipper",
+      "abs_mean_r": 0.07
+    },
+    {
+      "genus": "Phocaeicola",
+      "prevalence": 0.2957,
+      "abundance": 0.000107,
+      "class": "flipper",
+      "abs_mean_r": 0.039
+    },
+    {
+      "genus": "Cupriavidus",
+      "prevalence": 0.0089,
+      "abundance": 1.3e-05,
+      "class": "weak",
+      "abs_mean_r": 0.062
+    },
+    {
+      "genus": "Fretibacterium",
+      "prevalence": 0.5536,
+      "abundance": 0.000544,
+      "class": "robust_down",
+      "abs_mean_r": 0.099
+    },
+    {
+      "genus": "Arsenicicoccus",
+      "prevalence": 0.0004,
+      "abundance": 1e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.024
+    },
+    {
+      "genus": "Cloacibacterium",
+      "prevalence": 0.1673,
+      "abundance": 0.000717,
+      "class": "robust_down",
+      "abs_mean_r": 0.102
+    },
+    {
+      "genus": "Akkermansia",
+      "prevalence": 0.0943,
+      "abundance": 0.00011,
+      "class": "flipper",
+      "abs_mean_r": 0.044
+    },
+    {
+      "genus": "Stomatobaculum",
+      "prevalence": 0.8969,
+      "abundance": 0.002557,
+      "class": "weak",
+      "abs_mean_r": 0.077
+    },
+    {
+      "genus": "Arcanobacterium",
+      "prevalence": 0.0013,
+      "abundance": 2e-06,
+      "class": "flipper",
+      "abs_mean_r": 0.016
+    },
+    {
+      "genus": "Neisseria",
+      "prevalence": 0.9298,
+      "abundance": 0.032618,
+      "class": "flipper",
+      "abs_mean_r": 0.024
+    },
+    {
+      "genus": "Granulicatella",
+      "prevalence": 0.9709,
+      "abundance": 0.024614,
+      "class": "flipper",
+      "abs_mean_r": 0.091
+    },
+    {
+      "genus": "Prevotella",
+      "prevalence": 0.9717,
+      "abundance": 0.029309,
+      "class": "weak",
+      "abs_mean_r": 0.047
+    },
+    {
+      "genus": "Megasphaera",
+      "prevalence": 0.9041,
+      "abundance": 0.005048,
+      "class": "weak",
+      "abs_mean_r": 0.079
+    },
+    {
+      "genus": "Lactobacillus",
+      "prevalence": 0.5054,
+      "abundance": 0.004358,
+      "class": "robust_up",
+      "abs_mean_r": 0.056
+    },
+    {
+      "genus": "Enterococcus",
+      "prevalence": 0.0126,
+      "abundance": 2e-06,
+      "class": "robust_up",
+      "abs_mean_r": 0.054
+    },
+    {
+      "genus": "Haemophilus",
+      "prevalence": 0.9704,
+      "abundance": 0.055754,
+      "class": "weak",
+      "abs_mean_r": 0.022
+    },
+    {
+      "genus": "Janibacter",
+      "prevalence": 0.0069,
+      "abundance": 1e-05,
+      "class": "weak",
+      "abs_mean_r": 0.003
+    },
+    {
+      "genus": "Dietzia",
+      "prevalence": 0.0013,
+      "abundance": 0.0,
+      "class": "weak",
+      "abs_mean_r": 0.028
+    },
+    {
+      "genus": "Butyrivibrio",
+      "prevalence": 0.0426,
+      "abundance": 2.2e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.022
+    },
+    {
+      "genus": "Caulobacter",
+      "prevalence": 0.003,
+      "abundance": 4.1e-05,
+      "class": "flipper",
+      "abs_mean_r": 0.092
+    },
+    {
+      "genus": "Lachnoanaerobaculum",
+      "prevalence": 0.8951,
+      "abundance": 0.002561,
+      "class": "weak",
+      "abs_mean_r": 0.091
+    },
+    {
+      "genus": "Propionibacterium",
+      "prevalence": 0.0677,
+      "abundance": 1.4e-05,
+      "class": "weak",
+      "abs_mean_r": 0.05
+    },
+    {
+      "genus": "Kytococcus",
+      "prevalence": 0.0004,
+      "abundance": 0.0,
+      "class": "flipper",
+      "abs_mean_r": 0.012
+    },
+    {
+      "genus": "Johnsonella",
+      "prevalence": 0.3875,
+      "abundance": 0.000252,
+      "class": "robust_down",
+      "abs_mean_r": 0.089
+    },
+    {
+      "genus": "Pyramidobacter",
+      "prevalence": 0.0597,
+      "abundance": 1.4e-05,
+      "class": "weak",
+      "abs_mean_r": 0.05
+    },
+    {
+      "genus": "Eggerthia",
+      "prevalence": 0.2485,
+      "abundance": 0.000104,
+      "class": "weak",
+      "abs_mean_r": 0.031
+    },
+    {
+      "genus": "Abiotrophia",
+      "prevalence": 0.7221,
+      "abundance": 0.001945,
+      "class": "weak",
+      "abs_mean_r": 0.046
+    }
+  ],
+  "provenance": {
+    "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+    "eligibility_metadata_sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+    "auxiliary_input_sha256": {
+      "data/processed/unified_genus_counts.csv": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "data/interim/india_genus_counts.csv": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "data/raw/india_mumbai/labels.tsv": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "data/interim/mexico_genus_counts.csv": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "data/raw/mexico/labels.tsv": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "data/interim/sa_genus_counts.csv": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "data/raw/south_africa/labels.tsv": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50",
+      "data/processed/nhanes_demographics.csv": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "data/processed/nhanes_demographics.provenance.json": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c"
+    },
+    "transfer_contract_sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88",
+    "eligibility_code_sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "eligibility_rule": "Shanghai DT/HT oral aliases retained; DF fecal aliases excluded",
+    "excluded_fecal_rows": 129,
+    "source_n": 10228,
+    "source_cases": 1251,
+    "feature_scope": "fixed historical 139-genus rank vocabulary; retrospective",
+    "script_sha256": "f0b6e450d3b97d25c9a849ea5e52e283def93dc849c1de89a45fb1eda72a16c5"
+  }
+}

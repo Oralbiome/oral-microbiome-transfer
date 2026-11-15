@@ -1,0 +1,2987 @@
+{
+  "schema_version": 1,
+  "input": "data/models/processed_data_vsearch.pkl",
+  "eligibility": {
+    "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+    "eligibility_metadata_sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+    "auxiliary_input_sha256": {
+      "data/processed/unified_genus_counts.csv": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "data/interim/india_genus_counts.csv": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "data/raw/india_mumbai/labels.tsv": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "data/interim/mexico_genus_counts.csv": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "data/raw/mexico/labels.tsv": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "data/interim/sa_genus_counts.csv": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "data/raw/south_africa/labels.tsv": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50",
+      "data/processed/nhanes_demographics.csv": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "data/processed/nhanes_demographics.provenance.json": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c"
+    },
+    "transfer_contract_sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88",
+    "eligibility_code_sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "eligibility_rule": "Shanghai DT/HT oral aliases retained; DF fecal aliases excluded",
+    "excluded_fecal_rows": 129,
+    "source_n": 10228,
+    "source_cases": 1251,
+    "feature_scope": "fixed historical 139-genus rank vocabulary; retrospective"
+  },
+  "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+  "script_sha256": "0d3b1c7687b9829c23f72000e244d5d7f74c20cbafb70597d57e69ac000948d5",
+  "versions": {
+    "python": "3.11.11",
+    "numpy": "1.26.4",
+    "pandas": "3.0.5",
+    "catboost": "1.2.8",
+    "sklearn": "1.5.2"
+  },
+  "parameters": {
+    "iterations": 200,
+    "depth": 4,
+    "learning_rate": 0.1,
+    "auto_class_weights": "Balanced",
+    "verbose": false,
+    "allow_writing_files": false,
+    "thread_count": 4
+  },
+  "seed": 42,
+  "external_status": "exploratory: previously inspected during development",
+  "protocol": "nested leave-one-source-study-out; inner macro-study AUC selects K=30 or 139; SHAP ranking refit on training rows only",
+  "nested_loso": {
+    "folds": [
+      {
+        "held_study": "china_anhui_yang",
+        "n": 102,
+        "selected_k": 139,
+        "inner": {
+          "30": {
+            "study_aucs": [
+              0.7777777777777778,
+              0.7080402813299232,
+              0.6884920634920635,
+              0.715,
+              0.5641028362858416
+            ],
+            "macro_auc": 0.6906825917771211
+          },
+          "139": {
+            "study_aucs": [
+              0.8392664509169363,
+              0.746403452685422,
+              0.6706349206349206,
+              0.705,
+              0.5551454887663156
+            ],
+            "macro_auc": 0.7032900626007189
+          }
+        },
+        "fixed_k_auc": {
+          "139": 0.6022321428571429,
+          "30": 0.6276785714285714
+        },
+        "selected_auc": 0.6022321428571429,
+        "features_30": [
+          "Phocaeicola",
+          "Treponema",
+          "Atopobium",
+          "Alloprevotella",
+          "Neisseria",
+          "Lactobacillus",
+          "Pseudoramibacter",
+          "Haemophilus",
+          "Bulleidia",
+          "Scardovia",
+          "Stomatobaculum",
+          "Alloscardovia",
+          "Parvimonas",
+          "Granulicatella",
+          "Selenomonas",
+          "Filifactor",
+          "Eggerthia",
+          "Dialister",
+          "Ralstonia",
+          "Butyrivibrio",
+          "Pyramidobacter",
+          "Mogibacterium",
+          "Megasphaera",
+          "Corynebacterium",
+          "Kingella",
+          "Capnocytophaga",
+          "Leptotrichia",
+          "Johnsonella",
+          "Bifidobacterium",
+          "Cardiobacterium"
+        ]
+      },
+      {
+        "held_study": "china_shandong_sun",
+        "n": 130,
+        "selected_k": 30,
+        "inner": {
+          "30": {
+            "study_aucs": [
+              0.5674107142857143,
+              0.7042039641943734,
+              0.7023809523809523,
+              0.8049999999999999,
+              0.5661397198417527
+            ],
+            "macro_auc": 0.6690270701405585
+          },
+          "139": {
+            "study_aucs": [
+              0.5683035714285714,
+              0.7790121483375958,
+              0.6130952380952381,
+              0.74,
+              0.555513072282352
+            ],
+            "macro_auc": 0.6511848060287514
+          }
+        },
+        "fixed_k_auc": {
+          "139": 0.8777418194893923,
+          "30": 0.7680690399137001
+        },
+        "selected_auc": 0.7680690399137001,
+        "features_30": [
+          "Phocaeicola",
+          "Atopobium",
+          "Alloprevotella",
+          "Treponema",
+          "Neisseria",
+          "Haemophilus",
+          "Pseudoramibacter",
+          "Scardovia",
+          "Bulleidia",
+          "Lactobacillus",
+          "Stomatobaculum",
+          "Alloscardovia",
+          "Selenomonas",
+          "Ralstonia",
+          "Filifactor",
+          "Parvimonas",
+          "Megasphaera",
+          "Granulicatella",
+          "Dialister",
+          "Eggerthia",
+          "Mogibacterium",
+          "Johnsonella",
+          "Bifidobacterium",
+          "Kingella",
+          "Pyramidobacter",
+          "Bacteroides",
+          "Lachnoanaerobaculum",
+          "Capnocytophaga",
+          "Corynebacterium",
+          "Aggregatibacter"
+        ]
+      },
+      {
+        "held_study": "china_shanghai_t2dm",
+        "n": 218,
+        "selected_k": 30,
+        "inner": {
+          "30": {
+            "study_aucs": [
+              0.5191964285714286,
+              0.9079467817331897,
+              0.7361111111111112,
+              0.5925,
+              0.5968964301802261
+            ],
+            "macro_auc": 0.670530150319191
+          },
+          "139": {
+            "study_aucs": [
+              0.4584821428571429,
+              0.8942826321467098,
+              0.6924603174603176,
+              0.695,
+              0.5955792672553991
+            ],
+            "macro_auc": 0.6671608719439138
+          }
+        },
+        "fixed_k_auc": {
+          "139": 0.7024456521739131,
+          "30": 0.7382512787723785
+        },
+        "selected_auc": 0.7382512787723785,
+        "features_30": [
+          "Treponema",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Pseudoramibacter",
+          "Neisseria",
+          "Lactobacillus",
+          "Alloscardovia",
+          "Scardovia",
+          "Stomatobaculum",
+          "Ralstonia",
+          "Haemophilus",
+          "Bulleidia",
+          "Megasphaera",
+          "Parvimonas",
+          "Granulicatella",
+          "Filifactor",
+          "Mogibacterium",
+          "Selenomonas",
+          "Leptotrichia",
+          "Kingella",
+          "Eikenella",
+          "Eggerthia",
+          "Capnocytophaga",
+          "Corynebacterium",
+          "Dialister",
+          "Pyramidobacter",
+          "Cardiobacterium",
+          "Tannerella",
+          "Atopobium",
+          "Bifidobacterium"
+        ]
+      },
+      {
+        "held_study": "china_sichuan_liu",
+        "n": 45,
+        "selected_k": 139,
+        "inner": {
+          "30": {
+            "study_aucs": [
+              0.6428571428571429,
+              0.8576051779935275,
+              0.6747921994884911,
+              0.6375000000000001,
+              0.5270062969601211
+            ],
+            "macro_auc": 0.6679521634598566
+          },
+          "139": {
+            "study_aucs": [
+              0.5205357142857143,
+              0.9514563106796117,
+              0.7508791560102301,
+              0.7525000000000001,
+              0.5139947795247408
+            ],
+            "macro_auc": 0.6978731921000593
+          }
+        },
+        "fixed_k_auc": {
+          "139": 0.638888888888889,
+          "30": 0.6964285714285714
+        },
+        "selected_auc": 0.638888888888889,
+        "features_30": [
+          "Phocaeicola",
+          "Treponema",
+          "Alloprevotella",
+          "Atopobium",
+          "Neisseria",
+          "Pseudoramibacter",
+          "Scardovia",
+          "Butyrivibrio",
+          "Haemophilus",
+          "Lactobacillus",
+          "Alloscardovia",
+          "Stomatobaculum",
+          "Bulleidia",
+          "Parvimonas",
+          "Granulicatella",
+          "Ralstonia",
+          "Megasphaera",
+          "Mogibacterium",
+          "Selenomonas",
+          "Eggerthia",
+          "Filifactor",
+          "Dialister",
+          "Kingella",
+          "Capnocytophaga",
+          "Eikenella",
+          "Pyramidobacter",
+          "Burkholderia",
+          "Leptotrichia",
+          "Campylobacter",
+          "Lachnoanaerobaculum"
+        ]
+      },
+      {
+        "held_study": "india_maharashtra",
+        "n": 50,
+        "selected_k": 139,
+        "inner": {
+          "30": {
+            "study_aucs": [
+              0.5888392857142857,
+              0.7630348795397339,
+              0.6129315856777493,
+              0.6686507936507937,
+              0.5511101675424164
+            ],
+            "macro_auc": 0.6369133424249959
+          },
+          "139": {
+            "study_aucs": [
+              0.6209821428571429,
+              0.8705501618122977,
+              0.7101182864450127,
+              0.7083333333333333,
+              0.5547339476509903
+            ],
+            "macro_auc": 0.6929435744197553
+          }
+        },
+        "fixed_k_auc": {
+          "139": 0.645,
+          "30": 0.7050000000000001
+        },
+        "selected_auc": 0.645,
+        "features_30": [
+          "Phocaeicola",
+          "Treponema",
+          "Atopobium",
+          "Alloprevotella",
+          "Neisseria",
+          "Pseudoramibacter",
+          "Lactobacillus",
+          "Scardovia",
+          "Bulleidia",
+          "Haemophilus",
+          "Alloscardovia",
+          "Stomatobaculum",
+          "Butyrivibrio",
+          "Selenomonas",
+          "Filifactor",
+          "Megasphaera",
+          "Parvimonas",
+          "Mogibacterium",
+          "Corynebacterium",
+          "Dialister",
+          "Granulicatella",
+          "Ralstonia",
+          "Kingella",
+          "Eggerthia",
+          "Pyramidobacter",
+          "Capnocytophaga",
+          "Lachnoanaerobaculum",
+          "Cardiobacterium",
+          "Gemella",
+          "Eikenella"
+        ]
+      },
+      {
+        "held_study": "nhanes",
+        "n": 9683,
+        "selected_k": 30,
+        "inner": {
+          "30": {
+            "study_aucs": [
+              0.6366071428571428,
+              0.9187342682488313,
+              0.8082640664961637,
+              0.5654761904761905,
+              0.585
+            ],
+            "macro_auc": 0.7028163336156655
+          },
+          "139": {
+            "study_aucs": [
+              0.6379464285714285,
+              0.9442646530025172,
+              0.505834398976982,
+              0.46825396825396826,
+              0.6525000000000001
+            ],
+            "macro_auc": 0.6417598897609793
+          }
+        },
+        "fixed_k_auc": {
+          "139": 0.5467957223676134,
+          "30": 0.5707561523627549
+        },
+        "selected_auc": 0.5707561523627549,
+        "features_30": [
+          "Bacteroides",
+          "Phocaeicola",
+          "Burkholderia",
+          "Rothia",
+          "Stomatobaculum",
+          "Pseudoramibacter",
+          "Stenotrophomonas",
+          "Peptostreptococcus",
+          "Parvimonas",
+          "Faecalibacterium",
+          "Ralstonia",
+          "Microbacterium",
+          "Corynebacterium",
+          "Abiotrophia",
+          "Bifidobacterium",
+          "Alloprevotella",
+          "Capnocytophaga",
+          "Rhodobacter",
+          "Actinomyces",
+          "Leptotrichia",
+          "Brucella",
+          "Alistipes",
+          "Parascardovia",
+          "Cloacibacterium",
+          "Lysinibacillus",
+          "Centipeda",
+          "Streptococcus",
+          "Aggregatibacter",
+          "Peptococcus",
+          "Mogibacterium"
+        ]
+      }
+    ],
+    "macro_auc": 0.6605329171324775
+  },
+  "source_selection": {
+    "selected_k": 30,
+    "candidates": {
+      "30": {
+        "study_aucs": [
+          0.6276785714285714,
+          0.7680690399137001,
+          0.7382512787723785,
+          0.6964285714285714,
+          0.7050000000000001,
+          0.5707561523627549
+        ],
+        "macro_auc": 0.6843639356509961
+      },
+      "139": {
+        "study_aucs": [
+          0.6022321428571429,
+          0.8777418194893923,
+          0.7024456521739131,
+          0.638888888888889,
+          0.645,
+          0.5467957223676134
+        ],
+        "macro_auc": 0.6688507042961583
+      }
+    }
+  },
+  "shap_ranking": [
+    {
+      "feature": "Treponema",
+      "mean_abs_shap": 0.22142842513292968
+    },
+    {
+      "feature": "Phocaeicola",
+      "mean_abs_shap": 0.20904237065195325
+    },
+    {
+      "feature": "Atopobium",
+      "mean_abs_shap": 0.2022147730133506
+    },
+    {
+      "feature": "Alloprevotella",
+      "mean_abs_shap": 0.17403892690249206
+    },
+    {
+      "feature": "Neisseria",
+      "mean_abs_shap": 0.15353408241303562
+    },
+    {
+      "feature": "Pseudoramibacter",
+      "mean_abs_shap": 0.12672932216577507
+    },
+    {
+      "feature": "Haemophilus",
+      "mean_abs_shap": 0.10572108189551087
+    },
+    {
+      "feature": "Bulleidia",
+      "mean_abs_shap": 0.10377607156738108
+    },
+    {
+      "feature": "Lactobacillus",
+      "mean_abs_shap": 0.09570729134188526
+    },
+    {
+      "feature": "Scardovia",
+      "mean_abs_shap": 0.0946546913570111
+    },
+    {
+      "feature": "Alloscardovia",
+      "mean_abs_shap": 0.08827782113446449
+    },
+    {
+      "feature": "Stomatobaculum",
+      "mean_abs_shap": 0.08418747904297297
+    },
+    {
+      "feature": "Selenomonas",
+      "mean_abs_shap": 0.07122090783217243
+    },
+    {
+      "feature": "Megasphaera",
+      "mean_abs_shap": 0.07068765326997568
+    },
+    {
+      "feature": "Parvimonas",
+      "mean_abs_shap": 0.06886030732679414
+    },
+    {
+      "feature": "Dialister",
+      "mean_abs_shap": 0.06875950225045295
+    },
+    {
+      "feature": "Granulicatella",
+      "mean_abs_shap": 0.06569373872968957
+    },
+    {
+      "feature": "Filifactor",
+      "mean_abs_shap": 0.0645831896195528
+    },
+    {
+      "feature": "Butyrivibrio",
+      "mean_abs_shap": 0.06336934576718496
+    },
+    {
+      "feature": "Ralstonia",
+      "mean_abs_shap": 0.06282132136007605
+    },
+    {
+      "feature": "Mogibacterium",
+      "mean_abs_shap": 0.05794655421111784
+    },
+    {
+      "feature": "Lachnoanaerobaculum",
+      "mean_abs_shap": 0.05504783949440463
+    },
+    {
+      "feature": "Corynebacterium",
+      "mean_abs_shap": 0.0544847296242841
+    },
+    {
+      "feature": "Kingella",
+      "mean_abs_shap": 0.053846064610599605
+    },
+    {
+      "feature": "Eggerthia",
+      "mean_abs_shap": 0.05216408074460421
+    },
+    {
+      "feature": "Johnsonella",
+      "mean_abs_shap": 0.046399060761591136
+    },
+    {
+      "feature": "Pyramidobacter",
+      "mean_abs_shap": 0.0460673183845447
+    },
+    {
+      "feature": "Bacteroides",
+      "mean_abs_shap": 0.042591323467815856
+    },
+    {
+      "feature": "Campylobacter",
+      "mean_abs_shap": 0.0403297319439775
+    },
+    {
+      "feature": "Gemella",
+      "mean_abs_shap": 0.040039155666855474
+    },
+    {
+      "feature": "Capnocytophaga",
+      "mean_abs_shap": 0.03760445724319267
+    },
+    {
+      "feature": "Eikenella",
+      "mean_abs_shap": 0.037264255508351184
+    },
+    {
+      "feature": "Actinomyces",
+      "mean_abs_shap": 0.035184874190927196
+    },
+    {
+      "feature": "Burkholderia",
+      "mean_abs_shap": 0.035149794480379
+    },
+    {
+      "feature": "Bifidobacterium",
+      "mean_abs_shap": 0.03491317049140894
+    },
+    {
+      "feature": "Cryptobacterium",
+      "mean_abs_shap": 0.03336417163686074
+    },
+    {
+      "feature": "Aggregatibacter",
+      "mean_abs_shap": 0.032772314311710196
+    },
+    {
+      "feature": "Cardiobacterium",
+      "mean_abs_shap": 0.03228073242505224
+    },
+    {
+      "feature": "Leptotrichia",
+      "mean_abs_shap": 0.03116676295763808
+    },
+    {
+      "feature": "Peptococcus",
+      "mean_abs_shap": 0.031073006732977367
+    },
+    {
+      "feature": "Tannerella",
+      "mean_abs_shap": 0.03055074078905337
+    },
+    {
+      "feature": "Moraxella",
+      "mean_abs_shap": 0.028142315066746387
+    },
+    {
+      "feature": "Parascardovia",
+      "mean_abs_shap": 0.025659404634144928
+    },
+    {
+      "feature": "Solobacterium",
+      "mean_abs_shap": 0.025559737109293178
+    },
+    {
+      "feature": "Fusobacterium",
+      "mean_abs_shap": 0.02101426103321977
+    },
+    {
+      "feature": "Lautropia",
+      "mean_abs_shap": 0.020160661636372666
+    },
+    {
+      "feature": "Anaeroglobus",
+      "mean_abs_shap": 0.019860376516376833
+    },
+    {
+      "feature": "Moryella",
+      "mean_abs_shap": 0.01906567238817594
+    },
+    {
+      "feature": "Slackia",
+      "mean_abs_shap": 0.01866769628147771
+    },
+    {
+      "feature": "Ottowia",
+      "mean_abs_shap": 0.018547595167495455
+    },
+    {
+      "feature": "Desulfovibrio",
+      "mean_abs_shap": 0.018419146770240827
+    },
+    {
+      "feature": "Catonella",
+      "mean_abs_shap": 0.018409512022478657
+    },
+    {
+      "feature": "Sneathia",
+      "mean_abs_shap": 0.017945463646593978
+    },
+    {
+      "feature": "Peptostreptococcus",
+      "mean_abs_shap": 0.016135053035458768
+    },
+    {
+      "feature": "Desulfobulbus",
+      "mean_abs_shap": 0.015393822525248166
+    },
+    {
+      "feature": "Stenotrophomonas",
+      "mean_abs_shap": 0.015389266746857014
+    },
+    {
+      "feature": "Fretibacterium",
+      "mean_abs_shap": 0.015303055935045846
+    },
+    {
+      "feature": "Mobiluncus",
+      "mean_abs_shap": 0.015158787446791583
+    },
+    {
+      "feature": "Abiotrophia",
+      "mean_abs_shap": 0.015048870823993837
+    },
+    {
+      "feature": "Simonsiella",
+      "mean_abs_shap": 0.014913368008904871
+    },
+    {
+      "feature": "Streptococcus",
+      "mean_abs_shap": 0.013694648970436773
+    },
+    {
+      "feature": "Lysinibacillus",
+      "mean_abs_shap": 0.013639741225114752
+    },
+    {
+      "feature": "Desulfomicrobium",
+      "mean_abs_shap": 0.013538566320066017
+    },
+    {
+      "feature": "Pseudomonas",
+      "mean_abs_shap": 0.012915818936532457
+    },
+    {
+      "feature": "Acinetobacter",
+      "mean_abs_shap": 0.012681291627331576
+    },
+    {
+      "feature": "Micrococcus",
+      "mean_abs_shap": 0.012334587837294608
+    },
+    {
+      "feature": "Porphyromonas",
+      "mean_abs_shap": 0.011694831769700837
+    },
+    {
+      "feature": "Shuttleworthia",
+      "mean_abs_shap": 0.011569676502432732
+    },
+    {
+      "feature": "Rothia",
+      "mean_abs_shap": 0.01080534834253064
+    },
+    {
+      "feature": "Arsenicicoccus",
+      "mean_abs_shap": 0.010517012407088291
+    },
+    {
+      "feature": "Rhodobacter",
+      "mean_abs_shap": 0.010009306973621767
+    },
+    {
+      "feature": "Anoxybacillus",
+      "mean_abs_shap": 0.009906244395123656
+    },
+    {
+      "feature": "Variovorax",
+      "mean_abs_shap": 0.00952940698025843
+    },
+    {
+      "feature": "Mycobacterium",
+      "mean_abs_shap": 0.009209257512955657
+    },
+    {
+      "feature": "Oribacterium",
+      "mean_abs_shap": 0.009190854765686776
+    },
+    {
+      "feature": "Anaerococcus",
+      "mean_abs_shap": 0.00787573094686218
+    },
+    {
+      "feature": "Aerococcus",
+      "mean_abs_shap": 0.007664110006623662
+    },
+    {
+      "feature": "Yersinia",
+      "mean_abs_shap": 0.007648973386494293
+    },
+    {
+      "feature": "Victivallis",
+      "mean_abs_shap": 0.0075090013661259485
+    },
+    {
+      "feature": "Sphingomonas",
+      "mean_abs_shap": 0.00728297378000501
+    },
+    {
+      "feature": "Pedobacter",
+      "mean_abs_shap": 0.007195310203322088
+    },
+    {
+      "feature": "Microbacterium",
+      "mean_abs_shap": 0.007103155542970669
+    },
+    {
+      "feature": "Kytococcus",
+      "mean_abs_shap": 0.006975058472118444
+    },
+    {
+      "feature": "Centipeda",
+      "mean_abs_shap": 0.006974316902023786
+    },
+    {
+      "feature": "Faecalibacterium",
+      "mean_abs_shap": 0.006582136380859923
+    },
+    {
+      "feature": "Dolosigranulum",
+      "mean_abs_shap": 0.00635892899701612
+    },
+    {
+      "feature": "Comamonas",
+      "mean_abs_shap": 0.006290747185386976
+    },
+    {
+      "feature": "Lactococcus",
+      "mean_abs_shap": 0.006268994318740886
+    },
+    {
+      "feature": "Haematobacter",
+      "mean_abs_shap": 0.006233126825264186
+    },
+    {
+      "feature": "Propionibacterium",
+      "mean_abs_shap": 0.0061562880993340265
+    },
+    {
+      "feature": "Dietzia",
+      "mean_abs_shap": 0.005855401504974211
+    },
+    {
+      "feature": "Cloacibacterium",
+      "mean_abs_shap": 0.005777464478183648
+    },
+    {
+      "feature": "Olsenella",
+      "mean_abs_shap": 0.00551583038458443
+    },
+    {
+      "feature": "Roseomonas",
+      "mean_abs_shap": 0.0054606570531589085
+    },
+    {
+      "feature": "Alistipes",
+      "mean_abs_shap": 0.004940081148546641
+    },
+    {
+      "feature": "Bacillus",
+      "mean_abs_shap": 0.004886623071808628
+    },
+    {
+      "feature": "Bradyrhizobium",
+      "mean_abs_shap": 0.004194834361876951
+    },
+    {
+      "feature": "Eubacterium",
+      "mean_abs_shap": 0.004073821065300723
+    },
+    {
+      "feature": "Erythrobacter",
+      "mean_abs_shap": 0.003748829673018703
+    },
+    {
+      "feature": "Kocuria",
+      "mean_abs_shap": 0.0037314049234561442
+    },
+    {
+      "feature": "Odoribacter",
+      "mean_abs_shap": 0.0035353791880691106
+    },
+    {
+      "feature": "Achromobacter",
+      "mean_abs_shap": 0.003412464760620438
+    },
+    {
+      "feature": "Serratia",
+      "mean_abs_shap": 0.003405970408106435
+    },
+    {
+      "feature": "Gardnerella",
+      "mean_abs_shap": 0.0032458532681057368
+    },
+    {
+      "feature": "Cellulosimicrobium",
+      "mean_abs_shap": 0.003179633883998521
+    },
+    {
+      "feature": "Helicobacter",
+      "mean_abs_shap": 0.0031505489340629762
+    },
+    {
+      "feature": "Mesorhizobium",
+      "mean_abs_shap": 0.003114450898844157
+    },
+    {
+      "feature": "Parabacteroides",
+      "mean_abs_shap": 0.002990962004600145
+    },
+    {
+      "feature": "Enhydrobacter",
+      "mean_abs_shap": 0.002979319367623422
+    },
+    {
+      "feature": "Enterococcus",
+      "mean_abs_shap": 0.0028945562105058653
+    },
+    {
+      "feature": "Akkermansia",
+      "mean_abs_shap": 0.0027091841901836725
+    },
+    {
+      "feature": "Staphylococcus",
+      "mean_abs_shap": 0.0025117444331454945
+    },
+    {
+      "feature": "Brucella",
+      "mean_abs_shap": 0.0018149295883323007
+    },
+    {
+      "feature": "Finegoldia",
+      "mean_abs_shap": 0.0016949562186634249
+    },
+    {
+      "feature": "Delftia",
+      "mean_abs_shap": 0.000980110163015708
+    },
+    {
+      "feature": "Brevundimonas",
+      "mean_abs_shap": 0.0007576685191137971
+    },
+    {
+      "feature": "Proteus",
+      "mean_abs_shap": 0.0005663481828691693
+    },
+    {
+      "feature": "Jonquetella",
+      "mean_abs_shap": 0.00041796400976338357
+    },
+    {
+      "feature": "Eggerthella",
+      "mean_abs_shap": 0.0002857633471112713
+    },
+    {
+      "feature": "Prevotella",
+      "mean_abs_shap": 0.00027410398857964185
+    },
+    {
+      "feature": "Bordetella",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Afipia",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Dermabacter",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Novosphingobium",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Paenibacillus",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Schlegelella",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Mitsuokella",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Peptoniphilus",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Ureaplasma",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Bartonella",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Veillonella",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Acidovorax",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Segetibacter",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Jeotgalicoccus",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Aquamicrobium",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Cupriavidus",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Arcanobacterium",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Janibacter",
+      "mean_abs_shap": 0.0
+    },
+    {
+      "feature": "Caulobacter",
+      "mean_abs_shap": 0.0
+    }
+  ],
+  "external_benchmarks": {
+    "Portugal": {
+      "n": 50,
+      "full_auc": 0.6464,
+      "panel30_auc": 0.5776,
+      "training_scope": {
+        "source_n": 10228,
+        "excluded_source_rows": 0,
+        "evaluation": "external benchmark",
+        "note": "Previously inspected benchmark; exploratory."
+      }
+    },
+    "Russia/Moscow": {
+      "n": 46,
+      "full_auc": 0.6387096774193548,
+      "panel30_auc": 0.6623655913978495,
+      "training_scope": {
+        "source_n": 10228,
+        "excluded_source_rows": 0,
+        "evaluation": "external benchmark",
+        "note": "Previously inspected benchmark; exploratory."
+      }
+    },
+    "Shanghai/related": {
+      "n": 80,
+      "full_auc": 0.545625,
+      "panel30_auc": 0.60875,
+      "training_scope": {
+        "source_n": 10010,
+        "excluded_source_rows": 218,
+        "evaluation": "source-study-excluded re-evaluation",
+        "note": "PRJNA782768 and PRJNA910326 are deposited by the same Shanghai publication; all Shanghai source rows excluded. Participant independence is unresolved."
+      }
+    },
+    "three_cohort_pooled": {
+      "n": 176,
+      "full_auc": 0.5942708333333333,
+      "panel30_auc": 0.6243489583333334,
+      "note": "Descriptive pooled benchmark with different source fits; Shanghai source study excluded for related benchmark."
+    }
+  },
+  "downsample_reconstruction": {
+    "n_seeds": 50,
+    "nhanes_n": 500,
+    "runs": [
+      {
+        "seed": 0,
+        "n_source": 1045,
+        "full_auc": 0.6144000000000001,
+        "panel30_auc": 0.6416,
+        "features_30": [
+          "Atopobium",
+          "Alloprevotella",
+          "Treponema",
+          "Bacteroides",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Corynebacterium",
+          "Gemella",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Pseudoramibacter",
+          "Lachnoanaerobaculum",
+          "Leptotrichia",
+          "Stenotrophomonas",
+          "Cardiobacterium",
+          "Alistipes",
+          "Filifactor",
+          "Centipeda",
+          "Haemophilus",
+          "Scardovia",
+          "Haematobacter",
+          "Cloacibacterium",
+          "Peptostreptococcus",
+          "Parabacteroides",
+          "Abiotrophia",
+          "Pyramidobacter",
+          "Stomatobaculum",
+          "Anaeroglobus",
+          "Mogibacterium",
+          "Aggregatibacter"
+        ]
+      },
+      {
+        "seed": 1,
+        "n_source": 1045,
+        "full_auc": 0.5792,
+        "panel30_auc": 0.5808,
+        "features_30": [
+          "Atopobium",
+          "Faecalibacterium",
+          "Butyrivibrio",
+          "Pseudoramibacter",
+          "Phocaeicola",
+          "Bacteroides",
+          "Corynebacterium",
+          "Treponema",
+          "Peptostreptococcus",
+          "Haemophilus",
+          "Selenomonas",
+          "Burkholderia",
+          "Alloprevotella",
+          "Rhodobacter",
+          "Stenotrophomonas",
+          "Parascardovia",
+          "Alloscardovia",
+          "Cloacibacterium",
+          "Filifactor",
+          "Haematobacter",
+          "Propionibacterium",
+          "Bulleidia",
+          "Stomatobaculum",
+          "Aggregatibacter",
+          "Fretibacterium",
+          "Bifidobacterium",
+          "Prevotella",
+          "Brucella",
+          "Johnsonella",
+          "Microbacterium"
+        ]
+      },
+      {
+        "seed": 2,
+        "n_source": 1045,
+        "full_auc": 0.5231999999999999,
+        "panel30_auc": 0.5984,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Treponema",
+          "Faecalibacterium",
+          "Bacteroides",
+          "Corynebacterium",
+          "Staphylococcus",
+          "Cloacibacterium",
+          "Alloprevotella",
+          "Leptotrichia",
+          "Bulleidia",
+          "Scardovia",
+          "Pseudoramibacter",
+          "Burkholderia",
+          "Propionibacterium",
+          "Haematobacter",
+          "Lactobacillus",
+          "Selenomonas",
+          "Centipeda",
+          "Rhodobacter",
+          "Stenotrophomonas",
+          "Abiotrophia",
+          "Desulfovibrio",
+          "Rothia",
+          "Stomatobaculum",
+          "Parabacteroides",
+          "Lysinibacillus",
+          "Haemophilus",
+          "Bifidobacterium"
+        ]
+      },
+      {
+        "seed": 3,
+        "n_source": 1045,
+        "full_auc": 0.6544,
+        "panel30_auc": 0.648,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Phocaeicola",
+          "Corynebacterium",
+          "Butyrivibrio",
+          "Pseudoramibacter",
+          "Bacteroides",
+          "Alloprevotella",
+          "Haemophilus",
+          "Faecalibacterium",
+          "Burkholderia",
+          "Peptococcus",
+          "Scardovia",
+          "Rhodobacter",
+          "Peptostreptococcus",
+          "Lachnoanaerobaculum",
+          "Neisseria",
+          "Stenotrophomonas",
+          "Propionibacterium",
+          "Alistipes",
+          "Anaeroglobus",
+          "Gemella",
+          "Cloacibacterium",
+          "Stomatobaculum",
+          "Pseudomonas",
+          "Solobacterium",
+          "Mogibacterium",
+          "Abiotrophia",
+          "Lactobacillus",
+          "Mycobacterium"
+        ]
+      },
+      {
+        "seed": 4,
+        "n_source": 1045,
+        "full_auc": 0.5968,
+        "panel30_auc": 0.584,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Bacteroides",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Treponema",
+          "Burkholderia",
+          "Alloprevotella",
+          "Faecalibacterium",
+          "Bifidobacterium",
+          "Oribacterium",
+          "Pseudoramibacter",
+          "Alistipes",
+          "Anaeroglobus",
+          "Haemophilus",
+          "Cloacibacterium",
+          "Stenotrophomonas",
+          "Neisseria",
+          "Stomatobaculum",
+          "Selenomonas",
+          "Tannerella",
+          "Mogibacterium",
+          "Propionibacterium",
+          "Haematobacter",
+          "Lysinibacillus",
+          "Microbacterium",
+          "Ralstonia",
+          "Staphylococcus",
+          "Filifactor",
+          "Johnsonella"
+        ]
+      },
+      {
+        "seed": 5,
+        "n_source": 1045,
+        "full_auc": 0.7616,
+        "panel30_auc": 0.7008,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Butyrivibrio",
+          "Neisseria",
+          "Pseudoramibacter",
+          "Alloprevotella",
+          "Treponema",
+          "Phocaeicola",
+          "Burkholderia",
+          "Haemophilus",
+          "Faecalibacterium",
+          "Bacteroides",
+          "Bifidobacterium",
+          "Ralstonia",
+          "Lactobacillus",
+          "Aggregatibacter",
+          "Stomatobaculum",
+          "Filifactor",
+          "Lautropia",
+          "Cardiobacterium",
+          "Parascardovia",
+          "Haematobacter",
+          "Stenotrophomonas",
+          "Solobacterium",
+          "Lysinibacillus",
+          "Peptococcus",
+          "Abiotrophia",
+          "Dialister",
+          "Prevotella",
+          "Kingella"
+        ]
+      },
+      {
+        "seed": 6,
+        "n_source": 1045,
+        "full_auc": 0.6528,
+        "panel30_auc": 0.6544,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Treponema",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Faecalibacterium",
+          "Burkholderia",
+          "Pseudoramibacter",
+          "Bacteroides",
+          "Lachnoanaerobaculum",
+          "Anaeroglobus",
+          "Haemophilus",
+          "Alistipes",
+          "Filifactor",
+          "Gemella",
+          "Alloprevotella",
+          "Rhodobacter",
+          "Selenomonas",
+          "Streptococcus",
+          "Stenotrophomonas",
+          "Leptotrichia",
+          "Stomatobaculum",
+          "Moryella",
+          "Oribacterium",
+          "Haematobacter",
+          "Prevotella",
+          "Fusobacterium",
+          "Staphylococcus",
+          "Abiotrophia",
+          "Brucella"
+        ]
+      },
+      {
+        "seed": 7,
+        "n_source": 1045,
+        "full_auc": 0.6016,
+        "panel30_auc": 0.5568,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Alloprevotella",
+          "Treponema",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Selenomonas",
+          "Bacteroides",
+          "Pseudoramibacter",
+          "Burkholderia",
+          "Abiotrophia",
+          "Faecalibacterium",
+          "Haematobacter",
+          "Cloacibacterium",
+          "Bifidobacterium",
+          "Haemophilus",
+          "Dialister",
+          "Scardovia",
+          "Parvimonas",
+          "Leptotrichia",
+          "Prevotella",
+          "Stenotrophomonas",
+          "Alloscardovia",
+          "Propionibacterium",
+          "Parabacteroides",
+          "Johnsonella",
+          "Pyramidobacter",
+          "Lysinibacillus",
+          "Mobiluncus",
+          "Oribacterium"
+        ]
+      },
+      {
+        "seed": 8,
+        "n_source": 1045,
+        "full_auc": 0.5808,
+        "panel30_auc": 0.7071999999999999,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Corynebacterium",
+          "Pseudoramibacter",
+          "Butyrivibrio",
+          "Faecalibacterium",
+          "Treponema",
+          "Burkholderia",
+          "Haemophilus",
+          "Selenomonas",
+          "Anaeroglobus",
+          "Lachnoanaerobaculum",
+          "Bacteroides",
+          "Eggerthia",
+          "Peptostreptococcus",
+          "Stenotrophomonas",
+          "Capnocytophaga",
+          "Gemella",
+          "Parabacteroides",
+          "Stomatobaculum",
+          "Lautropia",
+          "Peptococcus",
+          "Filifactor",
+          "Cloacibacterium",
+          "Neisseria",
+          "Brucella",
+          "Solobacterium",
+          "Alistipes",
+          "Rhodobacter"
+        ]
+      },
+      {
+        "seed": 9,
+        "n_source": 1045,
+        "full_auc": 0.5904,
+        "panel30_auc": 0.6064,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Treponema",
+          "Corynebacterium",
+          "Faecalibacterium",
+          "Butyrivibrio",
+          "Bacteroides",
+          "Selenomonas",
+          "Lachnoanaerobaculum",
+          "Burkholderia",
+          "Alloprevotella",
+          "Pseudoramibacter",
+          "Prevotella",
+          "Filifactor",
+          "Abiotrophia",
+          "Streptococcus",
+          "Cloacibacterium",
+          "Oribacterium",
+          "Dialister",
+          "Gemella",
+          "Peptostreptococcus",
+          "Stenotrophomonas",
+          "Lysinibacillus",
+          "Eikenella",
+          "Parabacteroides",
+          "Desulfovibrio",
+          "Ottowia",
+          "Aggregatibacter",
+          "Johnsonella",
+          "Actinomyces"
+        ]
+      },
+      {
+        "seed": 10,
+        "n_source": 1045,
+        "full_auc": 0.5551999999999999,
+        "panel30_auc": 0.6352,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Corynebacterium",
+          "Pseudoramibacter",
+          "Butyrivibrio",
+          "Faecalibacterium",
+          "Treponema",
+          "Abiotrophia",
+          "Bacteroides",
+          "Slackia",
+          "Burkholderia",
+          "Gemella",
+          "Selenomonas",
+          "Alloprevotella",
+          "Haemophilus",
+          "Haematobacter",
+          "Stomatobaculum",
+          "Dialister",
+          "Streptococcus",
+          "Akkermansia",
+          "Neisseria",
+          "Rhodobacter",
+          "Cloacibacterium",
+          "Propionibacterium",
+          "Fusobacterium",
+          "Micrococcus",
+          "Stenotrophomonas",
+          "Peptostreptococcus",
+          "Parabacteroides",
+          "Lachnoanaerobaculum"
+        ]
+      },
+      {
+        "seed": 11,
+        "n_source": 1045,
+        "full_auc": 0.6512,
+        "panel30_auc": 0.6400000000000001,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Butyrivibrio",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Phocaeicola",
+          "Abiotrophia",
+          "Alloprevotella",
+          "Treponema",
+          "Scardovia",
+          "Solobacterium",
+          "Stomatobaculum",
+          "Leptotrichia",
+          "Staphylococcus",
+          "Peptostreptococcus",
+          "Lachnoanaerobaculum",
+          "Fusobacterium",
+          "Propionibacterium",
+          "Haemophilus",
+          "Stenotrophomonas",
+          "Aggregatibacter",
+          "Alistipes",
+          "Actinomyces",
+          "Bacteroides",
+          "Bifidobacterium",
+          "Pseudoramibacter",
+          "Filifactor",
+          "Peptococcus",
+          "Lysinibacillus",
+          "Microbacterium"
+        ]
+      },
+      {
+        "seed": 12,
+        "n_source": 1045,
+        "full_auc": 0.6288,
+        "panel30_auc": 0.6912,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Butyrivibrio",
+          "Faecalibacterium",
+          "Burkholderia",
+          "Corynebacterium",
+          "Bacteroides",
+          "Phocaeicola",
+          "Pseudoramibacter",
+          "Haemophilus",
+          "Alloprevotella",
+          "Scardovia",
+          "Rhodobacter",
+          "Selenomonas",
+          "Leptotrichia",
+          "Centipeda",
+          "Neisseria",
+          "Abiotrophia",
+          "Peptostreptococcus",
+          "Mogibacterium",
+          "Stenotrophomonas",
+          "Alistipes",
+          "Dialister",
+          "Stomatobaculum",
+          "Aggregatibacter",
+          "Fretibacterium",
+          "Johnsonella",
+          "Bifidobacterium",
+          "Micrococcus",
+          "Cloacibacterium"
+        ]
+      },
+      {
+        "seed": 13,
+        "n_source": 1045,
+        "full_auc": 0.5664,
+        "panel30_auc": 0.5935999999999999,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Butyrivibrio",
+          "Alistipes",
+          "Pseudoramibacter",
+          "Alloprevotella",
+          "Burkholderia",
+          "Lachnoanaerobaculum",
+          "Bacteroides",
+          "Phocaeicola",
+          "Corynebacterium",
+          "Megasphaera",
+          "Haematobacter",
+          "Faecalibacterium",
+          "Parabacteroides",
+          "Haemophilus",
+          "Selenomonas",
+          "Abiotrophia",
+          "Stenotrophomonas",
+          "Aggregatibacter",
+          "Stomatobaculum",
+          "Cloacibacterium",
+          "Anaeroglobus",
+          "Leptotrichia",
+          "Oribacterium",
+          "Peptococcus",
+          "Solobacterium",
+          "Cardiobacterium",
+          "Propionibacterium",
+          "Peptoniphilus"
+        ]
+      },
+      {
+        "seed": 14,
+        "n_source": 1045,
+        "full_auc": 0.6624,
+        "panel30_auc": 0.6896,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Faecalibacterium",
+          "Treponema",
+          "Haemophilus",
+          "Corynebacterium",
+          "Pseudoramibacter",
+          "Burkholderia",
+          "Alloprevotella",
+          "Scardovia",
+          "Neisseria",
+          "Aggregatibacter",
+          "Parabacteroides",
+          "Slackia",
+          "Rhodobacter",
+          "Stenotrophomonas",
+          "Stomatobaculum",
+          "Anaeroglobus",
+          "Bacteroides",
+          "Alloscardovia",
+          "Cloacibacterium",
+          "Filifactor",
+          "Centipeda",
+          "Leptotrichia",
+          "Peptostreptococcus",
+          "Propionibacterium",
+          "Lautropia",
+          "Schlegelella",
+          "Yersinia"
+        ]
+      },
+      {
+        "seed": 15,
+        "n_source": 1045,
+        "full_auc": 0.624,
+        "panel30_auc": 0.584,
+        "features_30": [
+          "Atopobium",
+          "Butyrivibrio",
+          "Faecalibacterium",
+          "Corynebacterium",
+          "Haemophilus",
+          "Bacteroides",
+          "Selenomonas",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Burkholderia",
+          "Scardovia",
+          "Pseudoramibacter",
+          "Cloacibacterium",
+          "Filifactor",
+          "Propionibacterium",
+          "Rhodobacter",
+          "Pyramidobacter",
+          "Stenotrophomonas",
+          "Bifidobacterium",
+          "Oribacterium",
+          "Yersinia",
+          "Alistipes",
+          "Ralstonia",
+          "Treponema",
+          "Stomatobaculum",
+          "Haematobacter",
+          "Cardiobacterium",
+          "Microbacterium",
+          "Lysinibacillus",
+          "Abiotrophia"
+        ]
+      },
+      {
+        "seed": 16,
+        "n_source": 1045,
+        "full_auc": 0.592,
+        "panel30_auc": 0.6096,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Faecalibacterium",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Burkholderia",
+          "Peptostreptococcus",
+          "Alloprevotella",
+          "Corynebacterium",
+          "Bulleidia",
+          "Bacteroides",
+          "Leptotrichia",
+          "Neisseria",
+          "Bradyrhizobium",
+          "Centipeda",
+          "Haematobacter",
+          "Anaeroglobus",
+          "Rhodobacter",
+          "Propionibacterium",
+          "Prevotella",
+          "Stenotrophomonas",
+          "Gemella",
+          "Haemophilus",
+          "Parvimonas",
+          "Peptococcus",
+          "Microbacterium",
+          "Pseudoramibacter",
+          "Stomatobaculum",
+          "Lysinibacillus",
+          "Slackia"
+        ]
+      },
+      {
+        "seed": 17,
+        "n_source": 1045,
+        "full_auc": 0.5680000000000001,
+        "panel30_auc": 0.536,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Faecalibacterium",
+          "Phocaeicola",
+          "Selenomonas",
+          "Corynebacterium",
+          "Burkholderia",
+          "Pseudoramibacter",
+          "Butyrivibrio",
+          "Gemella",
+          "Prevotella",
+          "Anaeroglobus",
+          "Bacteroides",
+          "Parabacteroides",
+          "Abiotrophia",
+          "Catonella",
+          "Rhodobacter",
+          "Oribacterium",
+          "Alloprevotella",
+          "Haemophilus",
+          "Peptococcus",
+          "Stenotrophomonas",
+          "Stomatobaculum",
+          "Microbacterium",
+          "Filifactor",
+          "Mogibacterium",
+          "Bifidobacterium",
+          "Lachnoanaerobaculum",
+          "Campylobacter",
+          "Dialister"
+        ]
+      },
+      {
+        "seed": 18,
+        "n_source": 1045,
+        "full_auc": 0.656,
+        "panel30_auc": 0.7136,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Bacteroides",
+          "Butyrivibrio",
+          "Alloprevotella",
+          "Phocaeicola",
+          "Pseudoramibacter",
+          "Faecalibacterium",
+          "Haemophilus",
+          "Treponema",
+          "Burkholderia",
+          "Rhodobacter",
+          "Bifidobacterium",
+          "Scardovia",
+          "Parvimonas",
+          "Desulfovibrio",
+          "Neisseria",
+          "Stenotrophomonas",
+          "Ottowia",
+          "Tannerella",
+          "Kingella",
+          "Propionibacterium",
+          "Stomatobaculum",
+          "Microbacterium",
+          "Selenomonas",
+          "Parabacteroides",
+          "Filifactor",
+          "Aggregatibacter",
+          "Lachnoanaerobaculum",
+          "Moryella"
+        ]
+      },
+      {
+        "seed": 19,
+        "n_source": 1045,
+        "full_auc": 0.6016,
+        "panel30_auc": 0.6000000000000001,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Phocaeicola",
+          "Pseudoramibacter",
+          "Faecalibacterium",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Burkholderia",
+          "Corynebacterium",
+          "Lachnoanaerobaculum",
+          "Haemophilus",
+          "Leptotrichia",
+          "Propionibacterium",
+          "Bacteroides",
+          "Abiotrophia",
+          "Moryella",
+          "Filifactor",
+          "Prevotella",
+          "Alistipes",
+          "Anaeroglobus",
+          "Aggregatibacter",
+          "Centipeda",
+          "Stomatobaculum",
+          "Cloacibacterium",
+          "Ralstonia",
+          "Haematobacter",
+          "Peptostreptococcus",
+          "Stenotrophomonas",
+          "Cardiobacterium",
+          "Selenomonas"
+        ]
+      },
+      {
+        "seed": 20,
+        "n_source": 1045,
+        "full_auc": 0.6544,
+        "panel30_auc": 0.6416,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Abiotrophia",
+          "Corynebacterium",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Haematobacter",
+          "Treponema",
+          "Peptostreptococcus",
+          "Lachnoanaerobaculum",
+          "Selenomonas",
+          "Scardovia",
+          "Slackia",
+          "Alistipes",
+          "Haemophilus",
+          "Pseudoramibacter",
+          "Propionibacterium",
+          "Bacteroides",
+          "Centipeda",
+          "Rhodobacter",
+          "Micrococcus",
+          "Stomatobaculum",
+          "Gemella",
+          "Catonella",
+          "Stenotrophomonas",
+          "Cloacibacterium",
+          "Pyramidobacter",
+          "Ralstonia"
+        ]
+      },
+      {
+        "seed": 21,
+        "n_source": 1045,
+        "full_auc": 0.5584,
+        "panel30_auc": 0.5984,
+        "features_30": [
+          "Atopobium",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Treponema",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Pseudoramibacter",
+          "Bacteroides",
+          "Abiotrophia",
+          "Solobacterium",
+          "Filifactor",
+          "Gemella",
+          "Leptotrichia",
+          "Rhodobacter",
+          "Stomatobaculum",
+          "Haematobacter",
+          "Anaeroglobus",
+          "Stenotrophomonas",
+          "Mobiluncus",
+          "Catonella",
+          "Alistipes",
+          "Cloacibacterium",
+          "Haemophilus",
+          "Selenomonas",
+          "Centipeda",
+          "Propionibacterium",
+          "Campylobacter",
+          "Porphyromonas"
+        ]
+      },
+      {
+        "seed": 22,
+        "n_source": 1045,
+        "full_auc": 0.4784,
+        "panel30_auc": 0.5808,
+        "features_30": [
+          "Atopobium",
+          "Alloprevotella",
+          "Phocaeicola",
+          "Corynebacterium",
+          "Faecalibacterium",
+          "Bacteroides",
+          "Filifactor",
+          "Burkholderia",
+          "Butyrivibrio",
+          "Pseudoramibacter",
+          "Gemella",
+          "Rhodobacter",
+          "Treponema",
+          "Selenomonas",
+          "Stenotrophomonas",
+          "Scardovia",
+          "Alistipes",
+          "Neisseria",
+          "Prevotella",
+          "Stomatobaculum",
+          "Aggregatibacter",
+          "Leptotrichia",
+          "Staphylococcus",
+          "Parabacteroides",
+          "Bulleidia",
+          "Peptostreptococcus",
+          "Pseudomonas",
+          "Lysinibacillus",
+          "Microbacterium",
+          "Actinomyces"
+        ]
+      },
+      {
+        "seed": 23,
+        "n_source": 1045,
+        "full_auc": 0.5968,
+        "panel30_auc": 0.6528,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Pseudoramibacter",
+          "Corynebacterium",
+          "Treponema",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Neisseria",
+          "Haematobacter",
+          "Haemophilus",
+          "Lachnoanaerobaculum",
+          "Centipeda",
+          "Parabacteroides",
+          "Bacteroides",
+          "Scardovia",
+          "Catonella",
+          "Stenotrophomonas",
+          "Parvimonas",
+          "Selenomonas",
+          "Streptococcus",
+          "Eggerthia",
+          "Slackia",
+          "Alloscardovia",
+          "Stomatobaculum",
+          "Propionibacterium",
+          "Alistipes",
+          "Pyramidobacter",
+          "Microbacterium"
+        ]
+      },
+      {
+        "seed": 24,
+        "n_source": 1045,
+        "full_auc": 0.6064,
+        "panel30_auc": 0.6272,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Treponema",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Burkholderia",
+          "Bacteroides",
+          "Alloprevotella",
+          "Faecalibacterium",
+          "Parabacteroides",
+          "Bifidobacterium",
+          "Peptostreptococcus",
+          "Anaeroglobus",
+          "Actinomyces",
+          "Pseudoramibacter",
+          "Ottowia",
+          "Lachnoanaerobaculum",
+          "Aggregatibacter",
+          "Haematobacter",
+          "Eikenella",
+          "Stenotrophomonas",
+          "Leptotrichia",
+          "Eggerthia",
+          "Stomatobaculum",
+          "Campylobacter",
+          "Haemophilus",
+          "Propionibacterium",
+          "Lysinibacillus",
+          "Peptococcus",
+          "Alistipes"
+        ]
+      },
+      {
+        "seed": 25,
+        "n_source": 1045,
+        "full_auc": 0.7232000000000001,
+        "panel30_auc": 0.6991999999999999,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Faecalibacterium",
+          "Corynebacterium",
+          "Pseudoramibacter",
+          "Treponema",
+          "Bacteroides",
+          "Neisseria",
+          "Anaeroglobus",
+          "Alloprevotella",
+          "Burkholderia",
+          "Moryella",
+          "Alistipes",
+          "Stomatobaculum",
+          "Slackia",
+          "Stenotrophomonas",
+          "Rhodobacter",
+          "Haemophilus",
+          "Filifactor",
+          "Cloacibacterium",
+          "Bulleidia",
+          "Propionibacterium",
+          "Kingella",
+          "Lautropia",
+          "Selenomonas",
+          "Microbacterium",
+          "Eubacterium",
+          "Pseudomonas",
+          "Shuttleworthia"
+        ]
+      },
+      {
+        "seed": 26,
+        "n_source": 1045,
+        "full_auc": 0.592,
+        "panel30_auc": 0.6080000000000001,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Phocaeicola",
+          "Burkholderia",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Treponema",
+          "Lachnoanaerobaculum",
+          "Pseudoramibacter",
+          "Bifidobacterium",
+          "Peptostreptococcus",
+          "Faecalibacterium",
+          "Rhodobacter",
+          "Stenotrophomonas",
+          "Stomatobaculum",
+          "Bulleidia",
+          "Scardovia",
+          "Ralstonia",
+          "Alloscardovia",
+          "Haematobacter",
+          "Haemophilus",
+          "Leptotrichia",
+          "Selenomonas",
+          "Bacteroides",
+          "Anaeroglobus",
+          "Lysinibacillus",
+          "Propionibacterium",
+          "Parabacteroides",
+          "Centipeda",
+          "Actinomyces"
+        ]
+      },
+      {
+        "seed": 27,
+        "n_source": 1045,
+        "full_auc": 0.7600000000000001,
+        "panel30_auc": 0.656,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Pseudoramibacter",
+          "Burkholderia",
+          "Scardovia",
+          "Bacteroides",
+          "Treponema",
+          "Alloprevotella",
+          "Parabacteroides",
+          "Faecalibacterium",
+          "Haemophilus",
+          "Selenomonas",
+          "Stenotrophomonas",
+          "Lachnoanaerobaculum",
+          "Haematobacter",
+          "Centipeda",
+          "Neisseria",
+          "Stomatobaculum",
+          "Prevotella",
+          "Megasphaera",
+          "Alistipes",
+          "Propionibacterium",
+          "Eggerthia",
+          "Brucella",
+          "Johnsonella",
+          "Anaeroglobus",
+          "Oribacterium",
+          "Peptococcus"
+        ]
+      },
+      {
+        "seed": 28,
+        "n_source": 1045,
+        "full_auc": 0.6384,
+        "panel30_auc": 0.6607999999999999,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Corynebacterium",
+          "Selenomonas",
+          "Butyrivibrio",
+          "Burkholderia",
+          "Haemophilus",
+          "Faecalibacterium",
+          "Anaeroglobus",
+          "Bacteroides",
+          "Treponema",
+          "Haematobacter",
+          "Pseudoramibacter",
+          "Tannerella",
+          "Stenotrophomonas",
+          "Bifidobacterium",
+          "Neisseria",
+          "Abiotrophia",
+          "Parascardovia",
+          "Filifactor",
+          "Scardovia",
+          "Alistipes",
+          "Peptococcus",
+          "Alloprevotella",
+          "Prevotella",
+          "Lachnoanaerobaculum",
+          "Capnocytophaga",
+          "Cloacibacterium",
+          "Stomatobaculum",
+          "Bulleidia"
+        ]
+      },
+      {
+        "seed": 29,
+        "n_source": 1045,
+        "full_auc": 0.648,
+        "panel30_auc": 0.632,
+        "features_30": [
+          "Atopobium",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Pseudoramibacter",
+          "Treponema",
+          "Alloprevotella",
+          "Corynebacterium",
+          "Faecalibacterium",
+          "Bulleidia",
+          "Burkholderia",
+          "Propionibacterium",
+          "Bacteroides",
+          "Fusobacterium",
+          "Haemophilus",
+          "Alistipes",
+          "Mogibacterium",
+          "Leptotrichia",
+          "Lysinibacillus",
+          "Peptostreptococcus",
+          "Lachnoanaerobaculum",
+          "Abiotrophia",
+          "Ralstonia",
+          "Alloscardovia",
+          "Haematobacter",
+          "Stenotrophomonas",
+          "Parabacteroides",
+          "Streptococcus",
+          "Solobacterium",
+          "Cardiobacterium",
+          "Stomatobaculum"
+        ]
+      },
+      {
+        "seed": 30,
+        "n_source": 1045,
+        "full_auc": 0.608,
+        "panel30_auc": 0.5616,
+        "features_30": [
+          "Atopobium",
+          "Bacteroides",
+          "Treponema",
+          "Pseudoramibacter",
+          "Corynebacterium",
+          "Selenomonas",
+          "Alloprevotella",
+          "Faecalibacterium",
+          "Butyrivibrio",
+          "Neisseria",
+          "Phocaeicola",
+          "Peptostreptococcus",
+          "Alistipes",
+          "Burkholderia",
+          "Haemophilus",
+          "Streptococcus",
+          "Parabacteroides",
+          "Stomatobaculum",
+          "Leptotrichia",
+          "Slackia",
+          "Cloacibacterium",
+          "Tannerella",
+          "Stenotrophomonas",
+          "Johnsonella",
+          "Filifactor",
+          "Oribacterium",
+          "Aggregatibacter",
+          "Scardovia",
+          "Bradyrhizobium",
+          "Parvimonas"
+        ]
+      },
+      {
+        "seed": 31,
+        "n_source": 1045,
+        "full_auc": 0.584,
+        "panel30_auc": 0.664,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Phocaeicola",
+          "Pseudoramibacter",
+          "Scardovia",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Burkholderia",
+          "Anaeroglobus",
+          "Lachnoanaerobaculum",
+          "Dialister",
+          "Faecalibacterium",
+          "Peptococcus",
+          "Haemophilus",
+          "Leptotrichia",
+          "Neisseria",
+          "Bacteroides",
+          "Stomatobaculum",
+          "Treponema",
+          "Stenotrophomonas",
+          "Bulleidia",
+          "Rhodobacter",
+          "Haematobacter",
+          "Parabacteroides",
+          "Abiotrophia",
+          "Peptostreptococcus",
+          "Lactobacillus",
+          "Centipeda",
+          "Alloscardovia",
+          "Anoxybacillus"
+        ]
+      },
+      {
+        "seed": 32,
+        "n_source": 1045,
+        "full_auc": 0.5552,
+        "panel30_auc": 0.6288,
+        "features_30": [
+          "Atopobium",
+          "Pseudoramibacter",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Treponema",
+          "Burkholderia",
+          "Alloscardovia",
+          "Lachnoanaerobaculum",
+          "Gemella",
+          "Neisseria",
+          "Alistipes",
+          "Faecalibacterium",
+          "Anaeroglobus",
+          "Bacteroides",
+          "Haemophilus",
+          "Brucella",
+          "Slackia",
+          "Abiotrophia",
+          "Stenotrophomonas",
+          "Parvimonas",
+          "Haematobacter",
+          "Peptostreptococcus",
+          "Centipeda",
+          "Peptococcus",
+          "Mogibacterium",
+          "Stomatobaculum",
+          "Aggregatibacter",
+          "Parabacteroides"
+        ]
+      },
+      {
+        "seed": 33,
+        "n_source": 1045,
+        "full_auc": 0.5472,
+        "panel30_auc": 0.5871999999999999,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Burkholderia",
+          "Phocaeicola",
+          "Pseudoramibacter",
+          "Faecalibacterium",
+          "Parabacteroides",
+          "Gemella",
+          "Bacteroides",
+          "Lachnoanaerobaculum",
+          "Akkermansia",
+          "Bifidobacterium",
+          "Peptostreptococcus",
+          "Alloprevotella",
+          "Anaeroglobus",
+          "Neisseria",
+          "Streptococcus",
+          "Stomatobaculum",
+          "Abiotrophia",
+          "Propionibacterium",
+          "Cloacibacterium",
+          "Microbacterium",
+          "Leptotrichia",
+          "Eggerthia",
+          "Stenotrophomonas",
+          "Alloscardovia",
+          "Micrococcus",
+          "Kytococcus"
+        ]
+      },
+      {
+        "seed": 34,
+        "n_source": 1045,
+        "full_auc": 0.5327999999999999,
+        "panel30_auc": 0.6112000000000001,
+        "features_30": [
+          "Atopobium",
+          "Alloprevotella",
+          "Faecalibacterium",
+          "Neisseria",
+          "Burkholderia",
+          "Treponema",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Pseudoramibacter",
+          "Stenotrophomonas",
+          "Moryella",
+          "Abiotrophia",
+          "Anaeroglobus",
+          "Streptococcus",
+          "Bacteroides",
+          "Parabacteroides",
+          "Rhodobacter",
+          "Gemella",
+          "Prevotella",
+          "Centipeda",
+          "Cloacibacterium",
+          "Lysinibacillus",
+          "Leptotrichia",
+          "Haemophilus",
+          "Bulleidia",
+          "Slackia",
+          "Peptococcus",
+          "Brucella",
+          "Haematobacter"
+        ]
+      },
+      {
+        "seed": 35,
+        "n_source": 1045,
+        "full_auc": 0.6144000000000001,
+        "panel30_auc": 0.6768,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Corynebacterium",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Faecalibacterium",
+          "Pseudoramibacter",
+          "Burkholderia",
+          "Alloprevotella",
+          "Bifidobacterium",
+          "Peptostreptococcus",
+          "Solobacterium",
+          "Selenomonas",
+          "Filifactor",
+          "Haemophilus",
+          "Bacteroides",
+          "Leptotrichia",
+          "Peptococcus",
+          "Scardovia",
+          "Parabacteroides",
+          "Kingella",
+          "Stenotrophomonas",
+          "Slackia",
+          "Stomatobaculum",
+          "Anaeroglobus",
+          "Moryella",
+          "Lachnoanaerobaculum",
+          "Rhodobacter",
+          "Microbacterium",
+          "Lysinibacillus"
+        ]
+      },
+      {
+        "seed": 36,
+        "n_source": 1045,
+        "full_auc": 0.6256,
+        "panel30_auc": 0.6416,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Haemophilus",
+          "Treponema",
+          "Alloprevotella",
+          "Burkholderia",
+          "Pseudoramibacter",
+          "Corynebacterium",
+          "Parabacteroides",
+          "Streptococcus",
+          "Moryella",
+          "Selenomonas",
+          "Faecalibacterium",
+          "Gemella",
+          "Filifactor",
+          "Haematobacter",
+          "Solobacterium",
+          "Lachnoanaerobaculum",
+          "Bacteroides",
+          "Peptostreptococcus",
+          "Oribacterium",
+          "Rhodobacter",
+          "Neisseria",
+          "Micrococcus",
+          "Lautropia",
+          "Ralstonia",
+          "Leptotrichia",
+          "Alloscardovia",
+          "Abiotrophia"
+        ]
+      },
+      {
+        "seed": 37,
+        "n_source": 1045,
+        "full_auc": 0.6688,
+        "panel30_auc": 0.5984,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Treponema",
+          "Selenomonas",
+          "Butyrivibrio",
+          "Burkholderia",
+          "Phocaeicola",
+          "Faecalibacterium",
+          "Bacteroides",
+          "Pseudoramibacter",
+          "Peptococcus",
+          "Actinomyces",
+          "Peptostreptococcus",
+          "Slackia",
+          "Alloprevotella",
+          "Lachnoanaerobaculum",
+          "Stenotrophomonas",
+          "Haemophilus",
+          "Bradyrhizobium",
+          "Haematobacter",
+          "Pyramidobacter",
+          "Bifidobacterium",
+          "Dialister",
+          "Cloacibacterium",
+          "Prevotella",
+          "Centipeda",
+          "Leptotrichia",
+          "Microbacterium",
+          "Alistipes",
+          "Ralstonia"
+        ]
+      },
+      {
+        "seed": 38,
+        "n_source": 1045,
+        "full_auc": 0.6528,
+        "panel30_auc": 0.6719999999999999,
+        "features_30": [
+          "Atopobium",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Treponema",
+          "Pseudoramibacter",
+          "Scardovia",
+          "Solobacterium",
+          "Faecalibacterium",
+          "Burkholderia",
+          "Haemophilus",
+          "Johnsonella",
+          "Anaeroglobus",
+          "Prevotella",
+          "Stenotrophomonas",
+          "Peptostreptococcus",
+          "Bacteroides",
+          "Stomatobaculum",
+          "Haematobacter",
+          "Parabacteroides",
+          "Bifidobacterium",
+          "Eikenella",
+          "Akkermansia",
+          "Oribacterium",
+          "Propionibacterium",
+          "Ralstonia",
+          "Rhodobacter",
+          "Lautropia",
+          "Lachnoanaerobaculum"
+        ]
+      },
+      {
+        "seed": 39,
+        "n_source": 1045,
+        "full_auc": 0.6623999999999999,
+        "panel30_auc": 0.6256,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Corynebacterium",
+          "Bacteroides",
+          "Butyrivibrio",
+          "Alloprevotella",
+          "Burkholderia",
+          "Pseudoramibacter",
+          "Faecalibacterium",
+          "Lachnoanaerobaculum",
+          "Haemophilus",
+          "Anaeroglobus",
+          "Scardovia",
+          "Peptococcus",
+          "Catonella",
+          "Stomatobaculum",
+          "Eggerthia",
+          "Solobacterium",
+          "Peptostreptococcus",
+          "Johnsonella",
+          "Gemella",
+          "Alistipes",
+          "Haematobacter",
+          "Rhodobacter",
+          "Stenotrophomonas",
+          "Parvimonas",
+          "Mogibacterium",
+          "Microbacterium",
+          "Lysinibacillus",
+          "Alloscardovia"
+        ]
+      },
+      {
+        "seed": 40,
+        "n_source": 1045,
+        "full_auc": 0.6944000000000001,
+        "panel30_auc": 0.6032,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Alloprevotella",
+          "Haemophilus",
+          "Bacteroides",
+          "Pseudoramibacter",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Abiotrophia",
+          "Peptostreptococcus",
+          "Rhodobacter",
+          "Anaeroglobus",
+          "Filifactor",
+          "Johnsonella",
+          "Stenotrophomonas",
+          "Bifidobacterium",
+          "Kingella",
+          "Gemella",
+          "Selenomonas",
+          "Dialister",
+          "Leptotrichia",
+          "Peptococcus",
+          "Stomatobaculum",
+          "Cryptobacterium",
+          "Capnocytophaga",
+          "Neisseria",
+          "Cloacibacterium",
+          "Alistipes"
+        ]
+      },
+      {
+        "seed": 41,
+        "n_source": 1045,
+        "full_auc": 0.5983999999999999,
+        "panel30_auc": 0.7248000000000001,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Bacteroides",
+          "Haemophilus",
+          "Pseudoramibacter",
+          "Faecalibacterium",
+          "Treponema",
+          "Burkholderia",
+          "Scardovia",
+          "Johnsonella",
+          "Alistipes",
+          "Stenotrophomonas",
+          "Ottowia",
+          "Selenomonas",
+          "Gemella",
+          "Leptotrichia",
+          "Haematobacter",
+          "Filifactor",
+          "Microbacterium",
+          "Aggregatibacter",
+          "Stomatobaculum",
+          "Bulleidia",
+          "Oribacterium",
+          "Propionibacterium",
+          "Ralstonia",
+          "Rhodobacter",
+          "Peptostreptococcus"
+        ]
+      },
+      {
+        "seed": 42,
+        "n_source": 1045,
+        "full_auc": 0.6527999999999999,
+        "panel30_auc": 0.7327999999999999,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Corynebacterium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Alloprevotella",
+          "Selenomonas",
+          "Faecalibacterium",
+          "Peptostreptococcus",
+          "Haemophilus",
+          "Pseudoramibacter",
+          "Bacteroides",
+          "Burkholderia",
+          "Stomatobaculum",
+          "Scardovia",
+          "Centipeda",
+          "Gemella",
+          "Filifactor",
+          "Parvimonas",
+          "Stenotrophomonas",
+          "Bifidobacterium",
+          "Rhodobacter",
+          "Abiotrophia",
+          "Microbacterium",
+          "Lysinibacillus",
+          "Anaeroglobus",
+          "Desulfovibrio",
+          "Sneathia",
+          "Propionibacterium",
+          "Haematobacter"
+        ]
+      },
+      {
+        "seed": 43,
+        "n_source": 1045,
+        "full_auc": 0.5920000000000001,
+        "panel30_auc": 0.6656,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Bacteroides",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Faecalibacterium",
+          "Corynebacterium",
+          "Alloprevotella",
+          "Bifidobacterium",
+          "Burkholderia",
+          "Pseudoramibacter",
+          "Haemophilus",
+          "Leptotrichia",
+          "Lachnoanaerobaculum",
+          "Solobacterium",
+          "Neisseria",
+          "Peptostreptococcus",
+          "Pseudomonas",
+          "Rhodobacter",
+          "Cloacibacterium",
+          "Alistipes",
+          "Anaeroglobus",
+          "Scardovia",
+          "Filifactor",
+          "Aggregatibacter",
+          "Stenotrophomonas",
+          "Mycobacterium",
+          "Stomatobaculum",
+          "Fusobacterium",
+          "Abiotrophia"
+        ]
+      },
+      {
+        "seed": 44,
+        "n_source": 1045,
+        "full_auc": 0.5664,
+        "panel30_auc": 0.5456000000000001,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Butyrivibrio",
+          "Corynebacterium",
+          "Alloprevotella",
+          "Haemophilus",
+          "Phocaeicola",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Lautropia",
+          "Haematobacter",
+          "Bacteroides",
+          "Cloacibacterium",
+          "Filifactor",
+          "Lachnoanaerobaculum",
+          "Pseudoramibacter",
+          "Stenotrophomonas",
+          "Leptotrichia",
+          "Megasphaera",
+          "Bulleidia",
+          "Parabacteroides",
+          "Dietzia",
+          "Stomatobaculum",
+          "Peptostreptococcus",
+          "Anaeroglobus",
+          "Eubacterium",
+          "Peptococcus",
+          "Rothia",
+          "Rhodobacter",
+          "Propionibacterium"
+        ]
+      },
+      {
+        "seed": 45,
+        "n_source": 1045,
+        "full_auc": 0.6912,
+        "panel30_auc": 0.6688000000000001,
+        "features_30": [
+          "Atopobium",
+          "Treponema",
+          "Haemophilus",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Bacteroides",
+          "Burkholderia",
+          "Anaeroglobus",
+          "Corynebacterium",
+          "Faecalibacterium",
+          "Pseudoramibacter",
+          "Peptostreptococcus",
+          "Rhodobacter",
+          "Stomatobaculum",
+          "Scardovia",
+          "Johnsonella",
+          "Fusobacterium",
+          "Catonella",
+          "Peptococcus",
+          "Parvimonas",
+          "Mogibacterium",
+          "Abiotrophia",
+          "Stenotrophomonas",
+          "Tannerella",
+          "Propionibacterium",
+          "Prevotella",
+          "Eubacterium",
+          "Brucella",
+          "Aggregatibacter"
+        ]
+      },
+      {
+        "seed": 46,
+        "n_source": 1045,
+        "full_auc": 0.6384,
+        "panel30_auc": 0.6336,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Alloprevotella",
+          "Butyrivibrio",
+          "Treponema",
+          "Corynebacterium",
+          "Faecalibacterium",
+          "Pseudoramibacter",
+          "Haemophilus",
+          "Burkholderia",
+          "Abiotrophia",
+          "Bacteroides",
+          "Cloacibacterium",
+          "Scardovia",
+          "Haematobacter",
+          "Anaeroglobus",
+          "Stomatobaculum",
+          "Filifactor",
+          "Lachnoanaerobaculum",
+          "Rhodobacter",
+          "Selenomonas",
+          "Akkermansia",
+          "Solobacterium",
+          "Slackia",
+          "Kingella",
+          "Parabacteroides",
+          "Prevotella",
+          "Parvimonas",
+          "Leptotrichia",
+          "Actinomyces"
+        ]
+      },
+      {
+        "seed": 47,
+        "n_source": 1045,
+        "full_auc": 0.6544,
+        "panel30_auc": 0.64,
+        "features_30": [
+          "Atopobium",
+          "Phocaeicola",
+          "Butyrivibrio",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Corynebacterium",
+          "Haemophilus",
+          "Abiotrophia",
+          "Selenomonas",
+          "Pseudoramibacter",
+          "Anaeroglobus",
+          "Parabacteroides",
+          "Propionibacterium",
+          "Bifidobacterium",
+          "Scardovia",
+          "Alistipes",
+          "Neisseria",
+          "Treponema",
+          "Cloacibacterium",
+          "Bacteroides",
+          "Leptotrichia",
+          "Peptostreptococcus",
+          "Bulleidia",
+          "Haematobacter",
+          "Alloprevotella",
+          "Aggregatibacter",
+          "Stomatobaculum",
+          "Parascardovia",
+          "Lachnoanaerobaculum",
+          "Streptococcus"
+        ]
+      },
+      {
+        "seed": 48,
+        "n_source": 1045,
+        "full_auc": 0.5184,
+        "panel30_auc": 0.552,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Butyrivibrio",
+          "Phocaeicola",
+          "Treponema",
+          "Bacteroides",
+          "Lachnoanaerobaculum",
+          "Leptotrichia",
+          "Selenomonas",
+          "Burkholderia",
+          "Faecalibacterium",
+          "Alloprevotella",
+          "Pyramidobacter",
+          "Alistipes",
+          "Centipeda",
+          "Stenotrophomonas",
+          "Stomatobaculum",
+          "Staphylococcus",
+          "Catonella",
+          "Pseudoramibacter",
+          "Haemophilus",
+          "Dialister",
+          "Tannerella",
+          "Peptostreptococcus",
+          "Parvimonas",
+          "Microbacterium",
+          "Cloacibacterium",
+          "Kingella",
+          "Neisseria",
+          "Rothia"
+        ]
+      },
+      {
+        "seed": 49,
+        "n_source": 1045,
+        "full_auc": 0.6128,
+        "panel30_auc": 0.5968,
+        "features_30": [
+          "Atopobium",
+          "Corynebacterium",
+          "Alloprevotella",
+          "Phocaeicola",
+          "Faecalibacterium",
+          "Butyrivibrio",
+          "Rhodobacter",
+          "Bacteroides",
+          "Burkholderia",
+          "Selenomonas",
+          "Bifidobacterium",
+          "Centipeda",
+          "Actinomyces",
+          "Cloacibacterium",
+          "Stenotrophomonas",
+          "Bradyrhizobium",
+          "Stomatobaculum",
+          "Leptotrichia",
+          "Desulfobulbus",
+          "Haemophilus",
+          "Pseudoramibacter",
+          "Pyramidobacter",
+          "Peptococcus",
+          "Johnsonella",
+          "Treponema",
+          "Alloscardovia",
+          "Scardovia",
+          "Microbacterium",
+          "Fusobacterium",
+          "Capnocytophaga"
+        ]
+      }
+    ],
+    "full": {
+      "mean": 0.615744,
+      "sd": 0.05719436307318179,
+      "seed_percentiles_2_5_97_5": [
+        0.5194799999999999,
+        0.75172
+      ]
+    },
+    "panel30": {
+      "mean": 0.631168,
+      "sd": 0.048020936930400146,
+      "seed_percentiles_2_5_97_5": [
+        0.5470400000000001,
+        0.72228
+      ]
+    },
+    "panel_wins": 29,
+    "uncertainty_note": "Seed percentiles describe algorithm/subsample variability on the same 50-person benchmark, not a patient confidence interval or independent replications."
+  },
+  "limitations": "Source-only nesting prevents row leakage but cannot undo prior choice of CatBoost/parameters. Six studies give high-variance macro AUC; this reconstruction is retrospective. A new untouched cohort is required for confirmatory transfer evaluation."
+}

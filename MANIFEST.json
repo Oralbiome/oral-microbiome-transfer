@@ -1,0 +1,379 @@
+{
+  "files": [
+    {
+      "bytes": 191,
+      "origin": "release/public-repository.gitignore",
+      "path": ".gitignore",
+      "sha256": "27a934ba588db22387d08119b086d0035e36749da234f8194423e11cd97a5d16"
+    },
+    {
+      "bytes": 18338,
+      "origin": "MANIFEST.json",
+      "path": "ARCHIVE_MANIFEST.json",
+      "sha256": "f5e86708179b7b51747e34098a3c073c5cdc3700d79fe2d1734b6d81855bb136"
+    },
+    {
+      "bytes": 6359,
+      "origin": "README.md",
+      "path": "ARCHIVE_README.md",
+      "sha256": "488a5c4d1fa70cc1cae574eae8397b8948440d26135faf944aea97722977fa57"
+    },
+    {
+      "bytes": 1176,
+      "origin": "CITATION.cff",
+      "path": "CITATION.cff",
+      "sha256": "56cdfd743d83df41cb71eac4d12875afae85f4c9d5307614ce147982ec05cd75"
+    },
+    {
+      "bytes": 2531,
+      "origin": "DATA-LICENSE.md",
+      "path": "DATA-LICENSE.md",
+      "sha256": "9ad0d077ad118f984df1b8281f2800ce29c7ba26cc6ee3ac4690c67f8338c289"
+    },
+    {
+      "bytes": 1531,
+      "origin": "LICENSE",
+      "path": "LICENSE",
+      "sha256": "db996cb2f3aa4f4e65683e9158cc448f9459f842a9bf0c4a16dcf746e7e28ee9"
+    },
+    {
+      "bytes": 6442,
+      "origin": "release/public-repository-README.md",
+      "path": "README.md",
+      "sha256": "624b9180c7315908fd28f62cd5c212ff6a1f2f1e116033163234f6800842ef87"
+    },
+    {
+      "bytes": 2130,
+      "origin": "RELEASE-REVIEW.md",
+      "path": "RELEASE-REVIEW.md",
+      "sha256": "a1780bf4252243204e3a257615dbb8f28338343c34880f15483286af05b4d751"
+    },
+    {
+      "bytes": 139,
+      "origin": "commandem.toml",
+      "path": "commandem.toml",
+      "sha256": "0dc2d55059eb250c23cb7fd98ceddc5c645a283f599310e0d97d1359085fb957"
+    },
+    {
+      "bytes": 6615,
+      "origin": "headline-results.json",
+      "path": "headline-results.json",
+      "sha256": "b6235892fb88330aa43e56ed5e201126ddbf1f84052712097377cebe6d4fdf2f"
+    },
+    {
+      "bytes": 7743,
+      "origin": "input-contract.json",
+      "path": "input-contract.json",
+      "sha256": "b3eb88fd482aa1ec6cd95d3cef0213cbf2c461115641efe22ab37e37bf6456b0"
+    },
+    {
+      "bytes": 1135,
+      "origin": "studies/cross-population-t2d/CITATION.cff",
+      "path": "studies/cross-population-t2d/CITATION.cff",
+      "sha256": "6a1c6305633cdd139cd3f2bc72f334925cf6eebb1fcc9ca8b2be742bbf97337e"
+    },
+    {
+      "bytes": 3974,
+      "origin": "studies/cross-population-t2d/data/processed/diversity_transfer.json",
+      "path": "studies/cross-population-t2d/data/processed/diversity_transfer.json",
+      "sha256": "cb983905f69d5b18ab1ceff36fbb9e2ee40be50ae3cbc3247898bc783a2e8a56"
+    },
+    {
+      "bytes": 55259,
+      "origin": "studies/cross-population-t2d/data/processed/marker_panel.json",
+      "path": "studies/cross-population-t2d/data/processed/marker_panel.json",
+      "sha256": "7f4736f4ee329ae941614ded1f5e8b27d94b8d95f045175a88dbbf4f71e51666"
+    },
+    {
+      "bytes": 23347,
+      "origin": "studies/cross-population-t2d/data/processed/marker_properties.json",
+      "path": "studies/cross-population-t2d/data/processed/marker_properties.json",
+      "sha256": "91b1b134e975b906fb2cb81a673251bf0bf73ddbe6fbd26d448b3c322dc2b25c"
+    },
+    {
+      "bytes": 3771,
+      "origin": "studies/cross-population-t2d/data/processed/ood_detection.json",
+      "path": "studies/cross-population-t2d/data/processed/ood_detection.json",
+      "sha256": "39f8707c018fda08033294a3934ef41f12712c9ccff771042b0f44d5ea30ee53"
+    },
+    {
+      "bytes": 2909,
+      "origin": "studies/cross-population-t2d/data/processed/population_vs_study.json",
+      "path": "studies/cross-population-t2d/data/processed/population_vs_study.json",
+      "sha256": "cbdda1deff958e51a5d70a0bafa433b0f82e19a9a2547a9e70167c8d50e7312a"
+    },
+    {
+      "bytes": 3947,
+      "origin": "studies/cross-population-t2d/data/processed/portability.json",
+      "path": "studies/cross-population-t2d/data/processed/portability.json",
+      "sha256": "0e6088995da9822610dccc809f1b622a9eeb0b4bcba9e044bac366860a7bd315"
+    },
+    {
+      "bytes": 5930,
+      "origin": "studies/cross-population-t2d/data/processed/sign_adaptation.json",
+      "path": "studies/cross-population-t2d/data/processed/sign_adaptation.json",
+      "sha256": "2cd52e7da562d4de52bc1426f279c896fa869aad838412d20bd407fa06b551f8"
+    },
+    {
+      "bytes": 7902,
+      "origin": "studies/cross-population-t2d/data/processed/validation_calibration.json",
+      "path": "studies/cross-population-t2d/data/processed/validation_calibration.json",
+      "sha256": "b6fc97022573107cccb5f0aa55a7541a600692cdfef37de714f2c80bfadd7417"
+    },
+    {
+      "bytes": 75140,
+      "origin": "studies/cross-population-t2d/data/processed/validation_panel.json",
+      "path": "studies/cross-population-t2d/data/processed/validation_panel.json",
+      "sha256": "2316e5c4ef238cf6eed8f51d6034abc6ab287b5020a6b40fcb795c7ce1131a72"
+    },
+    {
+      "bytes": 5546,
+      "origin": "studies/cross-population-t2d/data/processed/validation_permutation.json",
+      "path": "studies/cross-population-t2d/data/processed/validation_permutation.json",
+      "sha256": "5368b3a921e5b66224223517ec6746f4e0c801dded2f79f0624b66214499d89d"
+    },
+    {
+      "bytes": 8621,
+      "origin": "studies/cross-population-t2d/data/processed/validation_subgroups.json",
+      "path": "studies/cross-population-t2d/data/processed/validation_subgroups.json",
+      "sha256": "a25ac08388c0854d3da0464c988c095ac928617b53dd362272e5511bf605e028"
+    },
+    {
+      "bytes": 12187,
+      "origin": "studies/cross-population-t2d/docs/Audit_Evidence.json",
+      "path": "studies/cross-population-t2d/docs/Audit_Evidence.json",
+      "sha256": "664d3f4673067211761507a94654722e4ff536b5c913578f8daff64daaa11693"
+    },
+    {
+      "bytes": 6969,
+      "origin": "studies/cross-population-t2d/docs/Audit_Remediation.md",
+      "path": "studies/cross-population-t2d/docs/Audit_Remediation.md",
+      "sha256": "bad927c67ffd1e70bae6d4189e7292c1c2bc28bbe361dd1401f63a18c99747b9"
+    },
+    {
+      "bytes": 3049,
+      "origin": "studies/cross-population-t2d/docs/Audit_Strengthening_Plan.md",
+      "path": "studies/cross-population-t2d/docs/Audit_Strengthening_Plan.md",
+      "sha256": "ac63533fec9cc13174ad56a9885af63ad3c230cce7c3b91ae94b062fd6e93c76"
+    },
+    {
+      "bytes": 3151,
+      "origin": "studies/cross-population-t2d/docs/Calibration_Model_Card.md",
+      "path": "studies/cross-population-t2d/docs/Calibration_Model_Card.md",
+      "sha256": "5735f91e292996415cfdcd5f18f31735a2ede81d174306df2057a2a40ea2e6c6"
+    },
+    {
+      "bytes": 3758,
+      "origin": "studies/cross-population-t2d/docs/Cohort_Display_Contract.json",
+      "path": "studies/cross-population-t2d/docs/Cohort_Display_Contract.json",
+      "sha256": "a54c3bf83922bd1c4d9aecc011a300ae417ea9aaa28876fa3c1d1a8b177fbe57"
+    },
+    {
+      "bytes": 310,
+      "origin": "studies/cross-population-t2d/docs/Experiments_Log.md",
+      "path": "studies/cross-population-t2d/docs/Experiments_Log.md",
+      "sha256": "9cc4a16dcc7fe9b6fc674108c52a19beb6029c1d7f2315cc30a9353fda6d66e2"
+    },
+    {
+      "bytes": 1683,
+      "origin": "studies/cross-population-t2d/docs/Phenotype_Provenance.json",
+      "path": "studies/cross-population-t2d/docs/Phenotype_Provenance.json",
+      "sha256": "aa2bb342db165157e0998aae16de558ceed7b682dd19a4a5223c70c7054981b3"
+    },
+    {
+      "bytes": 902,
+      "origin": "studies/cross-population-t2d/docs/Preprint.build.json",
+      "path": "studies/cross-population-t2d/docs/Preprint.build.json",
+      "sha256": "dd447b2ba96402eb94ff1658eb71b7a1faab04b7c1e5c3cc6f47996aab84360c"
+    },
+    {
+      "bytes": 418180,
+      "origin": "studies/cross-population-t2d/docs/Preprint.html",
+      "path": "studies/cross-population-t2d/docs/Preprint.html",
+      "sha256": "2d786b6ff31cd67078975adf100926cc32c43c26cf33f31057cfef28e3794809"
+    },
+    {
+      "bytes": 33524,
+      "origin": "studies/cross-population-t2d/docs/Preprint.md",
+      "path": "studies/cross-population-t2d/docs/Preprint.md",
+      "sha256": "f74a3bb1d922e605cd09b5a7f17d617bc426238f8de3e5a14f12a3b360b28967"
+    },
+    {
+      "bytes": 334276,
+      "origin": "studies/cross-population-t2d/docs/Preprint.pdf",
+      "path": "studies/cross-population-t2d/docs/Preprint.pdf",
+      "sha256": "012f2cfe49b17ee57430c5697c7287e4debece772d79074a6b34ab5bed7f3e69"
+    },
+    {
+      "bytes": 1680,
+      "origin": "studies/cross-population-t2d/docs/preprint.html.template",
+      "path": "studies/cross-population-t2d/docs/preprint.html.template",
+      "sha256": "d3207d027e29f108a6407036fe3fcc182c68dcbd10f65996842e987751d80483"
+    },
+    {
+      "bytes": 261,
+      "origin": "studies/cross-population-t2d/docs/tight.tex",
+      "path": "studies/cross-population-t2d/docs/tight.tex",
+      "sha256": "9f11f46adef4cc3850e42b2ff76e6a6bfae638c39e70248d107dd3dd33135852"
+    },
+    {
+      "bytes": 80864,
+      "origin": "studies/cross-population-t2d/reports/figures/audited_transfer.png",
+      "path": "studies/cross-population-t2d/reports/figures/audited_transfer.png",
+      "sha256": "66cb7b5954695ae6d98e55a66b4d1604a812dc3564caa3af424f12ddb6e5caf7"
+    },
+    {
+      "bytes": 200748,
+      "origin": "studies/cross-population-t2d/reports/figures/validation_reconstruction.png",
+      "path": "studies/cross-population-t2d/reports/figures/validation_reconstruction.png",
+      "sha256": "fa98cc0c50b8441d160a23d684251e4167ed43f65d7ff16593b858c9156f5e45"
+    },
+    {
+      "bytes": 498,
+      "origin": "studies/cross-population-t2d/requirements-lock.txt",
+      "path": "studies/cross-population-t2d/requirements-lock.txt",
+      "sha256": "bf49bcd1eccd3a9be6a2f1a21ee9c742d6bbd9c3349905e322e1ae762aa408f8"
+    },
+    {
+      "bytes": 236,
+      "origin": "studies/cross-population-t2d/requirements-research.txt",
+      "path": "studies/cross-population-t2d/requirements-research.txt",
+      "sha256": "ae6ffd24d18f0635a6530bc9e1600d7697b225cef1c24ed33c71d5bda8df5c75"
+    },
+    {
+      "bytes": 3149,
+      "origin": "studies/cross-population-t2d/scripts/audited_data.py",
+      "path": "studies/cross-population-t2d/scripts/audited_data.py",
+      "sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d"
+    },
+    {
+      "bytes": 19001,
+      "origin": "studies/cross-population-t2d/scripts/build_site_data.py",
+      "path": "studies/cross-population-t2d/scripts/build_site_data.py",
+      "sha256": "13223db93f475e530b23220c9c54d7f3aa7cc946259e4f7630f9ab0d5254f36d"
+    },
+    {
+      "bytes": 10589,
+      "origin": "studies/cross-population-t2d/scripts/calibrate.py",
+      "path": "studies/cross-population-t2d/scripts/calibrate.py",
+      "sha256": "95fca59341e60c2886e4d4dd1061fc5d128b19d0369ba97466c6ea1ddb5bda13"
+    },
+    {
+      "bytes": 4625,
+      "origin": "studies/cross-population-t2d/scripts/check_audit_evidence.py",
+      "path": "studies/cross-population-t2d/scripts/check_audit_evidence.py",
+      "sha256": "1f38bd3f11cccce95a35f67e5e7951b4dd3e16fcf08ad07cdc8747e8622cd9d1"
+    },
+    {
+      "bytes": 7503,
+      "origin": "studies/cross-population-t2d/scripts/experiment_diversity_transfer.py",
+      "path": "studies/cross-population-t2d/scripts/experiment_diversity_transfer.py",
+      "sha256": "ea10edbc35161a7e6c45dd664cdeff94bb0c6017df254b0f3361ad4ce6e482a8"
+    },
+    {
+      "bytes": 5614,
+      "origin": "studies/cross-population-t2d/scripts/experiment_marker_properties.py",
+      "path": "studies/cross-population-t2d/scripts/experiment_marker_properties.py",
+      "sha256": "f0b6e450d3b97d25c9a849ea5e52e283def93dc849c1de89a45fb1eda72a16c5"
+    },
+    {
+      "bytes": 11374,
+      "origin": "studies/cross-population-t2d/scripts/experiment_marker_stability.py",
+      "path": "studies/cross-population-t2d/scripts/experiment_marker_stability.py",
+      "sha256": "d8602d3b218a687b6bdb44d0d709f138a3f28784210f74acb88b3bb7136c7515"
+    },
+    {
+      "bytes": 6838,
+      "origin": "studies/cross-population-t2d/scripts/experiment_ood_detection.py",
+      "path": "studies/cross-population-t2d/scripts/experiment_ood_detection.py",
+      "sha256": "e66a807ecc9ec30d40024cce514b035f1afd9d5057d74b1c340f12b6ba08ac74"
+    },
+    {
+      "bytes": 7104,
+      "origin": "studies/cross-population-t2d/scripts/experiment_population_vs_study.py",
+      "path": "studies/cross-population-t2d/scripts/experiment_population_vs_study.py",
+      "sha256": "96093e9c404e209458b96004fc6177adde0f045658da272bbe1e8636ec2118e7"
+    },
+    {
+      "bytes": 8340,
+      "origin": "studies/cross-population-t2d/scripts/experiment_portability.py",
+      "path": "studies/cross-population-t2d/scripts/experiment_portability.py",
+      "sha256": "2b4e712b4a1bd808afafe69e64dfaed224e775a110ed7eb841eb28254b769e8f"
+    },
+    {
+      "bytes": 9526,
+      "origin": "studies/cross-population-t2d/scripts/experiment_sign_adaptation.py",
+      "path": "studies/cross-population-t2d/scripts/experiment_sign_adaptation.py",
+      "sha256": "ad9cb5c92956aec1e21299a32cd7366d8330266f1841fabbf46de94927094766"
+    },
+    {
+      "bytes": 1663,
+      "origin": "studies/cross-population-t2d/scripts/preprint-tables.lua",
+      "path": "studies/cross-population-t2d/scripts/preprint-tables.lua",
+      "sha256": "190e096429dbed55a06bec088f1e2d7962055df8f904f5c02412d9abd2a84602"
+    },
+    {
+      "bytes": 4517,
+      "origin": "studies/cross-population-t2d/scripts/reconstruct_subgroups.py",
+      "path": "studies/cross-population-t2d/scripts/reconstruct_subgroups.py",
+      "sha256": "8cc08d151379d910ad518b225c7051ff0a010c970245446a360205eb1e097bb4"
+    },
+    {
+      "bytes": 14400,
+      "origin": "studies/cross-population-t2d/scripts/reconstruct_validation.py",
+      "path": "studies/cross-population-t2d/scripts/reconstruct_validation.py",
+      "sha256": "0d3b1c7687b9829c23f72000e244d5d7f74c20cbafb70597d57e69ac000948d5"
+    },
+    {
+      "bytes": 1653,
+      "origin": "studies/cross-population-t2d/scripts/render_preprint.py",
+      "path": "studies/cross-population-t2d/scripts/render_preprint.py",
+      "sha256": "52203fa261c2f4c8caf7238357f5eba383842b10b1274b2aa1938d4b2f322b20"
+    },
+    {
+      "bytes": 17914,
+      "origin": "studies/cross-population-t2d/scripts/render_validation.py",
+      "path": "studies/cross-population-t2d/scripts/render_validation.py",
+      "sha256": "3164226f2758c8798375e68850d3d0f5922bd8be94957a6d38e124e3e5e9ecc3"
+    },
+    {
+      "bytes": 1286,
+      "origin": "studies/cross-population-t2d/scripts/reproduce_audit.py",
+      "path": "studies/cross-population-t2d/scripts/reproduce_audit.py",
+      "sha256": "81ec995d6f8a301414f39892cb6d0d78dd453a4e7805bfea1c54403ace72dd5c"
+    },
+    {
+      "bytes": 3203,
+      "origin": "studies/cross-population-t2d/scripts/run_release_analysis.py",
+      "path": "studies/cross-population-t2d/scripts/run_release_analysis.py",
+      "sha256": "be742f7a4de4b917e1d8a517faa9ee3470ebac0bfd8c590e22337d7cfe8dbf20"
+    },
+    {
+      "bytes": 3315,
+      "origin": "studies/cross-population-t2d/scripts/transfer_contract.py",
+      "path": "studies/cross-population-t2d/scripts/transfer_contract.py",
+      "sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88"
+    },
+    {
+      "bytes": 4428,
+      "origin": "studies/cross-population-t2d/tests/test_analysis_contract.py",
+      "path": "studies/cross-population-t2d/tests/test_analysis_contract.py",
+      "sha256": "0d7420819863fb48339219b66e0b5d4fefbe01e27e3e69ecc0a08f07911d0369"
+    },
+    {
+      "bytes": 5313,
+      "origin": "studies/cross-population-t2d/tests/test_audit_evidence.py",
+      "path": "studies/cross-population-t2d/tests/test_audit_evidence.py",
+      "sha256": "4330e55c5772c21936cc07a29511054f2af23cfdf5139569d4c8f0c19b38d7ac"
+    }
+  ],
+  "manifest_scope": "All snapshot files except this MANIFEST.json; .git is not a payload artifact.",
+  "original_payload_files": 59,
+  "relocated_archive_files": {
+    "MANIFEST.json": "ARCHIVE_MANIFEST.json",
+    "README.md": "ARCHIVE_README.md"
+  },
+  "schema_version": 1,
+  "scope": "Clean repository snapshot; no original Git/LFS history",
+  "source_archive_sha256": "836e92d5b54ff2569344efe0fd191d7d054bbcb130bab41e6af2ca1ad8301248"
+}

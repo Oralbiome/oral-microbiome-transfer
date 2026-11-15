@@ -1,0 +1,131 @@
+{
+  "required_inputs": [
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 17861427,
+      "origin": "Historical assembled source/holdout rank matrix; also includes Anhui, Shandong and Sichuan source studies documented in the manuscript. Exact historical feature assembly is not reconstructed by these URLs. Local Anhui/Shandong names differ from recruitment geography; retain accession identities rather than inferring geography.",
+      "path": "data/models/processed_data_vsearch.pkl",
+      "sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+      "source_routes": [
+        "https://wwwn.cdc.gov/Nchs/Nhanes/Omp/Default.aspx",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA910326",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA679485",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA664107",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA782768",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1240053",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA601054",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA561495",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA609009"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 53430,
+      "origin": "Deposited alias metadata used for DT/HT inclusion and 129 DF exclusions; not clinical or participant-linkage verification.",
+      "path": "data/processed/china_shanghai_t2dm_metadata.csv",
+      "sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+      "source_routes": [
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA910326"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 30173819,
+      "origin": "Historical merged pre-rank counts; source inventory also includes Anhui, Shandong and Sichuan. Exact historical matrix derivation is not validated. Local Anhui/Shandong names differ from recruitment geography; retain accession identities rather than inferring geography.",
+      "path": "data/processed/unified_genus_counts.csv",
+      "sha256": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "source_routes": [
+        "https://wwwn.cdc.gov/Nchs/Nhanes/Omp/Default.aspx",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA910326",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1240053",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA601054",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA561495",
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA609009"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 23384,
+      "origin": "Historical VSEARCH/HOMD-derived genus counts.",
+      "path": "data/interim/india_genus_counts.csv",
+      "sha256": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "source_routes": [
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1240053"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 1204,
+      "origin": "Historical deposited-group-derived binary label table; exact label mapping required.",
+      "path": "data/raw/india_mumbai/labels.tsv",
+      "sha256": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "source_routes": [
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1240053"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 46883,
+      "origin": "Historical VSEARCH/HOMD-derived genus counts.",
+      "path": "data/interim/mexico_genus_counts.csv",
+      "sha256": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "source_routes": [
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1208116"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 2665,
+      "origin": "Historical deposited-group-derived binary label table; exact label mapping required.",
+      "path": "data/raw/mexico/labels.tsv",
+      "sha256": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "source_routes": [
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1208116"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 75179,
+      "origin": "Historical VSEARCH/HOMD-derived genus counts.",
+      "path": "data/interim/sa_genus_counts.csv",
+      "sha256": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "source_routes": [
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA723337"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 4448,
+      "origin": "Historical deposited-group-derived binary label table; exact label mapping required.",
+      "path": "data/raw/south_africa/labels.tsv",
+      "sha256": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50",
+      "source_routes": [
+        "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA723337"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 395289,
+      "origin": "Derived public demographic table keyed by SEQN; excluded to avoid participant-level linkage redistribution.",
+      "path": "data/processed/nhanes_demographics.csv",
+      "sha256": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "source_routes": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DEMO_F.xpt",
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.xpt"
+      ]
+    },
+    {
+      "availability": "OMITTED; independently obtain permitted exact historical derived bytes. Public accession does not supply this file or establish redistribution permission.",
+      "bytes": 399,
+      "origin": "Historical demographic derivation receipt; exact bytes required alongside the table.",
+      "path": "data/processed/nhanes_demographics.provenance.json",
+      "sha256": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c",
+      "source_routes": [
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DEMO_F.xpt",
+        "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.xpt"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Exact derived inputs for historical audited analyses only; not a validated raw-to-paper reproduction. Pickle input must come from a trusted source; never deserialize arbitrary downloaded pickles."
+}

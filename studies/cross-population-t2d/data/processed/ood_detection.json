@@ -1,0 +1,95 @@
+{
+  "params": {
+    "reference": "pooled training (NHANES+China) 139-genus rank space",
+    "scores": "domain-classifier AUC + centroid Mahalanobis",
+    "seeds": 15
+  },
+  "cohorts": [
+    {
+      "cohort": "Portugal",
+      "training_scope": {
+        "source_n": 10228,
+        "excluded_source_rows": 0,
+        "evaluation": "external benchmark",
+        "note": "Previously inspected benchmark; exploratory."
+      },
+      "n": 50,
+      "transfer": 0.646,
+      "reversed": false,
+      "domain_auc": 0.991,
+      "mahalanobis": 9.49
+    },
+    {
+      "cohort": "India/Mumbai",
+      "training_scope": {
+        "source_n": 10178,
+        "excluded_source_rows": 50,
+        "evaluation": "source-study-excluded re-evaluation",
+        "note": "India/Mumbai shares PRJNA1240053 with the 50-row Indian source study; all Indian source rows are excluded before fitting."
+      },
+      "n": 60,
+      "transfer": 0.569,
+      "reversed": false,
+      "domain_auc": 0.999,
+      "mahalanobis": 10.25
+    },
+    {
+      "cohort": "Mexico",
+      "training_scope": {
+        "source_n": 10228,
+        "excluded_source_rows": 0,
+        "evaluation": "external benchmark",
+        "note": "Previously inspected benchmark; exploratory."
+      },
+      "n": 87,
+      "transfer": 0.611,
+      "reversed": false,
+      "domain_auc": 0.998,
+      "mahalanobis": 10.76
+    },
+    {
+      "cohort": "South Africa",
+      "training_scope": {
+        "source_n": 10228,
+        "excluded_source_rows": 0,
+        "evaluation": "external benchmark",
+        "note": "Previously inspected benchmark; exploratory."
+      },
+      "n": 88,
+      "transfer": 0.449,
+      "reversed": true,
+      "domain_auc": 1.0,
+      "mahalanobis": 21.59
+    }
+  ],
+  "analysis": {
+    "spearman_ood_vs_transfer": -1.0,
+    "most_ood_cohort": "South Africa",
+    "reversed_cohort": "South Africa",
+    "reversed_is_most_ood": true,
+    "ood_gap_reversed_minus_best": 0.009
+  },
+  "provenance": {
+    "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+    "eligibility_metadata_sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+    "auxiliary_input_sha256": {
+      "data/processed/unified_genus_counts.csv": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "data/interim/india_genus_counts.csv": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "data/raw/india_mumbai/labels.tsv": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "data/interim/mexico_genus_counts.csv": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "data/raw/mexico/labels.tsv": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "data/interim/sa_genus_counts.csv": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "data/raw/south_africa/labels.tsv": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50",
+      "data/processed/nhanes_demographics.csv": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "data/processed/nhanes_demographics.provenance.json": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c"
+    },
+    "transfer_contract_sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88",
+    "eligibility_code_sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "eligibility_rule": "Shanghai DT/HT oral aliases retained; DF fecal aliases excluded",
+    "excluded_fecal_rows": 129,
+    "source_n": 10228,
+    "source_cases": 1251,
+    "feature_scope": "fixed historical 139-genus rank vocabulary; retrospective",
+    "script_sha256": "e66a807ecc9ec30d40024cce514b035f1afd9d5057d74b1c340f12b6ba08ac74"
+  }
+}

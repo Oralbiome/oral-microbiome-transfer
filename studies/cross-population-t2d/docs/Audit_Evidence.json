@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "scope": "retained evidence; no isolated correction effects",
+  "evidence": {
+    "data/processed/portability.json": "0e6088995da9822610dccc809f1b622a9eeb0b4bcba9e044bac366860a7bd315",
+    "data/processed/validation_calibration.json": "b6fc97022573107cccb5f0aa55a7541a600692cdfef37de714f2c80bfadd7417",
+    "data/processed/validation_panel.json": "2316e5c4ef238cf6eed8f51d6034abc6ab287b5020a6b40fcb795c7ce1131a72",
+    "data/processed/validation_permutation.json": "5368b3a921e5b66224223517ec6746f4e0c801dded2f79f0624b66214499d89d",
+    "data/processed/validation_subgroups.json": "a25ac08388c0854d3da0464c988c095ac928617b53dd362272e5511bf605e028",
+    "docs/Audit_Remediation.md": "bad927c67ffd1e70bae6d4189e7292c1c2bc28bbe361dd1401f63a18c99747b9",
+    "docs/Phenotype_Provenance.json": "aa2bb342db165157e0998aae16de558ceed7b682dd19a4a5223c70c7054981b3",
+    "scripts/audited_data.py": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "scripts/reconstruct_subgroups.py": "8cc08d151379d910ad518b225c7051ff0a010c970245446a360205eb1e097bb4",
+    "scripts/reconstruct_validation.py": "0d3b1c7687b9829c23f72000e244d5d7f74c20cbafb70597d57e69ac000948d5",
+    "scripts/transfer_contract.py": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88"
+  },
+  "claims": [
+    {
+      "id": "eligibility",
+      "observed": "129 DF specimens were present in a matrix labeled oral.",
+      "mechanism": "Deposited specimen aliases were not enforced in local eligibility.",
+      "correction": "Exclude DF rows before fitting.",
+      "supported": "10228 source rows and1251 cases remain.",
+      "remaining_limit": "Historical vocabulary and raw-read pipeline are not revalidated.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "scripts/audited_data.py",
+        "data/processed/validation_panel.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/eligibility/excluded_fecal_rows",
+          "equals": 129
+        },
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/eligibility/source_n",
+          "equals": 10228
+        },
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/eligibility/source_cases",
+          "equals": 1251
+        }
+      ]
+    },
+    {
+      "id": "identity",
+      "observed": "50 Indian source run IDs occur in its expanded benchmark.",
+      "mechanism": "Exact fitting/evaluation overlap.",
+      "correction": "Exclude the whole Indian source study and retain overlap rejection.",
+      "supported": "Whole-study-excluded re-evaluation.",
+      "remaining_limit": "A shared accession and prior benchmark reuse are not independent confirmation.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "scripts/transfer_contract.py",
+        "data/processed/portability.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/portability.json",
+          "pointer": "/loco/1/training_scope/excluded_source_rows",
+          "equals": 50
+        },
+        {
+          "file": "data/processed/portability.json",
+          "pointer": "/loco/1/training_scope/source_n",
+          "equals": 10178
+        }
+      ]
+    },
+    {
+      "id": "related_study",
+      "observed": "Shanghai accessions share a publication; deposited DT184 differs from published183.",
+      "mechanism": "Different run IDs do not establish different participants.",
+      "correction": "Exclude all218 Shanghai source rows for related fits; disclose both unresolved identities and count.",
+      "supported": "Related-study re-evaluation only.",
+      "remaining_limit": "Participant independence and which record explains the count remain unknown.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "scripts/transfer_contract.py",
+        "data/processed/validation_panel.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/external_benchmarks/Shanghai~1related/training_scope/excluded_source_rows",
+          "equals": 218
+        },
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/external_benchmarks/Shanghai~1related/training_scope/source_n",
+          "equals": 10010
+        }
+      ]
+    },
+    {
+      "id": "phenotype",
+      "observed": "Retained NHANES labels match questionnaire yes/no, not verified T2D subtype.",
+      "mechanism": "Survey/clinical target definitions differ.",
+      "correction": "Describe heterogeneous diabetes status and retain original labels.",
+      "supported": "Recorded agreement for9683 labels and830 cases.",
+      "remaining_limit": "This is a retained receipt, not a repeat acquisition or biochemical/subtype verification.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Phenotype_Provenance.json"
+      ],
+      "assertions": [
+        {
+          "file": "docs/Phenotype_Provenance.json",
+          "pointer": "/phenotype/source_n",
+          "equals": 9683
+        },
+        {
+          "file": "docs/Phenotype_Provenance.json",
+          "pointer": "/phenotype/source_cases",
+          "equals": 830
+        },
+        {
+          "file": "docs/Phenotype_Provenance.json",
+          "pointer": "/phenotype/correspondence/yes_no_mismatches",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "panel",
+      "observed": "Historical panel summary had incomplete rankings and unsupported seed claims.",
+      "mechanism": "Feature selection and generated evidence did not match claims.",
+      "correction": "Rank all139 features on fitting rows; use nested source-study selection and paired seeds.",
+      "supported": "Portugal panel AUC0.5776 versus full0.6464; exploratory sensitivity runs.",
+      "remaining_limit": "Seed repetition is not independent replication; model choices remain retrospective.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "scripts/reconstruct_validation.py",
+        "data/processed/validation_panel.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/external_benchmarks/Portugal/panel30_auc",
+          "equals": 0.5776
+        },
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/external_benchmarks/Portugal/full_auc",
+          "equals": 0.6464
+        },
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/downsample_reconstruction/n_seeds",
+          "equals": 50
+        },
+        {
+          "file": "data/processed/validation_panel.json",
+          "pointer": "/nested_loso/macro_auc",
+          "equals": 0.6605329171324775
+        }
+      ]
+    },
+    {
+      "id": "permutation",
+      "observed": "Observed and null historically used inconsistent fold counts.",
+      "mechanism": "Different statistics invalidate their comparison.",
+      "correction": "Use identical five-fold mean-AUC procedures and within-study shuffles.",
+      "supported": "Conditional association under within-study exchangeability.",
+      "remaining_limit": "No causal disease or transfer inference; clustering and confounding remain.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "scripts/reconstruct_validation.py",
+        "data/processed/validation_permutation.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/validation_permutation.json",
+          "pointer": "/observed_auc",
+          "equals": 0.7935815644972022
+        },
+        {
+          "file": "data/processed/validation_permutation.json",
+          "pointer": "/null_mean",
+          "equals": 0.6598665840810909
+        },
+        {
+          "file": "data/processed/validation_permutation.json",
+          "pointer": "/n_permutations",
+          "equals": 100
+        },
+        {
+          "file": "data/processed/validation_permutation.json",
+          "pointer": "/p_value",
+          "equals": 0.009900990099009901
+        }
+      ]
+    },
+    {
+      "id": "calibration",
+      "observed": "Fitting and scoring labels historically overlapped.",
+      "mechanism": "Resubstitution understates evaluation error.",
+      "correction": "Separate fitting, isotonic and evaluation rows.",
+      "supported": "Source ECE improves but destination miscalibration remains.",
+      "remaining_limit": "Row separation does not prove unique participants or local clinical utility.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "scripts/reconstruct_validation.py",
+        "data/processed/validation_calibration.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/validation_calibration.json",
+          "pointer": "/source_oof/raw/ece10",
+          "equals": 0.1943034366597057
+        },
+        {
+          "file": "data/processed/validation_calibration.json",
+          "pointer": "/source_oof/calibrated/ece10",
+          "equals": 0.006280978722103049
+        },
+        {
+          "file": "data/processed/validation_calibration.json",
+          "pointer": "/external_benchmarks/holdout/calibrated/ece10",
+          "equals": 0.16898670563804252
+        }
+      ]
+    },
+    {
+      "id": "subgroups",
+      "observed": "Earlier subgroup scores evaluated source training rows.",
+      "mechanism": "Training-row evaluation is optimistic.",
+      "correction": "Use pooled-source OOF predictions and descriptive conditional intervals.",
+      "supported": "Descriptive NHANES subgroup discrimination.",
+      "remaining_limit": "No survey weighting, prospective fairness certification or participant-cluster uncertainty.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "scripts/reconstruct_subgroups.py",
+        "data/processed/validation_subgroups.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/validation_subgroups.json",
+          "pointer": "/overall/n",
+          "equals": 9683
+        },
+        {
+          "file": "data/processed/validation_subgroups.json",
+          "pointer": "/overall/cases",
+          "equals": 830
+        },
+        {
+          "file": "data/processed/validation_subgroups.json",
+          "pointer": "/overall/auc",
+          "equals": 0.6977622451854181
+        }
+      ]
+    },
+    {
+      "id": "interpretation",
+      "observed": "Corrected estimates do not support the earlier stable-feature remedy.",
+      "mechanism": "Below-chance point estimates and retrospective changes were overinterpreted.",
+      "correction": "Withdraw confident reversal, safety remedy and clinical utility claims.",
+      "supported": "Mean transfer0.569 full versus0.556 restricted; source-only panel fails to improve Portugal.",
+      "remaining_limit": "No isolated correction effect; no untouched cohort or harm-reduction assessment.",
+      "evidence_kind": "documentary_and_aggregate",
+      "effect_isolated": false,
+      "evidence": [
+        "docs/Audit_Remediation.md",
+        "data/processed/portability.json",
+        "data/processed/validation_panel.json"
+      ],
+      "assertions": [
+        {
+          "file": "data/processed/portability.json",
+          "pointer": "/summary/mean_transfer_full",
+          "equals": 0.569
+        },
+        {
+          "file": "data/processed/portability.json",
+          "pointer": "/summary/mean_transfer_stable",
+          "equals": 0.556
+        }
+      ]
+    }
+  ]
+}

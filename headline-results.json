@@ -1,0 +1,204 @@
+{
+  "eligibility": {
+    "auxiliary_input_sha256": {
+      "data/interim/india_genus_counts.csv": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "data/interim/mexico_genus_counts.csv": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "data/interim/sa_genus_counts.csv": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "data/processed/nhanes_demographics.csv": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "data/processed/nhanes_demographics.provenance.json": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c",
+      "data/processed/unified_genus_counts.csv": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "data/raw/india_mumbai/labels.tsv": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "data/raw/mexico/labels.tsv": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "data/raw/south_africa/labels.tsv": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50"
+    },
+    "eligibility_code_sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "eligibility_metadata_sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+    "eligibility_rule": "Shanghai DT/HT oral aliases retained; DF fecal aliases excluded",
+    "excluded_fecal_rows": 129,
+    "feature_scope": "fixed historical 139-genus rank vocabulary; retrospective",
+    "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+    "source_cases": 1251,
+    "source_n": 10228,
+    "transfer_contract_sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88"
+  },
+  "id": "cross-population-t2d",
+  "leaderboard": [
+    {
+      "accession": "PRJNA679485",
+      "auc": 0.646,
+      "auc_ci95": [
+        0.49,
+        0.798
+      ],
+      "cohort": "Portugal",
+      "country": "Portugal",
+      "inverted": false,
+      "kind": "geographic holdout",
+      "lat": 39.4,
+      "lng": -8.2,
+      "n": 50,
+      "n_control": 25,
+      "n_diabetic": 25,
+      "population": "European",
+      "ref": "Almeida-Santos et al., 2021",
+      "relation_to_chance": "uncertain",
+      "specimen": "saliva",
+      "training_scope": {
+        "evaluation": "external benchmark",
+        "excluded_source_rows": 0,
+        "note": "Previously inspected benchmark; exploratory.",
+        "source_n": 10228
+      },
+      "within_auc": 0.859
+    },
+    {
+      "accession": "PRJNA1208116",
+      "auc": 0.611,
+      "auc_ci95": [
+        0.488,
+        0.727
+      ],
+      "cohort": "Mexico",
+      "country": "Mexico",
+      "inverted": false,
+      "kind": "new cohort",
+      "lat": 23.6,
+      "lng": -102.5,
+      "n": 87,
+      "n_control": 46,
+      "n_diabetic": 41,
+      "population": "Latin American",
+      "ref": "Martinez-Gregorio et al., J Appl Microbiol 2026",
+      "relation_to_chance": "uncertain",
+      "specimen": "saliva",
+      "training_scope": {
+        "evaluation": "external benchmark",
+        "excluded_source_rows": 0,
+        "note": "Previously inspected benchmark; exploratory.",
+        "source_n": 10228
+      },
+      "within_auc": 0.566
+    },
+    {
+      "accession": "PRJNA1240053",
+      "auc": 0.569,
+      "auc_ci95": [
+        0.41,
+        0.726
+      ],
+      "cohort": "India/Mumbai",
+      "country": "India",
+      "inverted": false,
+      "kind": "source-study-excluded re-evaluation",
+      "lat": 19.1,
+      "lng": 72.9,
+      "n": 60,
+      "n_control": 20,
+      "n_diabetic": 40,
+      "population": "South Asian",
+      "ref": "Bhosale et al., Diseases 2026",
+      "relation_to_chance": "uncertain",
+      "specimen": "plaque",
+      "training_scope": {
+        "evaluation": "source-study-excluded re-evaluation",
+        "excluded_source_rows": 50,
+        "note": "India/Mumbai shares PRJNA1240053 with the 50-row Indian source study; all Indian source rows are excluded before fitting.",
+        "source_n": 10178
+      },
+      "within_auc": 0.638
+    },
+    {
+      "accession": "PRJNA723337",
+      "auc": 0.449,
+      "auc_ci95": [
+        0.323,
+        0.578
+      ],
+      "cohort": "South Africa",
+      "country": "South Africa",
+      "inverted": true,
+      "kind": "new cohort",
+      "lat": -30.6,
+      "lng": 22.9,
+      "n": 88,
+      "n_control": 31,
+      "n_diabetic": 57,
+      "population": "African",
+      "ref": "Matsha et al., J Dent Res 2020",
+      "relation_to_chance": "uncertain",
+      "specimen": "plaque",
+      "training_scope": {
+        "evaluation": "external benchmark",
+        "excluded_source_rows": 0,
+        "note": "Previously inspected benchmark; exploratory.",
+        "source_n": 10228
+      },
+      "within_auc": 0.853
+    }
+  ],
+  "origin": {
+    "path": "site/app/data/results.json",
+    "scope": "Selected unchanged aggregate fields only; private roadmap/blog/presentation metadata omitted.",
+    "sha256": "691f3efe67f3c8ef8f70a955da8b5e95c300ae87221c47dbe0e12096e3522eb9"
+  },
+  "related_benchmarks": [
+    {
+      "auc": 0.646,
+      "cohort": "Portugal",
+      "n": 50,
+      "training_scope": {
+        "evaluation": "external benchmark",
+        "excluded_source_rows": 0,
+        "note": "Previously inspected benchmark; exploratory.",
+        "source_n": 10228
+      }
+    },
+    {
+      "auc": 0.639,
+      "cohort": "Russia/Moscow",
+      "n": 46,
+      "training_scope": {
+        "evaluation": "external benchmark",
+        "excluded_source_rows": 0,
+        "note": "Previously inspected benchmark; exploratory.",
+        "source_n": 10228
+      }
+    },
+    {
+      "auc": 0.546,
+      "cohort": "Shanghai/related",
+      "n": 80,
+      "training_scope": {
+        "evaluation": "source-study-excluded re-evaluation",
+        "excluded_source_rows": 218,
+        "note": "PRJNA782768 and PRJNA910326 are deposited by the same Shanghai publication; all Shanghai source rows excluded. Participant independence is unresolved.",
+        "source_n": 10010
+      }
+    }
+  ],
+  "reproduces": {
+    "checks": {
+      "cv": true,
+      "holdout3": true,
+      "portugal": true
+    },
+    "cv_auc": 0.793,
+    "holdout3_auc": 0.594,
+    "portugal_auc": 0.646,
+    "status": "pass",
+    "targets": {
+      "cv": 0.794,
+      "holdout3": 0.594,
+      "portugal": 0.646
+    },
+    "tolerance": 0.003
+  },
+  "schema_version": 1,
+  "status": "Exploratory retrospective retained results; no new numerical run",
+  "uncertainty": {
+    "confidence": 0.95,
+    "method": "stratified nonparametric bootstrap",
+    "resamples": 10000,
+    "seed": 42
+  }
+}

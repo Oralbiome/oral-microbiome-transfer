@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "source_receipt_sha256": "719b1ef34357b25cb2f5c9321c3f279c7edab8ea291ab8bdb09e6e6de1db6ca7",
+  "scope": "Extracted aggregate receipt of prior reconciliation; no new questionnaire fetch or clinical verification.",
+  "phenotype": {
+    "scope": "Reconciliation of retained labels with public questionnaire; no model scores or individual values retained. No T2D subtype verified.",
+    "source_receipts": [
+      {
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DIQ_F.xpt",
+        "http_status": 200,
+        "bytes": 1620960,
+        "sha256": "7e90371cbc98e77a9684eff32ffa0e4ee3e8fc04d97581a8773e19cb9fe901fa"
+      },
+      {
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DIQ_G.xpt",
+        "http_status": 200,
+        "bytes": 3978560,
+        "sha256": "a9d5475e0cd66d6a7bc30230345ed0172a9abcbc0a7a4145a35025c827a52a87"
+      }
+    ],
+    "controls": "Correct yes/no match and reversed labels reject; unknown/borderline/missing distinct.",
+    "source_n": 9683,
+    "source_cases": 830,
+    "cross_tab": {
+      "1": {
+        "retained_case": 830,
+        "retained_control": 0
+      },
+      "2": {
+        "retained_case": 0,
+        "retained_control": 8853
+      }
+    },
+    "correspondence": {
+      "known_yes_no": 9683,
+      "yes_no_mismatches": 0,
+      "non_yes_no_codes": 0
+    },
+    "missing_codes": 0,
+    "initial_negative_result": "The first 1 MB HTTP response cap was too small for official DIQ XPTs; no interpretation was made. Increased the explicit bound to 8 MB; received 1.62 MB and 3.98 MB and parsed both XPT files successfully."
+  }
+}

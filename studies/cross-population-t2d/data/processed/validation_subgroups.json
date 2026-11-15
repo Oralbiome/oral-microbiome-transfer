@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "input": "data/models/processed_data_vsearch.pkl",
+  "eligibility": {
+    "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+    "eligibility_metadata_sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+    "auxiliary_input_sha256": {
+      "data/processed/unified_genus_counts.csv": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "data/interim/india_genus_counts.csv": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "data/raw/india_mumbai/labels.tsv": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "data/interim/mexico_genus_counts.csv": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "data/raw/mexico/labels.tsv": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "data/interim/sa_genus_counts.csv": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "data/raw/south_africa/labels.tsv": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50",
+      "data/processed/nhanes_demographics.csv": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "data/processed/nhanes_demographics.provenance.json": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c"
+    },
+    "transfer_contract_sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88",
+    "eligibility_code_sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "eligibility_rule": "Shanghai DT/HT oral aliases retained; DF fecal aliases excluded",
+    "excluded_fecal_rows": 129,
+    "source_n": 10228,
+    "source_cases": 1251,
+    "feature_scope": "fixed historical 139-genus rank vocabulary; retrospective"
+  },
+  "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+  "script_sha256": "8cc08d151379d910ad518b225c7051ff0a010c970245446a360205eb1e097bb4",
+  "versions": {
+    "python": "3.11.11",
+    "numpy": "1.26.4",
+    "pandas": "3.0.5",
+    "catboost": "1.2.8",
+    "sklearn": "1.5.2"
+  },
+  "parameters": {
+    "iterations": 200,
+    "depth": 4,
+    "learning_rate": 0.1,
+    "auto_class_weights": "Balanced",
+    "verbose": false,
+    "allow_writing_files": false,
+    "thread_count": 4
+  },
+  "seed": 42,
+  "external_status": "exploratory: previously inspected during development",
+  "estimator_script_sha256": "0d3b1c7687b9829c23f72000e244d5d7f74c20cbafb70597d57e69ac000948d5",
+  "metadata_sha256": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+  "metadata_sources": [
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DEMO_F.xpt",
+    "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.xpt"
+  ],
+  "protocol": "Pooled-source 5-fold stratified OOF CatBoost predictions; each NHANES row is scored by a model that did not fit its label. Fixed raw-probability threshold 0.5, not optimized by subgroup.",
+  "subgroups": {
+    "sex": {
+      "Male": {
+        "auc": 0.688731779004647,
+        "brier": 0.13591690133787737,
+        "ece10": 0.22347859703284073,
+        "n": 4868,
+        "prevalence": 0.08730484798685292,
+        "cases": 425,
+        "controls": 4443,
+        "sensitivity_at_0_5": 0.2988235294117647,
+        "specificity_at_0_5": 0.8946657663740716,
+        "auc_ci95": [
+          0.661975109557665,
+          0.7161676662562392
+        ]
+      },
+      "Female": {
+        "auc": 0.7073987290389406,
+        "brier": 0.1260039260290409,
+        "ece10": 0.21067609420183567,
+        "n": 4815,
+        "prevalence": 0.08411214953271028,
+        "cases": 405,
+        "controls": 4410,
+        "sensitivity_at_0_5": 0.254320987654321,
+        "specificity_at_0_5": 0.9133786848072563,
+        "auc_ci95": [
+          0.6822367794854568,
+          0.7305361342067692
+        ]
+      }
+    },
+    "age": {
+      "<40": {
+        "auc": 0.6080758207332891,
+        "brier": 0.08351948455697869,
+        "ece10": 0.23428395853297257,
+        "n": 5079,
+        "prevalence": 0.01535735380980508,
+        "cases": 78,
+        "controls": 5001,
+        "sensitivity_at_0_5": 0.16666666666666666,
+        "specificity_at_0_5": 0.9628074385122976,
+        "auc_ci95": [
+          0.5424617640574448,
+          0.6780618235327294
+        ]
+      },
+      "55-65": {
+        "auc": 0.5758503765025736,
+        "brier": 0.21081439785915476,
+        "ece10": 0.17532623543872797,
+        "n": 1523,
+        "prevalence": 0.21602101116217992,
+        "cases": 329,
+        "controls": 1194,
+        "sensitivity_at_0_5": 0.3221884498480243,
+        "specificity_at_0_5": 0.7713567839195979,
+        "auc_ci95": [
+          0.541163135841314,
+          0.6104026337360561
+        ]
+      },
+      "40-55": {
+        "auc": 0.5921380857948022,
+        "brier": 0.15561243840603067,
+        "ece10": 0.22217661901797692,
+        "n": 2471,
+        "prevalence": 0.10522055847834885,
+        "cases": 260,
+        "controls": 2211,
+        "sensitivity_at_0_5": 0.19230769230769232,
+        "specificity_at_0_5": 0.8819538670284939,
+        "auc_ci95": [
+          0.5570545002261421,
+          0.6271663318025258
+        ]
+      },
+      "65+": {
+        "auc": 0.5971370143149284,
+        "brier": 0.22716107251955694,
+        "ece10": 0.15875114801042847,
+        "n": 610,
+        "prevalence": 0.26721311475409837,
+        "cases": 163,
+        "controls": 447,
+        "sensitivity_at_0_5": 0.37423312883435583,
+        "specificity_at_0_5": 0.70917225950783,
+        "auc_ci95": [
+          0.550137933874089,
+          0.6449709035011872
+        ]
+      }
+    },
+    "race_ethnicity": {
+      "White": {
+        "auc": 0.6831837554041397,
+        "brier": 0.12757772290043337,
+        "ece10": 0.24053767311746924,
+        "n": 3490,
+        "prevalence": 0.06275071633237822,
+        "cases": 219,
+        "controls": 3271,
+        "sensitivity_at_0_5": 0.2648401826484018,
+        "specificity_at_0_5": 0.8988077040660348,
+        "auc_ci95": [
+          0.6474322920810944,
+          0.720657005174852
+        ]
+      },
+      "Black": {
+        "auc": 0.697213002955217,
+        "brier": 0.14345942422844898,
+        "ece10": 0.20119078003036345,
+        "n": 2340,
+        "prevalence": 0.11324786324786325,
+        "cases": 265,
+        "controls": 2075,
+        "sensitivity_at_0_5": 0.2830188679245283,
+        "specificity_at_0_5": 0.8891566265060241,
+        "auc_ci95": [
+          0.6674520118208684,
+          0.730356626506024
+        ]
+      },
+      "Mexican-American": {
+        "auc": 0.7342489644647917,
+        "brier": 0.12263895945506581,
+        "ece10": 0.19348481297655376,
+        "n": 1688,
+        "prevalence": 0.09419431279620853,
+        "cases": 159,
+        "controls": 1529,
+        "sensitivity_at_0_5": 0.27672955974842767,
+        "specificity_at_0_5": 0.9228253760627861,
+        "auc_ci95": [
+          0.6960644520404261,
+          0.7716585222388126
+        ]
+      },
+      "Other Hispanic": {
+        "auc": 0.6683371040723981,
+        "brier": 0.13162381872494636,
+        "ece10": 0.19347773519124808,
+        "n": 984,
+        "prevalence": 0.1016260162601626,
+        "cases": 100,
+        "controls": 884,
+        "sensitivity_at_0_5": 0.28,
+        "specificity_at_0_5": 0.9276018099547512,
+        "auc_ci95": [
+          0.6100854072398191,
+          0.7243167420814479
+        ]
+      },
+      "Other/Multi": {
+        "auc": 0.7115089621551197,
+        "brier": 0.12775501502120037,
+        "ece10": 0.23289741215417337,
+        "n": 1181,
+        "prevalence": 0.07366638441998306,
+        "cases": 87,
+        "controls": 1094,
+        "sensitivity_at_0_5": 0.28735632183908044,
+        "specificity_at_0_5": 0.9021937842778793,
+        "auc_ci95": [
+          0.6559073525394523,
+          0.7646554350795353
+        ]
+      }
+    }
+  },
+  "overall": {
+    "auc": 0.6977622451854181,
+    "brier": 0.13098754306956717,
+    "ece10": 0.21711238293273857,
+    "n": 9683,
+    "prevalence": 0.08571723639367965,
+    "cases": 830,
+    "controls": 8853,
+    "sensitivity_at_0_5": 0.27710843373493976,
+    "specificity_at_0_5": 0.9039873489212696,
+    "auc_ci95": [
+      0.6789331861502261,
+      0.7153342495702907
+    ]
+  },
+  "limitations": "Descriptive discrimination and fixed-threshold error rates, not a fairness certification. Conditional stratified bootstrap intervals omit fold/model/study-selection uncertainty; no survey weights, population calibration, intersectional or prospective evaluation. Raw balanced-class probabilities are not calibrated disease risks."
+}

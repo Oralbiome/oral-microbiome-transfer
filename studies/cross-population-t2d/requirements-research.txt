@@ -1,0 +1,8 @@
+# Minimal audited reconstruction environment; Python 3.11.
+# TensorFlow and legacy notebook dependencies are not needed for these scripts.
+numpy==1.26.4
+pandas==3.0.5
+scipy==1.17.1
+scikit-learn==1.5.2
+catboost==1.2.8
+matplotlib==3.11.1

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "command": "python scripts/render_preprint.py",
+  "sha256": {
+    "docs/Preprint.md": "f74a3bb1d922e605cd09b5a7f17d617bc426238f8de3e5a14f12a3b360b28967",
+    "docs/Preprint.pdf": "012f2cfe49b17ee57430c5697c7287e4debece772d79074a6b34ab5bed7f3e69",
+    "docs/Preprint.html": "2d786b6ff31cd67078975adf100926cc32c43c26cf33f31057cfef28e3794809",
+    "docs/tight.tex": "9f11f46adef4cc3850e42b2ff76e6a6bfae638c39e70248d107dd3dd33135852",
+    "docs/preprint.html.template": "d3207d027e29f108a6407036fe3fcc182c68dcbd10f65996842e987751d80483",
+    "reports/figures/validation_reconstruction.png": "fa98cc0c50b8441d160a23d684251e4167ed43f65d7ff16593b858c9156f5e45",
+    "reports/figures/audited_transfer.png": "66cb7b5954695ae6d98e55a66b4d1604a812dc3564caa3af424f12ddb6e5caf7",
+    "scripts/preprint-tables.lua": "190e096429dbed55a06bec088f1e2d7962055df8f904f5c02412d9abd2a84602"
+  }
+}

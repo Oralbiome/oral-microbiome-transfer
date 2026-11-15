@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$title$</title>
+  <style>
+    :root { color-scheme: light; --paper-bg: #ffffff; --paper-ink: #0f172a; --paper-link: #075985; --paper-border: #64748b; }
+    @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --paper-bg: #080b10; --paper-ink: #e2e8f0; --paper-link: #7dd3fc; --paper-border: #94a3b8; } }
+    body { font: 1rem/1.6 system-ui, sans-serif; margin: 0; background: var(--paper-bg); color: var(--paper-ink); }
+    main, header, footer { max-width: 74ch; margin: auto; padding: 1.5rem; }
+    a { color: var(--paper-link); }
+    img { max-width: 100%; height: auto; }
+    figure { margin: 1.5rem 0; }
+    figcaption { font-size: .9rem; }
+    table { border-collapse: collapse; display: block; max-width: 100%; overflow-x: auto; }
+    th, td { border: 1px solid var(--paper-border); padding: .35rem .6rem; }
+    :focus-visible { outline: 3px solid var(--paper-link); outline-offset: 3px; }
+    .skip { position: absolute; top: -5rem; }
+    .skip:focus { top: .5rem; }
+    @media print { header, footer { display: none; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#paper">Skip to preprint</a>
+  <header><nav aria-label="Preprint navigation"><a href="/">Research dashboard</a> · <a href="/preprint.pdf">Download PDF</a></nav></header>
+  <main id="paper">$body$</main>
+  <footer>Research preprint. Not peer reviewed; no clinical use.</footer>
+  <script>document.querySelectorAll('table').forEach(t => { t.tabIndex = 0; t.setAttribute('aria-label', 'Scrollable research table'); });</script>
+</body>
+</html>

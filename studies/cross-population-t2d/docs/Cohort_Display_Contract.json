@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "scope": "Presentation-only cohort identity/specimen/label summaries; no participant data or estimator configuration.",
+  "cohorts": [
+    {
+      "key": "nhanes",
+      "display": "US / NHANES OMP + DIQ_F/G",
+      "specimen": "Oral rinse",
+      "label_basis": "DIQ010 yes / no",
+      "n": 9683,
+      "cases": 830,
+      "controls": 8853,
+      "role": "Source"
+    },
+    {
+      "key": "china_shanghai_t2dm",
+      "display": "China / PRJNA910326",
+      "specimen": "Tongue swab",
+      "label_basis": "DT / HT aliases",
+      "n": 218,
+      "cases": 184,
+      "controls": 34,
+      "role": "Source; DF excluded"
+    },
+    {
+      "key": "china_shandong_sun",
+      "display": "China / PRJNA601054",
+      "specimen": "Saliva",
+      "label_basis": "Deposited T2D / control",
+      "n": 130,
+      "cases": 103,
+      "controls": 27,
+      "role": "Source"
+    },
+    {
+      "key": "china_anhui_yang",
+      "display": "China / PRJNA561495",
+      "specimen": "Saliva",
+      "label_basis": "Deposited T2D / control",
+      "n": 102,
+      "cases": 70,
+      "controls": 32,
+      "role": "Source"
+    },
+    {
+      "key": "india_maharashtra",
+      "display": "India / PRJNA1240053",
+      "specimen": "Plaque",
+      "label_basis": "Deposited T2D / control",
+      "n": 50,
+      "cases": 40,
+      "controls": 10,
+      "role": "Source subset"
+    },
+    {
+      "key": "china_sichuan_liu",
+      "display": "China / PRJNA609009",
+      "specimen": "Saliva",
+      "label_basis": "Deposited T2D / control",
+      "n": 45,
+      "cases": 24,
+      "controls": 21,
+      "role": "Source"
+    },
+    {
+      "key": "Portugal",
+      "display": "Portugal / PRJNA679485",
+      "specimen": "Saliva",
+      "label_basis": "Deposited T2D / control",
+      "n": 50,
+      "cases": 25,
+      "controls": 25,
+      "role": "Exploratory benchmark"
+    },
+    {
+      "key": "Russia/Moscow",
+      "display": "Russia / PRJNA664107",
+      "specimen": "Gingival sulcus",
+      "label_basis": "Deposited diabetes / control",
+      "n": 46,
+      "cases": 15,
+      "controls": 31,
+      "role": "Exploratory benchmark"
+    },
+    {
+      "key": "Shanghai/related",
+      "display": "China / PRJNA782768",
+      "specimen": "Oral; subsite unverified",
+      "label_basis": "Deposited case / control",
+      "n": 80,
+      "cases": 40,
+      "controls": 40,
+      "role": "Related-study; Shanghai source excluded"
+    },
+    {
+      "key": "Mexico",
+      "display": "Mexico / PRJNA1208116",
+      "specimen": "Saliva",
+      "label_basis": "Deposited T2D / control",
+      "n": 87,
+      "cases": 41,
+      "controls": 46,
+      "role": "Exploratory benchmark"
+    },
+    {
+      "key": "India/Mumbai",
+      "display": "India / PRJNA1240053",
+      "specimen": "Plaque",
+      "label_basis": "Deposited T2D / control",
+      "n": 60,
+      "cases": 40,
+      "controls": 20,
+      "role": "Source-study-excluded re-evaluation"
+    },
+    {
+      "key": "South Africa",
+      "display": "South Africa / PRJNA723337",
+      "specimen": "Plaque",
+      "label_basis": "DM + Known_DM / Normal",
+      "n": 88,
+      "cases": 57,
+      "controls": 31,
+      "role": "Exploratory benchmark"
+    }
+  ],
+  "notes": [
+    "Historical local china_shandong_sun maps to PRJNA601054; china_anhui_yang maps to PRJNA561495. Local region names are not verified recruitment geography.",
+    "Retained NHANES labels correspond exactly to DIQ010 yes/no; a T2D subtype adjudication was not verified.",
+    "Tongue-swab description is verified for PRJNA910326 oral DT/HT aliases. PRJNA782768 subsite linkage remains unverified.",
+    "Clinical deposited labels are not a harmonized independent diagnosis. South Africa Pre-DM rows are excluded."
+  ]
+}

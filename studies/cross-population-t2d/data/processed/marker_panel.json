@@ -1,0 +1,3046 @@
+{
+  "params": {
+    "r_vote": 0.05,
+    "r_inform": 0.15,
+    "r_flip": 0.15,
+    "min_votes": 5,
+    "agree_robust": 0.8
+  },
+  "cohorts": [
+    "NHANES (US)",
+    "China",
+    "Portugal",
+    "India/Mumbai",
+    "Mexico",
+    "South Africa"
+  ],
+  "cohort_meta": [
+    {
+      "name": "NHANES (US)",
+      "population": "US",
+      "n": 9683,
+      "cases": 830,
+      "controls": 8853
+    },
+    {
+      "name": "China",
+      "population": "Chinese",
+      "n": 495,
+      "cases": 381,
+      "controls": 114
+    },
+    {
+      "name": "Portugal",
+      "population": "European",
+      "n": 50,
+      "cases": 25,
+      "controls": 25
+    },
+    {
+      "name": "India/Mumbai",
+      "population": "South Asian",
+      "n": 60,
+      "cases": 40,
+      "controls": 20
+    },
+    {
+      "name": "Mexico",
+      "population": "Latin American",
+      "n": 87,
+      "cases": 41,
+      "controls": 46
+    },
+    {
+      "name": "South Africa",
+      "population": "African",
+      "n": 88,
+      "cases": 57,
+      "controls": 31
+    }
+  ],
+  "genera": [
+    {
+      "genus": "Rothia",
+      "r": [
+        0.014,
+        0.344,
+        0.163,
+        0.141,
+        -0.008,
+        0.193
+      ],
+      "mean_r": 0.141,
+      "abs_mean_r": 0.141,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 1.0,
+      "spread": 0.352,
+      "class": "weak"
+    },
+    {
+      "genus": "Streptococcus",
+      "r": [
+        -0.004,
+        0.288,
+        0.136,
+        0.397,
+        0.101,
+        -0.118
+      ],
+      "mean_r": 0.133,
+      "abs_mean_r": 0.133,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.515,
+      "class": "robust_up"
+    },
+    {
+      "genus": "Leptotrichia",
+      "r": [
+        0.007,
+        0.228,
+        0.057,
+        -0.072,
+        0.024,
+        0.535
+      ],
+      "mean_r": 0.13,
+      "abs_mean_r": 0.13,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.607,
+      "class": "weak"
+    },
+    {
+      "genus": "Corynebacterium",
+      "r": [
+        -0.039,
+        -0.01,
+        0.074,
+        -0.124,
+        0.354,
+        0.499
+      ],
+      "mean_r": 0.126,
+      "abs_mean_r": 0.126,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.623,
+      "class": "weak"
+    },
+    {
+      "genus": "Anaeroglobus",
+      "r": [
+        0.009,
+        -0.097,
+        -0.249,
+        -0.001,
+        -0.198,
+        -0.134
+      ],
+      "mean_r": -0.112,
+      "abs_mean_r": 0.112,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 1.0,
+      "spread": 0.258,
+      "class": "weak"
+    },
+    {
+      "genus": "Parabacteroides",
+      "r": [
+        -0.007,
+        0.29,
+        -0.065,
+        0.149,
+        -0.187,
+        0.467
+      ],
+      "mean_r": 0.108,
+      "abs_mean_r": 0.108,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.654,
+      "class": "flipper"
+    },
+    {
+      "genus": "Desulfovibrio",
+      "r": [
+        -0.001,
+        -0.165,
+        -0.235,
+        -0.093,
+        -0.051,
+        -0.08
+      ],
+      "mean_r": -0.104,
+      "abs_mean_r": 0.104,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 1.0,
+      "spread": 0.233,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Cloacibacterium",
+      "r": [
+        -0.016,
+        -0.154,
+        -0.215,
+        -0.206,
+        -0.095,
+        0.074
+      ],
+      "mean_r": -0.102,
+      "abs_mean_r": 0.102,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.29,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Actinomyces",
+      "r": [
+        0.009,
+        0.245,
+        0.149,
+        -0.165,
+        -0.124,
+        0.492
+      ],
+      "mean_r": 0.101,
+      "abs_mean_r": 0.101,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.657,
+      "class": "flipper"
+    },
+    {
+      "genus": "Fretibacterium",
+      "r": [
+        0.009,
+        -0.107,
+        -0.133,
+        -0.134,
+        -0.06,
+        -0.168
+      ],
+      "mean_r": -0.099,
+      "abs_mean_r": 0.099,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 1.0,
+      "spread": 0.177,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Veillonella",
+      "r": [
+        0.01,
+        0.288,
+        0.2,
+        0.239,
+        0.042,
+        -0.215
+      ],
+      "mean_r": 0.094,
+      "abs_mean_r": 0.094,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.504,
+      "class": "flipper"
+    },
+    {
+      "genus": "Delftia",
+      "r": [
+        0.009,
+        -0.128,
+        -0.065,
+        0.149,
+        -0.181,
+        -0.338
+      ],
+      "mean_r": -0.092,
+      "abs_mean_r": 0.092,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.487,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Caulobacter",
+      "r": [
+        0.013,
+        -0.198,
+        -0.065,
+        0.149,
+        0.311,
+        0.341
+      ],
+      "mean_r": 0.092,
+      "abs_mean_r": 0.092,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.539,
+      "class": "flipper"
+    },
+    {
+      "genus": "Serratia",
+      "r": [
+        0.009,
+        0.053,
+        -0.712,
+        0.151,
+        -0.181,
+        0.13
+      ],
+      "mean_r": -0.091,
+      "abs_mean_r": 0.091,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.863,
+      "class": "flipper"
+    },
+    {
+      "genus": "Granulicatella",
+      "r": [
+        0.0,
+        0.247,
+        0.182,
+        0.361,
+        0.013,
+        -0.259
+      ],
+      "mean_r": 0.091,
+      "abs_mean_r": 0.091,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.619,
+      "class": "flipper"
+    },
+    {
+      "genus": "Lachnoanaerobaculum",
+      "r": [
+        -0.012,
+        0.353,
+        0.274,
+        -0.143,
+        -0.088,
+        0.16
+      ],
+      "mean_r": 0.091,
+      "abs_mean_r": 0.091,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.495,
+      "class": "weak"
+    },
+    {
+      "genus": "Alloprevotella",
+      "r": [
+        -0.056,
+        -0.02,
+        0.201,
+        0.27,
+        -0.001,
+        0.143
+      ],
+      "mean_r": 0.089,
+      "abs_mean_r": 0.089,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.326,
+      "class": "weak"
+    },
+    {
+      "genus": "Johnsonella",
+      "r": [
+        -0.033,
+        -0.092,
+        -0.093,
+        -0.105,
+        -0.148,
+        -0.061
+      ],
+      "mean_r": -0.089,
+      "abs_mean_r": 0.089,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 1.0,
+      "spread": 0.115,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Acidovorax",
+      "r": [
+        0.009,
+        -0.18,
+        -0.212,
+        0.149,
+        0.005,
+        -0.287
+      ],
+      "mean_r": -0.086,
+      "abs_mean_r": 0.086,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.436,
+      "class": "weak"
+    },
+    {
+      "genus": "Dolosigranulum",
+      "r": [
+        0.001,
+        -0.099,
+        0.063,
+        0.149,
+        0.032,
+        0.361
+      ],
+      "mean_r": 0.084,
+      "abs_mean_r": 0.084,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.461,
+      "class": "weak"
+    },
+    {
+      "genus": "Peptoniphilus",
+      "r": [
+        0.017,
+        -0.019,
+        0.139,
+        0.15,
+        0.099,
+        0.103
+      ],
+      "mean_r": 0.082,
+      "abs_mean_r": 0.082,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 1.0,
+      "spread": 0.169,
+      "class": "weak"
+    },
+    {
+      "genus": "Filifactor",
+      "r": [
+        -0.039,
+        0.06,
+        0.026,
+        -0.278,
+        -0.054,
+        -0.202
+      ],
+      "mean_r": -0.081,
+      "abs_mean_r": 0.081,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.338,
+      "class": "weak"
+    },
+    {
+      "genus": "Gemella",
+      "r": [
+        -0.008,
+        0.212,
+        0.038,
+        0.185,
+        -0.03,
+        0.091
+      ],
+      "mean_r": 0.081,
+      "abs_mean_r": 0.081,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 1.0,
+      "spread": 0.242,
+      "class": "weak"
+    },
+    {
+      "genus": "Schlegelella",
+      "r": [
+        0.007,
+        -0.243,
+        -0.065,
+        0.149,
+        -0.181,
+        -0.146
+      ],
+      "mean_r": -0.08,
+      "abs_mean_r": 0.08,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.392,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Megasphaera",
+      "r": [
+        -0.009,
+        0.108,
+        0.328,
+        0.284,
+        -0.124,
+        -0.113
+      ],
+      "mean_r": 0.079,
+      "abs_mean_r": 0.079,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.452,
+      "class": "weak"
+    },
+    {
+      "genus": "Alloscardovia",
+      "r": [
+        0.052,
+        0.102,
+        0.027,
+        0.149,
+        0.054,
+        0.086
+      ],
+      "mean_r": 0.078,
+      "abs_mean_r": 0.078,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 1.0,
+      "spread": 0.122,
+      "class": "robust_up"
+    },
+    {
+      "genus": "Anoxybacillus",
+      "r": [
+        0.01,
+        -0.402,
+        -0.065,
+        0.149,
+        -0.185,
+        0.029
+      ],
+      "mean_r": -0.077,
+      "abs_mean_r": 0.077,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.551,
+      "class": "weak"
+    },
+    {
+      "genus": "Stomatobaculum",
+      "r": [
+        0.003,
+        0.358,
+        0.074,
+        0.221,
+        -0.045,
+        -0.149
+      ],
+      "mean_r": 0.077,
+      "abs_mean_r": 0.077,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.507,
+      "class": "weak"
+    },
+    {
+      "genus": "Bifidobacterium",
+      "r": [
+        0.058,
+        0.296,
+        -0.078,
+        0.084,
+        0.112,
+        -0.013
+      ],
+      "mean_r": 0.076,
+      "abs_mean_r": 0.076,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.374,
+      "class": "robust_up"
+    },
+    {
+      "genus": "Helicobacter",
+      "r": [
+        0.008,
+        0.078,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.076,
+      "abs_mean_r": 0.076,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.648,
+      "class": "flipper"
+    },
+    {
+      "genus": "Cryptobacterium",
+      "r": [
+        0.037,
+        0.107,
+        -0.287,
+        -0.344,
+        0.049,
+        0.019
+      ],
+      "mean_r": -0.07,
+      "abs_mean_r": 0.07,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.452,
+      "class": "weak"
+    },
+    {
+      "genus": "Kocuria",
+      "r": [
+        0.018,
+        -0.038,
+        0.036,
+        0.149,
+        0.117,
+        0.137
+      ],
+      "mean_r": 0.07,
+      "abs_mean_r": 0.07,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 1.0,
+      "spread": 0.186,
+      "class": "weak"
+    },
+    {
+      "genus": "Staphylococcus",
+      "r": [
+        0.004,
+        -0.164,
+        0.085,
+        0.157,
+        -0.04,
+        -0.461
+      ],
+      "mean_r": -0.07,
+      "abs_mean_r": 0.07,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.618,
+      "class": "flipper"
+    },
+    {
+      "genus": "Pseudoramibacter",
+      "r": [
+        0.084,
+        0.155,
+        0.02,
+        -0.052,
+        0.066,
+        0.141
+      ],
+      "mean_r": 0.069,
+      "abs_mean_r": 0.069,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.207,
+      "class": "robust_up"
+    },
+    {
+      "genus": "Desulfomicrobium",
+      "r": [
+        0.034,
+        -0.035,
+        0.155,
+        0.192,
+        0.125,
+        -0.059
+      ],
+      "mean_r": 0.069,
+      "abs_mean_r": 0.069,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.251,
+      "class": "weak"
+    },
+    {
+      "genus": "Lactococcus",
+      "r": [
+        0.021,
+        0.034,
+        0.03,
+        0.149,
+        -0.087,
+        0.256
+      ],
+      "mean_r": 0.067,
+      "abs_mean_r": 0.067,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.344,
+      "class": "weak"
+    },
+    {
+      "genus": "Faecalibacterium",
+      "r": [
+        -0.023,
+        0.343,
+        -0.034,
+        -0.342,
+        -0.013,
+        0.467
+      ],
+      "mean_r": 0.066,
+      "abs_mean_r": 0.066,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.809,
+      "class": "flipper"
+    },
+    {
+      "genus": "Novosphingobium",
+      "r": [
+        0.023,
+        -0.028,
+        -0.065,
+        0.149,
+        0.338,
+        -0.02
+      ],
+      "mean_r": 0.066,
+      "abs_mean_r": 0.066,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.404,
+      "class": "weak"
+    },
+    {
+      "genus": "Brevundimonas",
+      "r": [
+        0.005,
+        -0.189,
+        -0.065,
+        0.149,
+        -0.056,
+        -0.238
+      ],
+      "mean_r": -0.066,
+      "abs_mean_r": 0.066,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.387,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Parascardovia",
+      "r": [
+        0.05,
+        0.063,
+        0.057,
+        0.103,
+        0.081,
+        0.031
+      ],
+      "mean_r": 0.064,
+      "abs_mean_r": 0.064,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 1.0,
+      "spread": 0.072,
+      "class": "weak"
+    },
+    {
+      "genus": "Treponema",
+      "r": [
+        0.008,
+        0.004,
+        0.105,
+        -0.175,
+        -0.073,
+        -0.25
+      ],
+      "mean_r": -0.063,
+      "abs_mean_r": 0.063,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.355,
+      "class": "weak"
+    },
+    {
+      "genus": "Burkholderia",
+      "r": [
+        -0.02,
+        -0.495,
+        -0.065,
+        0.149,
+        -0.181,
+        0.238
+      ],
+      "mean_r": -0.062,
+      "abs_mean_r": 0.062,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.733,
+      "class": "flipper"
+    },
+    {
+      "genus": "Stenotrophomonas",
+      "r": [
+        -0.011,
+        -0.092,
+        -0.065,
+        -0.094,
+        -0.084,
+        -0.028
+      ],
+      "mean_r": -0.062,
+      "abs_mean_r": 0.062,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 1.0,
+      "spread": 0.083,
+      "class": "weak"
+    },
+    {
+      "genus": "Cupriavidus",
+      "r": [
+        0.005,
+        -0.067,
+        -0.065,
+        0.149,
+        -0.002,
+        0.353
+      ],
+      "mean_r": 0.062,
+      "abs_mean_r": 0.062,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.42,
+      "class": "weak"
+    },
+    {
+      "genus": "Pseudomonas",
+      "r": [
+        -0.002,
+        -0.068,
+        0.106,
+        0.149,
+        0.127,
+        -0.68
+      ],
+      "mean_r": -0.061,
+      "abs_mean_r": 0.061,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.829,
+      "class": "weak"
+    },
+    {
+      "genus": "Sphingomonas",
+      "r": [
+        0.003,
+        -0.134,
+        -0.065,
+        0.149,
+        0.091,
+        -0.389
+      ],
+      "mean_r": -0.058,
+      "abs_mean_r": 0.058,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.538,
+      "class": "weak"
+    },
+    {
+      "genus": "Kingella",
+      "r": [
+        -0.041,
+        -0.13,
+        -0.241,
+        -0.055,
+        0.099,
+        0.019
+      ],
+      "mean_r": -0.058,
+      "abs_mean_r": 0.058,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.34,
+      "class": "weak"
+    },
+    {
+      "genus": "Enhydrobacter",
+      "r": [
+        0.011,
+        -0.086,
+        -0.065,
+        0.149,
+        0.058,
+        0.27
+      ],
+      "mean_r": 0.056,
+      "abs_mean_r": 0.056,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.356,
+      "class": "weak"
+    },
+    {
+      "genus": "Lactobacillus",
+      "r": [
+        0.067,
+        0.035,
+        -0.088,
+        0.062,
+        0.195,
+        0.065
+      ],
+      "mean_r": 0.056,
+      "abs_mean_r": 0.056,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.283,
+      "class": "robust_up"
+    },
+    {
+      "genus": "Moraxella",
+      "r": [
+        -0.037,
+        -0.1,
+        -0.015,
+        -0.106,
+        0.02,
+        -0.092
+      ],
+      "mean_r": -0.055,
+      "abs_mean_r": 0.055,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 1.0,
+      "spread": 0.127,
+      "class": "weak"
+    },
+    {
+      "genus": "Gardnerella",
+      "r": [
+        0.003,
+        -0.101,
+        0.152,
+        0.149,
+        -0.018,
+        0.146
+      ],
+      "mean_r": 0.055,
+      "abs_mean_r": 0.055,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.253,
+      "class": "weak"
+    },
+    {
+      "genus": "Porphyromonas",
+      "r": [
+        -0.02,
+        0.029,
+        0.138,
+        -0.055,
+        0.166,
+        0.064
+      ],
+      "mean_r": 0.054,
+      "abs_mean_r": 0.054,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.22,
+      "class": "weak"
+    },
+    {
+      "genus": "Variovorax",
+      "r": [
+        0.008,
+        -0.076,
+        -0.065,
+        0.149,
+        -0.181,
+        -0.157
+      ],
+      "mean_r": -0.054,
+      "abs_mean_r": 0.054,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.329,
+      "class": "robust_down"
+    },
+    {
+      "genus": "Alistipes",
+      "r": [
+        -0.013,
+        0.3,
+        -0.154,
+        -0.095,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.054,
+      "abs_mean_r": 0.054,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.648,
+      "class": "flipper"
+    },
+    {
+      "genus": "Enterococcus",
+      "r": [
+        0.009,
+        -0.129,
+        0.138,
+        0.149,
+        0.086,
+        0.072
+      ],
+      "mean_r": 0.054,
+      "abs_mean_r": 0.054,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.8,
+      "spread": 0.278,
+      "class": "robust_up"
+    },
+    {
+      "genus": "Odoribacter",
+      "r": [
+        0.015,
+        0.009,
+        0.034,
+        0.174,
+        -0.107,
+        0.189
+      ],
+      "mean_r": 0.052,
+      "abs_mean_r": 0.052,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.296,
+      "class": "weak"
+    },
+    {
+      "genus": "Bradyrhizobium",
+      "r": [
+        0.022,
+        -0.021,
+        -0.23,
+        0.149,
+        0.045,
+        -0.277
+      ],
+      "mean_r": -0.052,
+      "abs_mean_r": 0.052,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.426,
+      "class": "weak"
+    },
+    {
+      "genus": "Shuttleworthia",
+      "r": [
+        0.002,
+        0.124,
+        0.102,
+        -0.263,
+        0.017,
+        -0.288
+      ],
+      "mean_r": -0.051,
+      "abs_mean_r": 0.051,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.412,
+      "class": "weak"
+    },
+    {
+      "genus": "Proteus",
+      "r": [
+        0.004,
+        -0.326,
+        -0.065,
+        0.149,
+        -0.039,
+        -0.03
+      ],
+      "mean_r": -0.051,
+      "abs_mean_r": 0.051,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.475,
+      "class": "weak"
+    },
+    {
+      "genus": "Eikenella",
+      "r": [
+        0.013,
+        -0.094,
+        0.012,
+        -0.016,
+        0.184,
+        -0.403
+      ],
+      "mean_r": -0.051,
+      "abs_mean_r": 0.051,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.587,
+      "class": "flipper"
+    },
+    {
+      "genus": "Propionibacterium",
+      "r": [
+        0.01,
+        0.099,
+        -0.023,
+        0.224,
+        -0.047,
+        0.04
+      ],
+      "mean_r": 0.05,
+      "abs_mean_r": 0.05,
+      "n_present": 6,
+      "n_votes": 2,
+      "agreement": 1.0,
+      "spread": 0.271,
+      "class": "weak"
+    },
+    {
+      "genus": "Pyramidobacter",
+      "r": [
+        0.08,
+        0.072,
+        -0.057,
+        0.046,
+        0.239,
+        -0.078
+      ],
+      "mean_r": 0.05,
+      "abs_mean_r": 0.05,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.317,
+      "class": "weak"
+    },
+    {
+      "genus": "Eggerthella",
+      "r": [
+        0.01,
+        -0.085,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.049,
+      "abs_mean_r": 0.049,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.648,
+      "class": "flipper"
+    },
+    {
+      "genus": "Achromobacter",
+      "r": [
+        0.013,
+        -0.087,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.049,
+      "abs_mean_r": 0.049,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.648,
+      "class": "flipper"
+    },
+    {
+      "genus": "Mogibacterium",
+      "r": [
+        0.005,
+        0.235,
+        0.029,
+        0.073,
+        -0.12,
+        0.066
+      ],
+      "mean_r": 0.048,
+      "abs_mean_r": 0.048,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.356,
+      "class": "weak"
+    },
+    {
+      "genus": "Lautropia",
+      "r": [
+        -0.055,
+        -0.02,
+        0.05,
+        -0.099,
+        0.067,
+        0.344
+      ],
+      "mean_r": 0.048,
+      "abs_mean_r": 0.048,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.442,
+      "class": "weak"
+    },
+    {
+      "genus": "Prevotella",
+      "r": [
+        -0.018,
+        0.279,
+        0.143,
+        -0.02,
+        -0.084,
+        -0.02
+      ],
+      "mean_r": 0.047,
+      "abs_mean_r": 0.047,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.363,
+      "class": "weak"
+    },
+    {
+      "genus": "Peptostreptococcus",
+      "r": [
+        -0.041,
+        0.356,
+        0.164,
+        -0.093,
+        0.061,
+        -0.168
+      ],
+      "mean_r": 0.046,
+      "abs_mean_r": 0.046,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.525,
+      "class": "flipper"
+    },
+    {
+      "genus": "Abiotrophia",
+      "r": [
+        -0.014,
+        0.005,
+        0.138,
+        0.028,
+        0.166,
+        -0.046
+      ],
+      "mean_r": 0.046,
+      "abs_mean_r": 0.046,
+      "n_present": 6,
+      "n_votes": 2,
+      "agreement": 1.0,
+      "spread": 0.213,
+      "class": "weak"
+    },
+    {
+      "genus": "Akkermansia",
+      "r": [
+        -0.001,
+        -0.117,
+        -0.065,
+        0.161,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.044,
+      "abs_mean_r": 0.044,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.648,
+      "class": "flipper"
+    },
+    {
+      "genus": "Yersinia",
+      "r": [
+        0.009,
+        -0.205,
+        -0.232,
+        0.149,
+        -0.181,
+        0.202
+      ],
+      "mean_r": -0.043,
+      "abs_mean_r": 0.043,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.434,
+      "class": "flipper"
+    },
+    {
+      "genus": "Catonella",
+      "r": [
+        -0.023,
+        0.159,
+        -0.003,
+        -0.064,
+        -0.068,
+        -0.251
+      ],
+      "mean_r": -0.042,
+      "abs_mean_r": 0.042,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.41,
+      "class": "flipper"
+    },
+    {
+      "genus": "Mobiluncus",
+      "r": [
+        -0.025,
+        -0.1,
+        -0.158,
+        0.149,
+        -0.032,
+        0.413
+      ],
+      "mean_r": 0.041,
+      "abs_mean_r": 0.041,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.571,
+      "class": "flipper"
+    },
+    {
+      "genus": "Parvimonas",
+      "r": [
+        -0.001,
+        0.148,
+        0.082,
+        -0.006,
+        0.132,
+        -0.114
+      ],
+      "mean_r": 0.04,
+      "abs_mean_r": 0.04,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.261,
+      "class": "weak"
+    },
+    {
+      "genus": "Selenomonas",
+      "r": [
+        0.015,
+        0.09,
+        -0.04,
+        0.238,
+        -0.132,
+        0.062
+      ],
+      "mean_r": 0.039,
+      "abs_mean_r": 0.039,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.37,
+      "class": "weak"
+    },
+    {
+      "genus": "Phocaeicola",
+      "r": [
+        0.076,
+        0.344,
+        0.086,
+        -0.082,
+        0.012,
+        -0.201
+      ],
+      "mean_r": 0.039,
+      "abs_mean_r": 0.039,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.545,
+      "class": "flipper"
+    },
+    {
+      "genus": "Mycobacterium",
+      "r": [
+        0.002,
+        -0.182,
+        -0.065,
+        0.149,
+        -0.181,
+        0.058
+      ],
+      "mean_r": -0.037,
+      "abs_mean_r": 0.037,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.33,
+      "class": "weak"
+    },
+    {
+      "genus": "Bulleidia",
+      "r": [
+        -0.032,
+        0.013,
+        0.03,
+        -0.144,
+        0.01,
+        -0.099
+      ],
+      "mean_r": -0.037,
+      "abs_mean_r": 0.037,
+      "n_present": 6,
+      "n_votes": 2,
+      "agreement": 1.0,
+      "spread": 0.174,
+      "class": "weak"
+    },
+    {
+      "genus": "Comamonas",
+      "r": [
+        0.007,
+        -0.176,
+        -0.065,
+        0.149,
+        -0.181,
+        0.045
+      ],
+      "mean_r": -0.037,
+      "abs_mean_r": 0.037,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.329,
+      "class": "weak"
+    },
+    {
+      "genus": "Dermabacter",
+      "r": [
+        0.01,
+        -0.164,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.036,
+      "abs_mean_r": 0.036,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.648,
+      "class": "flipper"
+    },
+    {
+      "genus": "Solobacterium",
+      "r": [
+        -0.004,
+        0.258,
+        0.289,
+        -0.15,
+        -0.148,
+        -0.033
+      ],
+      "mean_r": 0.035,
+      "abs_mean_r": 0.035,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.439,
+      "class": "weak"
+    },
+    {
+      "genus": "Sneathia",
+      "r": [
+        0.024,
+        -0.15,
+        -0.12,
+        0.149,
+        -0.114,
+        0.419
+      ],
+      "mean_r": 0.035,
+      "abs_mean_r": 0.035,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.568,
+      "class": "weak"
+    },
+    {
+      "genus": "Atopobium",
+      "r": [
+        0.023,
+        -0.186,
+        -0.065,
+        0.149,
+        -0.186,
+        0.467
+      ],
+      "mean_r": 0.034,
+      "abs_mean_r": 0.034,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.653,
+      "class": "flipper"
+    },
+    {
+      "genus": "Rhodobacter",
+      "r": [
+        0.013,
+        0.225,
+        -0.065,
+        0.149,
+        0.067,
+        -0.186
+      ],
+      "mean_r": 0.034,
+      "abs_mean_r": 0.034,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.411,
+      "class": "flipper"
+    },
+    {
+      "genus": "Eubacterium",
+      "r": [
+        0.009,
+        -0.182,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.033,
+      "abs_mean_r": 0.033,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.649,
+      "class": "flipper"
+    },
+    {
+      "genus": "Bacteroides",
+      "r": [
+        -0.018,
+        0.424,
+        0.169,
+        -0.034,
+        -0.138,
+        -0.207
+      ],
+      "mean_r": 0.032,
+      "abs_mean_r": 0.032,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.631,
+      "class": "flipper"
+    },
+    {
+      "genus": "Desulfobulbus",
+      "r": [
+        0.02,
+        0.06,
+        -0.101,
+        0.06,
+        -0.061,
+        -0.164
+      ],
+      "mean_r": -0.031,
+      "abs_mean_r": 0.031,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.225,
+      "class": "weak"
+    },
+    {
+      "genus": "Eggerthia",
+      "r": [
+        -0.013,
+        0.064,
+        0.123,
+        0.199,
+        -0.096,
+        -0.091
+      ],
+      "mean_r": 0.031,
+      "abs_mean_r": 0.031,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.295,
+      "class": "weak"
+    },
+    {
+      "genus": "Olsenella",
+      "r": [
+        0.027,
+        0.043,
+        0.003,
+        -0.157,
+        -0.141,
+        0.044
+      ],
+      "mean_r": -0.03,
+      "abs_mean_r": 0.03,
+      "n_present": 6,
+      "n_votes": 2,
+      "agreement": 1.0,
+      "spread": 0.201,
+      "class": "weak"
+    },
+    {
+      "genus": "Victivallis",
+      "r": [
+        0.009,
+        -0.198,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.03,
+      "abs_mean_r": 0.03,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.665,
+      "class": "flipper"
+    },
+    {
+      "genus": "Aquamicrobium",
+      "r": [
+        0.009,
+        -0.032,
+        -0.065,
+        0.149,
+        -0.181,
+        0.294
+      ],
+      "mean_r": 0.029,
+      "abs_mean_r": 0.029,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.475,
+      "class": "flipper"
+    },
+    {
+      "genus": "Aggregatibacter",
+      "r": [
+        -0.04,
+        -0.178,
+        -0.042,
+        -0.005,
+        0.2,
+        -0.102
+      ],
+      "mean_r": -0.028,
+      "abs_mean_r": 0.028,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.378,
+      "class": "flipper"
+    },
+    {
+      "genus": "Cardiobacterium",
+      "r": [
+        -0.044,
+        -0.1,
+        -0.025,
+        -0.053,
+        0.061,
+        0.33
+      ],
+      "mean_r": 0.028,
+      "abs_mean_r": 0.028,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.43,
+      "class": "weak"
+    },
+    {
+      "genus": "Pedobacter",
+      "r": [
+        0.005,
+        -0.171,
+        -0.065,
+        0.149,
+        -0.181,
+        0.433
+      ],
+      "mean_r": 0.028,
+      "abs_mean_r": 0.028,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.613,
+      "class": "flipper"
+    },
+    {
+      "genus": "Ureaplasma",
+      "r": [
+        0.004,
+        -0.184,
+        -0.065,
+        0.149,
+        -0.201,
+        0.467
+      ],
+      "mean_r": 0.028,
+      "abs_mean_r": 0.028,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.668,
+      "class": "flipper"
+    },
+    {
+      "genus": "Bartonella",
+      "r": [
+        0.008,
+        -0.212,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "mean_r": 0.028,
+      "abs_mean_r": 0.028,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.679,
+      "class": "flipper"
+    },
+    {
+      "genus": "Dietzia",
+      "r": [
+        0.006,
+        -0.161,
+        -0.065,
+        0.149,
+        -0.181,
+        0.083
+      ],
+      "mean_r": -0.028,
+      "abs_mean_r": 0.028,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.329,
+      "class": "weak"
+    },
+    {
+      "genus": "Microbacterium",
+      "r": [
+        0.009,
+        -0.389,
+        -0.065,
+        0.149,
+        0.118,
+        0.336
+      ],
+      "mean_r": 0.026,
+      "abs_mean_r": 0.026,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.725,
+      "class": "flipper"
+    },
+    {
+      "genus": "Tannerella",
+      "r": [
+        -0.003,
+        -0.052,
+        0.112,
+        -0.158,
+        0.05,
+        -0.099
+      ],
+      "mean_r": -0.025,
+      "abs_mean_r": 0.025,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.27,
+      "class": "weak"
+    },
+    {
+      "genus": "Arsenicicoccus",
+      "r": [
+        0.012,
+        -0.194,
+        -0.065,
+        0.149,
+        -0.205,
+        0.161
+      ],
+      "mean_r": -0.024,
+      "abs_mean_r": 0.024,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.365,
+      "class": "flipper"
+    },
+    {
+      "genus": "Neisseria",
+      "r": [
+        -0.011,
+        0.139,
+        0.059,
+        -0.121,
+        0.257,
+        -0.181
+      ],
+      "mean_r": 0.024,
+      "abs_mean_r": 0.024,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.438,
+      "class": "flipper"
+    },
+    {
+      "genus": "Scardovia",
+      "r": [
+        -0.029,
+        0.025,
+        -0.012,
+        0.055,
+        -0.064,
+        -0.113
+      ],
+      "mean_r": -0.023,
+      "abs_mean_r": 0.023,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.168,
+      "class": "weak"
+    },
+    {
+      "genus": "Bordetella",
+      "r": [
+        0.003,
+        -0.174,
+        -0.065,
+        0.149,
+        -0.181,
+        0.403
+      ],
+      "mean_r": 0.022,
+      "abs_mean_r": 0.022,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.584,
+      "class": "flipper"
+    },
+    {
+      "genus": "Haemophilus",
+      "r": [
+        -0.035,
+        0.08,
+        0.046,
+        0.024,
+        0.044,
+        -0.291
+      ],
+      "mean_r": -0.022,
+      "abs_mean_r": 0.022,
+      "n_present": 6,
+      "n_votes": 2,
+      "agreement": 0.5,
+      "spread": 0.371,
+      "class": "weak"
+    },
+    {
+      "genus": "Butyrivibrio",
+      "r": [
+        0.009,
+        0.14,
+        0.024,
+        0.319,
+        -0.166,
+        -0.196
+      ],
+      "mean_r": 0.022,
+      "abs_mean_r": 0.022,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.515,
+      "class": "flipper"
+    },
+    {
+      "genus": "Paenibacillus",
+      "r": [
+        0.005,
+        -0.236,
+        -0.065,
+        0.149,
+        -0.196,
+        0.467
+      ],
+      "mean_r": 0.021,
+      "abs_mean_r": 0.021,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.703,
+      "class": "flipper"
+    },
+    {
+      "genus": "Moryella",
+      "r": [
+        0.017,
+        -0.046,
+        0.301,
+        -0.048,
+        -0.216,
+        -0.133
+      ],
+      "mean_r": -0.021,
+      "abs_mean_r": 0.021,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.517,
+      "class": "flipper"
+    },
+    {
+      "genus": "Haematobacter",
+      "r": [
+        0.011,
+        0.186,
+        -0.065,
+        0.149,
+        -0.181,
+        0.018
+      ],
+      "mean_r": 0.019,
+      "abs_mean_r": 0.019,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.366,
+      "class": "flipper"
+    },
+    {
+      "genus": "Dialister",
+      "r": [
+        -0.009,
+        0.073,
+        0.057,
+        0.113,
+        0.04,
+        -0.16
+      ],
+      "mean_r": 0.019,
+      "abs_mean_r": 0.019,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.273,
+      "class": "weak"
+    },
+    {
+      "genus": "Micrococcus",
+      "r": [
+        0.003,
+        0.088,
+        -0.065,
+        -0.095,
+        -0.174,
+        0.129
+      ],
+      "mean_r": -0.019,
+      "abs_mean_r": 0.019,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.302,
+      "class": "weak"
+    },
+    {
+      "genus": "Cellulosimicrobium",
+      "r": [
+        0.009,
+        -0.296,
+        -0.065,
+        0.149,
+        -0.181,
+        0.277
+      ],
+      "mean_r": -0.018,
+      "abs_mean_r": 0.018,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.574,
+      "class": "flipper"
+    },
+    {
+      "genus": "Centipeda",
+      "r": [
+        0.002,
+        -0.123,
+        -0.105,
+        0.002,
+        -0.014,
+        0.339
+      ],
+      "mean_r": 0.017,
+      "abs_mean_r": 0.017,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.33,
+      "spread": 0.462,
+      "class": "weak"
+    },
+    {
+      "genus": "Acinetobacter",
+      "r": [
+        -0.017,
+        -0.005,
+        0.065,
+        -0.196,
+        0.122,
+        0.134
+      ],
+      "mean_r": 0.017,
+      "abs_mean_r": 0.017,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.75,
+      "spread": 0.329,
+      "class": "weak"
+    },
+    {
+      "genus": "Ralstonia",
+      "r": [
+        -0.038,
+        0.147,
+        -0.065,
+        0.149,
+        -0.015,
+        -0.079
+      ],
+      "mean_r": 0.016,
+      "abs_mean_r": 0.016,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.227,
+      "class": "weak"
+    },
+    {
+      "genus": "Lysinibacillus",
+      "r": [
+        0.008,
+        -0.399,
+        -0.065,
+        0.149,
+        -0.181,
+        0.394
+      ],
+      "mean_r": -0.016,
+      "abs_mean_r": 0.016,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.794,
+      "class": "flipper"
+    },
+    {
+      "genus": "Arcanobacterium",
+      "r": [
+        0.008,
+        -0.191,
+        -0.065,
+        0.149,
+        -0.181,
+        0.375
+      ],
+      "mean_r": 0.016,
+      "abs_mean_r": 0.016,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.566,
+      "class": "flipper"
+    },
+    {
+      "genus": "Jeotgalicoccus",
+      "r": [
+        0.01,
+        -0.128,
+        -0.151,
+        0.149,
+        -0.181,
+        0.392
+      ],
+      "mean_r": 0.015,
+      "abs_mean_r": 0.015,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.573,
+      "class": "flipper"
+    },
+    {
+      "genus": "Bacillus",
+      "r": [
+        0.008,
+        -0.176,
+        -0.065,
+        0.149,
+        -0.018,
+        0.188
+      ],
+      "mean_r": 0.014,
+      "abs_mean_r": 0.014,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.364,
+      "class": "flipper"
+    },
+    {
+      "genus": "Slackia",
+      "r": [
+        0.038,
+        0.169,
+        0.019,
+        -0.166,
+        0.106,
+        -0.081
+      ],
+      "mean_r": 0.014,
+      "abs_mean_r": 0.014,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.335,
+      "class": "flipper"
+    },
+    {
+      "genus": "Jonquetella",
+      "r": [
+        0.015,
+        -0.195,
+        -0.065,
+        0.149,
+        -0.185,
+        0.363
+      ],
+      "mean_r": 0.014,
+      "abs_mean_r": 0.014,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.558,
+      "class": "flipper"
+    },
+    {
+      "genus": "Peptococcus",
+      "r": [
+        -0.045,
+        -0.002,
+        0.066,
+        -0.239,
+        0.007,
+        0.297
+      ],
+      "mean_r": 0.014,
+      "abs_mean_r": 0.014,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.536,
+      "class": "flipper"
+    },
+    {
+      "genus": "Oribacterium",
+      "r": [
+        0.002,
+        0.288,
+        0.196,
+        -0.2,
+        -0.207,
+        -0.156
+      ],
+      "mean_r": -0.013,
+      "abs_mean_r": 0.013,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.496,
+      "class": "flipper"
+    },
+    {
+      "genus": "Kytococcus",
+      "r": [
+        0.008,
+        -0.213,
+        -0.065,
+        0.149,
+        -0.181,
+        0.228
+      ],
+      "mean_r": -0.012,
+      "abs_mean_r": 0.012,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.441,
+      "class": "flipper"
+    },
+    {
+      "genus": "Afipia",
+      "r": [
+        0.006,
+        -0.071,
+        -0.162,
+        0.149,
+        0.305,
+        -0.291
+      ],
+      "mean_r": -0.011,
+      "abs_mean_r": 0.011,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.596,
+      "class": "flipper"
+    },
+    {
+      "genus": "Fusobacterium",
+      "r": [
+        -0.004,
+        0.238,
+        0.243,
+        -0.161,
+        -0.03,
+        -0.228
+      ],
+      "mean_r": 0.01,
+      "abs_mean_r": 0.01,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.471,
+      "class": "flipper"
+    },
+    {
+      "genus": "Finegoldia",
+      "r": [
+        0.02,
+        -0.211,
+        -0.065,
+        0.149,
+        0.004,
+        0.155
+      ],
+      "mean_r": 0.009,
+      "abs_mean_r": 0.009,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.366,
+      "class": "flipper"
+    },
+    {
+      "genus": "Campylobacter",
+      "r": [
+        0.001,
+        0.137,
+        0.26,
+        0.031,
+        -0.007,
+        -0.477
+      ],
+      "mean_r": -0.009,
+      "abs_mean_r": 0.009,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.33,
+      "spread": 0.737,
+      "class": "flipper"
+    },
+    {
+      "genus": "Anaerococcus",
+      "r": [
+        0.022,
+        -0.158,
+        -0.014,
+        0.149,
+        0.139,
+        -0.085
+      ],
+      "mean_r": 0.009,
+      "abs_mean_r": 0.009,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.307,
+      "class": "weak"
+    },
+    {
+      "genus": "Mitsuokella",
+      "r": [
+        0.008,
+        -0.018,
+        0.006,
+        -0.124,
+        -0.165,
+        0.253
+      ],
+      "mean_r": -0.007,
+      "abs_mean_r": 0.007,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.418,
+      "class": "flipper"
+    },
+    {
+      "genus": "Segetibacter",
+      "r": [
+        0.011,
+        -0.289,
+        -0.065,
+        0.149,
+        -0.181,
+        0.415
+      ],
+      "mean_r": 0.007,
+      "abs_mean_r": 0.007,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.704,
+      "class": "flipper"
+    },
+    {
+      "genus": "Ottowia",
+      "r": [
+        -0.004,
+        -0.048,
+        0.06,
+        0.043,
+        -0.055,
+        -0.028
+      ],
+      "mean_r": -0.005,
+      "abs_mean_r": 0.005,
+      "n_present": 6,
+      "n_votes": 2,
+      "agreement": 0.5,
+      "spread": 0.115,
+      "class": "weak"
+    },
+    {
+      "genus": "Erythrobacter",
+      "r": [
+        0.015,
+        -0.029,
+        0.063,
+        0.149,
+        -0.086,
+        -0.084
+      ],
+      "mean_r": 0.005,
+      "abs_mean_r": 0.005,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.235,
+      "class": "weak"
+    },
+    {
+      "genus": "Aerococcus",
+      "r": [
+        0.003,
+        -0.204,
+        -0.065,
+        0.149,
+        0.017,
+        0.079
+      ],
+      "mean_r": -0.004,
+      "abs_mean_r": 0.004,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.353,
+      "class": "weak"
+    },
+    {
+      "genus": "Capnocytophaga",
+      "r": [
+        -0.011,
+        -0.073,
+        0.168,
+        -0.15,
+        0.149,
+        -0.062
+      ],
+      "mean_r": 0.003,
+      "abs_mean_r": 0.003,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.318,
+      "class": "flipper"
+    },
+    {
+      "genus": "Janibacter",
+      "r": [
+        0.009,
+        -0.162,
+        -0.065,
+        0.149,
+        0.118,
+        -0.029
+      ],
+      "mean_r": 0.003,
+      "abs_mean_r": 0.003,
+      "n_present": 6,
+      "n_votes": 4,
+      "agreement": 0.5,
+      "spread": 0.311,
+      "class": "weak"
+    },
+    {
+      "genus": "Simonsiella",
+      "r": [
+        -0.038,
+        -0.063,
+        -0.132,
+        -0.033,
+        0.018,
+        0.237
+      ],
+      "mean_r": -0.002,
+      "abs_mean_r": 0.002,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.33,
+      "spread": 0.368,
+      "class": "weak"
+    },
+    {
+      "genus": "Roseomonas",
+      "r": [
+        0.01,
+        -0.19,
+        -0.065,
+        0.149,
+        -0.181,
+        0.292
+      ],
+      "mean_r": 0.002,
+      "abs_mean_r": 0.002,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.4,
+      "spread": 0.482,
+      "class": "flipper"
+    },
+    {
+      "genus": "Mesorhizobium",
+      "r": [
+        0.015,
+        0.066,
+        -0.151,
+        0.149,
+        -0.045,
+        -0.039
+      ],
+      "mean_r": -0.001,
+      "abs_mean_r": 0.001,
+      "n_present": 6,
+      "n_votes": 3,
+      "agreement": 0.67,
+      "spread": 0.3,
+      "class": "weak"
+    },
+    {
+      "genus": "Brucella",
+      "r": [
+        0.018,
+        -0.167,
+        -0.065,
+        0.149,
+        -0.181,
+        0.251
+      ],
+      "mean_r": 0.001,
+      "abs_mean_r": 0.001,
+      "n_present": 6,
+      "n_votes": 5,
+      "agreement": 0.6,
+      "spread": 0.431,
+      "class": "flipper"
+    }
+  ],
+  "heatmap": [
+    {
+      "genus": "Alloscardovia",
+      "r": [
+        0.052,
+        0.102,
+        0.027,
+        0.149,
+        0.054,
+        0.086
+      ],
+      "class": "robust_up",
+      "agreement": 1.0,
+      "mean_r": 0.078
+    },
+    {
+      "genus": "Streptococcus",
+      "r": [
+        -0.004,
+        0.288,
+        0.136,
+        0.397,
+        0.101,
+        -0.118
+      ],
+      "class": "robust_up",
+      "agreement": 0.8,
+      "mean_r": 0.133
+    },
+    {
+      "genus": "Bifidobacterium",
+      "r": [
+        0.058,
+        0.296,
+        -0.078,
+        0.084,
+        0.112,
+        -0.013
+      ],
+      "class": "robust_up",
+      "agreement": 0.8,
+      "mean_r": 0.076
+    },
+    {
+      "genus": "Pseudoramibacter",
+      "r": [
+        0.084,
+        0.155,
+        0.02,
+        -0.052,
+        0.066,
+        0.141
+      ],
+      "class": "robust_up",
+      "agreement": 0.8,
+      "mean_r": 0.069
+    },
+    {
+      "genus": "Lactobacillus",
+      "r": [
+        0.067,
+        0.035,
+        -0.088,
+        0.062,
+        0.195,
+        0.065
+      ],
+      "class": "robust_up",
+      "agreement": 0.8,
+      "mean_r": 0.056
+    },
+    {
+      "genus": "Enterococcus",
+      "r": [
+        0.009,
+        -0.129,
+        0.138,
+        0.149,
+        0.086,
+        0.072
+      ],
+      "class": "robust_up",
+      "agreement": 0.8,
+      "mean_r": 0.054
+    },
+    {
+      "genus": "Desulfovibrio",
+      "r": [
+        -0.001,
+        -0.165,
+        -0.235,
+        -0.093,
+        -0.051,
+        -0.08
+      ],
+      "class": "robust_down",
+      "agreement": 1.0,
+      "mean_r": -0.104
+    },
+    {
+      "genus": "Fretibacterium",
+      "r": [
+        0.009,
+        -0.107,
+        -0.133,
+        -0.134,
+        -0.06,
+        -0.168
+      ],
+      "class": "robust_down",
+      "agreement": 1.0,
+      "mean_r": -0.099
+    },
+    {
+      "genus": "Johnsonella",
+      "r": [
+        -0.033,
+        -0.092,
+        -0.093,
+        -0.105,
+        -0.148,
+        -0.061
+      ],
+      "class": "robust_down",
+      "agreement": 1.0,
+      "mean_r": -0.089
+    },
+    {
+      "genus": "Cloacibacterium",
+      "r": [
+        -0.016,
+        -0.154,
+        -0.215,
+        -0.206,
+        -0.095,
+        0.074
+      ],
+      "class": "robust_down",
+      "agreement": 0.8,
+      "mean_r": -0.102
+    },
+    {
+      "genus": "Delftia",
+      "r": [
+        0.009,
+        -0.128,
+        -0.065,
+        0.149,
+        -0.181,
+        -0.338
+      ],
+      "class": "robust_down",
+      "agreement": 0.8,
+      "mean_r": -0.092
+    },
+    {
+      "genus": "Schlegelella",
+      "r": [
+        0.007,
+        -0.243,
+        -0.065,
+        0.149,
+        -0.181,
+        -0.146
+      ],
+      "class": "robust_down",
+      "agreement": 0.8,
+      "mean_r": -0.08
+    },
+    {
+      "genus": "Serratia",
+      "r": [
+        0.009,
+        0.053,
+        -0.712,
+        0.151,
+        -0.181,
+        0.13
+      ],
+      "class": "flipper",
+      "agreement": 0.4,
+      "mean_r": -0.091
+    },
+    {
+      "genus": "Faecalibacterium",
+      "r": [
+        -0.023,
+        0.343,
+        -0.034,
+        -0.342,
+        -0.013,
+        0.467
+      ],
+      "class": "flipper",
+      "agreement": 0.67,
+      "mean_r": 0.066
+    },
+    {
+      "genus": "Lysinibacillus",
+      "r": [
+        0.008,
+        -0.399,
+        -0.065,
+        0.149,
+        -0.181,
+        0.394
+      ],
+      "class": "flipper",
+      "agreement": 0.6,
+      "mean_r": -0.016
+    },
+    {
+      "genus": "Campylobacter",
+      "r": [
+        0.001,
+        0.137,
+        0.26,
+        0.031,
+        -0.007,
+        -0.477
+      ],
+      "class": "flipper",
+      "agreement": 0.33,
+      "mean_r": -0.009
+    },
+    {
+      "genus": "Burkholderia",
+      "r": [
+        -0.02,
+        -0.495,
+        -0.065,
+        0.149,
+        -0.181,
+        0.238
+      ],
+      "class": "flipper",
+      "agreement": 0.6,
+      "mean_r": -0.062
+    },
+    {
+      "genus": "Microbacterium",
+      "r": [
+        0.009,
+        -0.389,
+        -0.065,
+        0.149,
+        0.118,
+        0.336
+      ],
+      "class": "flipper",
+      "agreement": 0.6,
+      "mean_r": 0.026
+    },
+    {
+      "genus": "Segetibacter",
+      "r": [
+        0.011,
+        -0.289,
+        -0.065,
+        0.149,
+        -0.181,
+        0.415
+      ],
+      "class": "flipper",
+      "agreement": 0.4,
+      "mean_r": 0.007
+    },
+    {
+      "genus": "Paenibacillus",
+      "r": [
+        0.005,
+        -0.236,
+        -0.065,
+        0.149,
+        -0.196,
+        0.467
+      ],
+      "class": "flipper",
+      "agreement": 0.4,
+      "mean_r": 0.021
+    },
+    {
+      "genus": "Bartonella",
+      "r": [
+        0.008,
+        -0.212,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "class": "flipper",
+      "agreement": 0.4,
+      "mean_r": 0.028
+    },
+    {
+      "genus": "Ureaplasma",
+      "r": [
+        0.004,
+        -0.184,
+        -0.065,
+        0.149,
+        -0.201,
+        0.467
+      ],
+      "class": "flipper",
+      "agreement": 0.4,
+      "mean_r": 0.028
+    },
+    {
+      "genus": "Victivallis",
+      "r": [
+        0.009,
+        -0.198,
+        -0.065,
+        0.149,
+        -0.181,
+        0.467
+      ],
+      "class": "flipper",
+      "agreement": 0.4,
+      "mean_r": 0.03
+    },
+    {
+      "genus": "Actinomyces",
+      "r": [
+        0.009,
+        0.245,
+        0.149,
+        -0.165,
+        -0.124,
+        0.492
+      ],
+      "class": "flipper",
+      "agreement": 0.6,
+      "mean_r": 0.101
+    },
+    {
+      "genus": "Parabacteroides",
+      "r": [
+        -0.007,
+        0.29,
+        -0.065,
+        0.149,
+        -0.187,
+        0.467
+      ],
+      "class": "flipper",
+      "agreement": 0.6,
+      "mean_r": 0.108
+    },
+    {
+      "genus": "Atopobium",
+      "r": [
+        0.023,
+        -0.186,
+        -0.065,
+        0.149,
+        -0.186,
+        0.467
+      ],
+      "class": "flipper",
+      "agreement": 0.4,
+      "mean_r": 0.034
+    }
+  ],
+  "robust_up": [
+    "Alloscardovia",
+    "Streptococcus",
+    "Bifidobacterium",
+    "Pseudoramibacter",
+    "Lactobacillus",
+    "Enterococcus"
+  ],
+  "robust_down": [
+    "Desulfovibrio",
+    "Fretibacterium",
+    "Johnsonella",
+    "Cloacibacterium",
+    "Delftia",
+    "Schlegelella",
+    "Brevundimonas",
+    "Variovorax"
+  ],
+  "flippers": [
+    "Serratia",
+    "Faecalibacterium",
+    "Lysinibacillus",
+    "Campylobacter",
+    "Burkholderia",
+    "Microbacterium",
+    "Segetibacter",
+    "Paenibacillus",
+    "Bartonella",
+    "Ureaplasma",
+    "Victivallis",
+    "Actinomyces",
+    "Parabacteroides",
+    "Atopobium",
+    "Eubacterium",
+    "Dermabacter",
+    "Helicobacter",
+    "Eggerthella",
+    "Achromobacter",
+    "Alistipes",
+    "Akkermansia",
+    "Bacteroides",
+    "Granulicatella",
+    "Staphylococcus",
+    "Pedobacter",
+    "Afipia",
+    "Eikenella",
+    "Bordetella",
+    "Cellulosimicrobium",
+    "Jeotgalicoccus",
+    "Mobiluncus",
+    "Arcanobacterium",
+    "Jonquetella",
+    "Phocaeicola",
+    "Caulobacter",
+    "Peptococcus",
+    "Peptostreptococcus",
+    "Moryella",
+    "Butyrivibrio",
+    "Veillonella",
+    "Oribacterium",
+    "Roseomonas",
+    "Aquamicrobium",
+    "Fusobacterium",
+    "Kytococcus",
+    "Neisseria",
+    "Yersinia",
+    "Brucella",
+    "Mitsuokella",
+    "Rhodobacter",
+    "Catonella",
+    "Aggregatibacter",
+    "Haematobacter",
+    "Finegoldia",
+    "Arsenicicoccus",
+    "Bacillus",
+    "Slackia",
+    "Capnocytophaga"
+  ],
+  "summary": {
+    "n_genera_evaluated": 139,
+    "n_robust": 14,
+    "n_flippers": 58,
+    "reversal_prevalence_ex_nhanes": 0.68,
+    "reversal_tested_ex_nhanes": 88,
+    "sa_marker_flip_fraction": 0.54,
+    "sa_markers_tested": 13,
+    "other_cohort_flip_fraction": {
+      "Portugal": 0.0,
+      "India/Mumbai": 0.54,
+      "Mexico": 0.15
+    }
+  },
+  "provenance": {
+    "input_sha256": "21044e93ff394dc3a8339952d5c6d8baede366402f78179344df7ee99150766a",
+    "eligibility_metadata_sha256": "c7e35f98c670c05953a780e9a032b3227fc40c82294671800550e4eee03f5e9c",
+    "auxiliary_input_sha256": {
+      "data/processed/unified_genus_counts.csv": "2aab70a18974d154a085cde9d23c100c8da75b8065b484f9801db5d994149754",
+      "data/interim/india_genus_counts.csv": "48ee5a7d737453465df64dad2f6bc6602542161099c46f750f1faf1c4f189c1c",
+      "data/raw/india_mumbai/labels.tsv": "59131de089d594ef9f3fe0392f1e1ff2cb93e4ee1846d12f30f934ebab60172e",
+      "data/interim/mexico_genus_counts.csv": "8cf5b22cafc7625c3f9797060dc4613831b4131f92163cb7a86057d3dd80e81d",
+      "data/raw/mexico/labels.tsv": "e7ca42e6dc95fb2bd8ed1e6d6bbc227c5990d6ee247cc34b0f08a0d942dabcef",
+      "data/interim/sa_genus_counts.csv": "5080bbe961d0939e26d017beabc86088de83ee34edf2c1cf124b58a42d1d7a35",
+      "data/raw/south_africa/labels.tsv": "7f16f555ae7e47a608b3b756db70900fb9df02eb64b1bbab6d57729a4ab85d50",
+      "data/processed/nhanes_demographics.csv": "dd571ed567b3df8a201463c2d9b5a68e46428e319f48f4aaeab93ac335ad3d0e",
+      "data/processed/nhanes_demographics.provenance.json": "bcbbf2d34aa24634529ac1008edce5d3e1715a4085b24250253aa747fe5aa88c"
+    },
+    "transfer_contract_sha256": "7432d44f9ad980d2c52fc8037dcb62e0b1249ea127e196807de00ea6005ebe88",
+    "eligibility_code_sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d",
+    "eligibility_rule": "Shanghai DT/HT oral aliases retained; DF fecal aliases excluded",
+    "excluded_fecal_rows": 129,
+    "source_n": 10228,
+    "source_cases": 1251,
+    "feature_scope": "fixed historical 139-genus rank vocabulary; retrospective",
+    "script_sha256": "d8602d3b218a687b6bdb44d0d709f138a3f28784210f74acb88b3bb7136c7515"
+  }
+}
