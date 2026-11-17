@@ -19,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-NOTE ON SCOPE: This MIT license covers the SOURCE CODE in this repository
-(scripts/, notebooks/, *.py). Non-code content — data files, figures, reports,
-and documentation — is licensed separately under CC-BY-4.0; see DATA-LICENSE.md.
-Third-party datasets retain their original licenses and data-use agreements;
-see docs/Dataset_Access_Guide.md and the NHANES notice in DATA-LICENSE.md.

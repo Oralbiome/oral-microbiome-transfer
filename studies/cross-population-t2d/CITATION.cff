@@ -9,9 +9,10 @@ abstract: >-
   T2D subtype. The working manuscript is publicly hosted; no peer review is claimed.
 type: software
 license: MIT
-url: "https://oralbiome.scarpelli.ai/preprint.html"
+url: "https://oralbiome.scarpelli.ai/preprint"
 repository-code: "https://github.com/Oralbiome/oral-microbiome-transfer"
-version: "working-audit-2026-10-18-web"
+version: "v2026.11.15"
+date-released: "2026-11-15"
 keywords:
   - oral microbiome
   - type 2 diabetes

@@ -6,9 +6,18 @@ checking specimen eligibility, overlapping studies, evaluation procedures and th
 conclusions that survive those checks.
 
 **[Explore the research website](https://oralbiome.scarpelli.ai/)** ·
-[Read the paper](https://oralbiome.scarpelli.ai/preprint.html) ·
+[Read the paper](https://oralbiome.scarpelli.ai/preprint) ·
 [Download the PDF](https://oralbiome.scarpelli.ai/preprint.pdf) ·
-[Code and reproduction guide](https://oralbiome.scarpelli.ai/code.html)
+[Code and reproduction guide](https://oralbiome.scarpelli.ai/code)
+
+> **Erratum, 2026-11-17.** The archived v2026.11.15 paper
+> (`studies/cross-population-t2d/docs/Preprint.*`) and `ARCHIVE_README.md` still
+> call the paper and code "private". That wording is outdated: the paper, the
+> 59-file code archive and this repository are public; only the original
+> research repository and its Git/LFS history remain private. The corrected
+> manuscript is at <https://oralbiome.scarpelli.ai/preprint> (revision
+> 2026-11-17; release-status wording and statistic labels only, no reported
+> number changed). The archived files are left byte-identical on purpose.
 
 > Exploratory working manuscript; not peer reviewed. All evaluation cohorts
 > informed development. This work does not establish a clinical screening tool
@@ -28,7 +37,7 @@ clustering and model-development uncertainty. See the paper for the estimands.
 | You want to… | Open |
 |---|---|
 | Understand the study and browse its results | [Research dashboard](https://oralbiome.scarpelli.ai/) |
-| Read the methods, findings and limitations | [Paper](https://oralbiome.scarpelli.ai/preprint.html) |
+| Read the methods, findings and limitations | [Paper](https://oralbiome.scarpelli.ai/preprint) |
 | Check which finding is supported by which artifact | [Evidence ledger](studies/cross-population-t2d/docs/Audit_Evidence.json) |
 | Inspect the numerical analysis | [Analysis scripts](studies/cross-population-t2d/scripts/) |
 | Inspect retained statistical outputs | [Aggregate reports](studies/cross-population-t2d/data/processed/) |
