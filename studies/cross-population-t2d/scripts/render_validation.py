@@ -125,7 +125,7 @@ def main():
         f"and held-out NHANES AUC is {f(nested['nhanes']['selected_auc'])}. This suggests that the pooled figure largely reflects within-NHANES and study-mixture structure "
         f"(random folds share studies) rather than transferable signal; the two estimates differ in training set and are not a controlled decomposition. "
         f"In a preregistered NHANES comparison on the same folds, an age-and-sex-only logistic model reaches OOF AUC {f(base['auc']['A']['auc'])} versus {f(base['auc']['B']['auc'])} for the microbiome-only model, "
-        f"and adding the microbiome to age and sex does not improve it ({f(base['auc']['C']['auc'])}); NHANES discrimination is therefore not evidence of microbiome signal beyond demographics. "
+        f"and adding the microbiome to age and sex shows no evidence of a gain under this learner ({f(base['auc']['C']['auc'])}); NHANES discrimination is therefore not evidence of microbiome signal beyond demographics. "
         f"This does not test the external transfer estimates, whose cohorts lack harmonized age and sex. "
         f"Portugal AUC is {f(ext['Portugal']['full_auc'])} and South Africa AUC {f(sa['auc'])} "
         f"(conditional 95% interval {f(sa['auc_ci95'][0])}–{f(sa['auc_ci95'][1])}). "
@@ -159,7 +159,7 @@ def main():
     pt, adapt, diversity = [snapshot[k] for k in ('portability', 'sign_adaptation', 'diversity_transfer')]
     sa_div = next(c for c in diversity['cohorts'] if c['cohort'] == 'South Africa')['diversity_transfer']
     sa_stable = next(r['auc_stable'] for r in pt['loco'] if r['cohort'] == 'South Africa')
-    transfer = [f"Pooled-source OOF AUC is {f(pooled['pooled_oof_auc'])} (pooled out-of-fold predictions, dominated by NHANES; macro-study nested AUC {f(panel['nested_loso']['macro_auc'])}). Within NHANES, an age-and-sex model alone discriminates at least as well (preregistered baseline below), so this pooled figure is not evidence of microbiome signal beyond demographics. The descriptive pooled benchmark AUC is "
+    transfer = [f"Pooled-source OOF AUC is {f(pooled['pooled_oof_auc'])} (pooled out-of-fold predictions, dominated by NHANES; macro-study nested AUC {f(panel['nested_loso']['macro_auc'])}). Within NHANES, an age-and-sex model (OOF AUC {f(base['auc']['A']['auc'])}) discriminates better than the microbiome-only model ({f(base['auc']['B']['auc'])}; preregistered baseline, Section 4.6), so NHANES discrimination is not evidence of microbiome signal beyond demographics. The pooled figure also reflects study-mixture structure, which this baseline does not address. The descriptive pooled benchmark AUC is "
                 f"{f(snapshot['reproduces']['holdout3_auc'])} on 176 specimens, with Shanghai-excluded fitting for its related benchmark. The external cohorts have no harmonized age or sex, so the baseline cannot be applied to them: whether the transfer AUCs below reflect demographics is untested.",
                 '', 'Table 2. CatBoost transfer and separately fitted within-cohort OOF references. Intervals are conditional.', '',
                 '| Cohort | N | Transfer AUC (95% interval) | Within-cohort OOF AUC | Source N |', '|---|---:|---|---:|---:|']

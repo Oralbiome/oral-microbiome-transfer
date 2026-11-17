@@ -48,15 +48,20 @@ def baseline_checks(root):
     a, b, c, cnh = (base['auc'][k] for k in ('A', 'B', 'C', 'C_nh'))
     dca, dba, dnh = (base['delta'][k] for k in ('C_minus_A', 'B_minus_A', 'C_nh_minus_A'))
     st = base['strata']
+    if not (st['age 65+']['A'] < 0.5 and st['age 65+']['B'] > st['age 65+']['A'] and st['age 55-65']['B'] > st['age 55-65']['A']
+            and st['age <40']['B'] < st['age <40']['A'] and abs(st['age 40-55']['B'] - st['age 40-55']['A']) < 0.005
+            and all(st[k]['C'] > st[k]['A'] for k in ('age 40-55', 'age 55-65', 'age 65+')) and st['age <40']['C'] < st['age <40']['A']
+            and all(st[k]['A'] > st[k]['B'] for k in ('sex male', 'sex female')) and cnh['auc'] < a['auc']):
+        raise ValueError('Baseline strata or NHANES-only C no longer support the stratum and learner wording; revise the text')
     ci3 = lambda m: (f3(m['ci95'][0]), f3(m['ci95'][1]))
     return [
-        ('baseline abstract AUCs', r'age-and-sex-only logistic model reaches OOF AUC (\d\.\d+) versus (\d\.\d+) for the microbiome-only model, and adding the microbiome to age and sex does not improve it \((\d\.\d+)\)',
+        ('baseline abstract AUCs', r'age-and-sex-only logistic model reaches OOF AUC (\d\.\d+) versus (\d\.\d+) for the microbiome-only model, and adding the microbiome to age and sex shows no evidence of a gain under this learner \((\d\.\d+)\)',
          (f3(a['auc']), f3(b['auc']), f3(c['auc'])), 1),
         ('baseline Section 2 AUCs', r'out-of-fold AUC (\d\.\d+), 95% CI (\d\.\d+)\u2013(\d\.\d+), versus (\d\.\d+)\)',
          (f3(a['auc']), *ci3(a), f3(b['auc'])), 1),
         ('baseline C versus A (Sections 2 and 6)', r'\((\d\.\d+); difference (\u2212\d\.\d+), (\u2212\d\.\d+) to (\d\.\d+)\)',
          (f3(c['auc']), d3(dca['delta']), d3(dca['ci95'][0]), d3(dca['ci95'][1])), 1),
-        ('baseline C versus A (Section 6)', r'microbiome adds nothing measurable to them \(difference (\u2212\d\.\d+), (\u2212\d\.\d+) to (\d\.\d+)\)',
+        ('baseline C versus A (Section 6)', r'adding the microbiome to them shows no evidence of a gain \(difference (\u2212\d\.\d+), (\u2212\d\.\d+) to (\d\.\d+)\), under this learner',
          (d3(dca['delta']), d3(dca['ci95'][0]), d3(dca['ci95'][1])), 1),
         ('baseline Section 6 A versus B', r'age and sex alone reach a higher out-of-fold AUC \((\d\.\d+)\) than the microbiome \((\d\.\d+)\)',
          (f3(a['auc']), f3(b['auc'])), 1),
@@ -77,6 +82,17 @@ def baseline_checks(root):
         ('baseline exploratory strata', r'55\u201365 and 65\+ strata the microbiome-only model ranks above age and sex \((\d\.\d+) versus (\d\.\d+); (\d\.\d+) versus (\d\.\d+)\), '
          r'whereas in the under-40 stratum it ranks below \((\d\.\d+) versus (\d\.\d+)\)',
          (f3(st['age 55-65']['B']), f3(st['age 55-65']['A']), f3(st['age 65+']['B']), f3(st['age 65+']['A']), f3(st['age <40']['B']), f3(st['age <40']['A'])), 1),
+        ('baseline Section 4.1 A versus B', r'age-and-sex model \(OOF AUC (\d\.\d+)\) discriminates better than the microbiome-only model \((\d\.\d+); preregistered baseline, Section 4\.6\)',
+         (f3(a['auc']), f3(b['auc'])), 1),
+        ('baseline gain bound (Sections 4.6 and 6)', r'bounds any gain at about \+(\d\.\d{3}) AUC', (f3(dca['ci95'][1]),), 2),
+        ('baseline NHANES-only C below A (Section 6)', r'NHANES-only C \((\d\.\d+)\) falls below A', (f3(cnh['auc']),), 1),
+        ('baseline 40-55 stratum', r'40\u201355 stratum the two are about equal \((\d\.\d+) versus (\d\.\d+)\)',
+         (f3(st['age 40-55']['B']), f3(st['age 40-55']['A'])), 1),
+        ('baseline 65+ A below 0.5', r'below-0\.5 AUC in the 65\+ stratum \((\d\.\d+)\)', (f3(st['age 65+']['A']),), 1),
+        *[(f'baseline Table 6 {k}', r'\| ' + re.escape(lab) + r' \(n ' + str(st[k]['n']) + r'; ' + str(st[k]['cases']) + r' cases\) \| (\d\.\d+) \| (\d\.\d+) \| (\d\.\d+) \|',
+           (f3(st[k]['A']), f3(st[k]['B']), f3(st[k]['C'])), 1)
+          for k, lab in (('age <40', 'Age <40'), ('age 40-55', 'Age 40\u201355'), ('age 55-65', 'Age 55\u201365'), ('age 65+', 'Age 65+'),
+                         ('sex male', 'Male'), ('sex female', 'Female'))],
         ('baseline stratified cases', r'(\d[\d,]*) rows \((\d+) cases\), one fold split', (f"{base['n']:,}", str(base['cases'])), 1),
     ]
 
