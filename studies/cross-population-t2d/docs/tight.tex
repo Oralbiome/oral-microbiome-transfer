@@ -8,3 +8,9 @@
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage{url}
+% Minimal stand-in for the needspace package (not in the basic TeX Live scheme):
+% start a new page unless #1 of vertical room remains.
+\makeatletter
+\newcommand{\Needspace}[1]{\par\begingroup\dimen@=#1\relax\advance\dimen@\pagetotal
+  \ifdim\dimen@>\pagegoal\vfil\penalty-10000\fi\endgroup}
+\makeatother

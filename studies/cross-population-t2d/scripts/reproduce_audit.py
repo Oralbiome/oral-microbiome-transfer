@@ -30,7 +30,7 @@ def main():
         run(f'experiment_{name}.py')
     run('calibrate.py', 'export')
     # Manuscript result blocks must exist before these rendering steps.
-    run('build_site_data.py')
+    run('build_site_data.py', '--write-pooled-oof')
     run('render_validation.py')
     run('render_preprint.py')
 

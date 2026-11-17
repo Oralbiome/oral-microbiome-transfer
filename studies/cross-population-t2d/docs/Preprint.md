@@ -2,12 +2,14 @@
 
 Jonathan Scarpelli and Ayesha Akhter
 
-Working manuscript, revised 2026-11-15. Private revision; not peer reviewed.
+Working manuscript, revised 2026-11-17 (second correction). Public working manuscript; not peer reviewed.
+
+*Revision 2026-11-17 (second correction, after an independent re-read): release-status wording corrected (this paper, the audited code archive and the public release repository are public; only the original research repository and its Git/LFS history remain private); statistic labels, per-study context and definitions of terms added; the interpretation of the pooled figure, the South African reversal and the unavailable adjustment for age made more cautious; additional results already held in the retained artifacts surfaced (Table 2 Russia and related Shanghai rows, calibration in Russia and related Shanghai, panel-selection and seed numbers); and the multiplicity, permutation and selection limits stated. No new analysis was run; previously computed values from the existing artifacts were surfaced. This revision supersedes the 2026-10-18 and 2026-11-15 versions.*
 
 ## Abstract
 
 <!-- validation:abstract:start -->
-We retrospectively audited oral-microbiome diabetes-status prediction in six source studies. Removing 129 fecal specimens mislabeled oral leaves 10,228 source specimens (1,251 cases). NHANES labels encode self-reported diabetes, not a verified subtype; clinical cohorts use deposited diabetes labels. Related India and Shanghai evaluations exclude their entire corresponding source study. Fixed CatBoost yields pooled-source OOF AUC 0.793, Portugal AUC 0.646, and South Africa AUC 0.449 (conditional 95% interval 0.323–0.578). The South African interval includes chance, withdrawing the earlier confident-reversal claim. Source-only nested panel selection yields macro-study AUC 0.661; 30 genera do not improve Portugal. A consistent within-study permutation test gives observed mean fold AUC 0.794 versus null 0.660, p=0.0099. Disjoint-row isotonic calibration reduces source ECE from 0.194 to 0.006, but external miscalibration remains. Subgroup estimates replace training-row scores with OOF evaluation. Association directions vary within and between countries without identifying a biological or technical cause. All external cohorts informed development; these are exploratory, not confirmatory estimates. No clinical screening tool, biomarker panel, validated failure gate, or harm-reduction benefit is established.
+We retrospectively audited oral-microbiome diabetes-status prediction in six source studies, scoring discrimination by the area under the ROC curve (AUC), mostly from out-of-fold (OOF) predictions. Removing 129 fecal specimens mislabeled oral leaves 10,228 source specimens (1,251 cases). Labels from the US National Health and Nutrition Examination Survey (NHANES) encode self-reported diabetes, not a verified subtype; clinical cohorts use deposited diabetes labels. Related India and Shanghai evaluations exclude their entire corresponding source study. Fixed CatBoost yields pooled-source OOF AUC 0.793 (one AUC over pooled out-of-fold predictions; 94.7% of rows are NHANES), but macro-study nested AUC is 0.661 (mean AUC over six held-out source studies, each scored by a model fit on the other five) and held-out NHANES AUC is 0.571. This suggests that the pooled figure largely reflects within-NHANES and study-mixture structure (random folds share studies) rather than transferable signal; the two estimates differ in training set and are not a controlled decomposition. Portugal AUC is 0.646 and South Africa AUC 0.449 (conditional 95% interval 0.323–0.578). The South African interval includes chance, so the earlier confident-reversal claim is withdrawn; reversal is neither established nor excluded. Panel size is chosen by source-only nested selection; 30 genera do not consistently improve Portugal (0.578 versus 0.646 for the full fit, but a mean 0.631 versus 0.616 across 50 downsampled seeds with 29/50 wins). A consistent within-study permutation test (observed and permuted statistics computed identically) gives observed mean fold AUC 0.794 (a different statistic from the pooled OOF AUC) versus null 0.660, p=0.0099; because NHANES dominates the rows, this pooled test mostly addresses NHANES. Disjoint-row isotonic calibration reduces source ECE (expected calibration error) from 0.194 to 0.006, but external miscalibration remains. Earlier NHANES subgroup AUCs scored training rows; the reported subgroup AUCs use OOF predictions instead. Association directions vary within and between countries without identifying a biological or technical cause. All external cohorts informed development; the cohort-specific transfer AUCs and nested macro AUC are the primary estimands and all other analyses are exploratory with no multiplicity correction. These are not confirmatory estimates. No clinical screening tool, biomarker panel, validated failure gate, or harm-reduction benefit is established.
 <!-- validation:abstract:end -->
 
 ## 1. Motivation and prior work
@@ -22,9 +24,9 @@ Our question is whether scores and association directions reproduce across studi
 
 | Observed evidence | Correction | Consequence and remaining limit |
 |---|---|---|
-| 129 deposited DF aliases were labeled oral in the historical matrix | Exclude fecal rows using deposited aliases | Retain 10,228 oral source rows; historical vocabulary is not newly validated |
+| 129 deposited DF aliases (the deposit's prefix for fecal specimens; DT and HT mark tongue specimens with diabetes and control labels) were labeled oral in the historical matrix | Exclude fecal rows using deposited aliases | Retain 10,228 oral source rows; historical vocabulary is not newly validated |
 | 50 India source identifiers recur in its 60-row benchmark | Exclude the whole Indian source study for India fits | Removes exact-run fitting overlap; benchmark reuse remains |
-| Two Shanghai accessions share one publication; DT count is 184 versus published 183 | Exclude all 218 Shanghai source rows for related evaluation; disclose discrepancies | Related-study re-evaluation only; participant linkage and count discrepancy unresolved |
+| Two Shanghai accessions share one publication; the DT (diabetes-labeled tongue) count is 184 versus published 183 | Exclude all 218 Shanghai source rows for related evaluation; disclose discrepancies | Related-study re-evaluation only; participant linkage and count discrepancy unresolved |
 | Earlier feature, calibration, permutation and subgroup procedures did not match their claims | Reconstruct training-only selection, disjoint-row calibration, consistent permutations and OOF subgroup scores | Auditable retrospective estimates; no untouched confirmation or clinical validity |
 
 The contribution is a correction of this project’s workflow, not a new prediction
@@ -32,7 +34,7 @@ algorithm or an allegation of error in the source publications. The audit change
 what may be concluded: fitting overlap becomes study-excluded re-evaluation,
 training-row scores become OOF estimates, self-reported diabetes replaces an
 unverified Type 2 target, and earlier confident reversal and safety-remedy claims
-are withdrawn. A less favorable result is retained when it is the traceable one.
+are withdrawn. (The withdrawn remedy claims were that restricting the model to stable-sign features, or dropping Atopobium, repaired the South African reversal, and that a distance-based out-of-distribution (OOD) gate could flag unreliable cohorts.) A less favorable result is retained when it is the traceable one.
 
 These are workflow repairs, not causal treatment effects. Historical and current
 AUCs differ in eligibility and analysis as well as procedure; subtracting them
@@ -67,11 +69,11 @@ The pipeline identifiers `china_shandong_sun` and `china_anhui_yang` map to PRJN
 
 The historical matrix contained 10,357 source rows. PRJNA910326 deposits tongue and fecal specimens [5]; all 347 rows had been labeled tongue coating locally. Deposited DT/HT aliases identify oral specimens and DF aliases fecal specimens. We exclude all 129 DF rows, retain 218 DT/HT rows, and preserve the original matrix as a historical artifact. The paper reports 183 oral diabetic specimens whereas deposited DT aliases yield 184; this single-row discrepancy remains unresolved. We do not guess which row to remove.
 
-India/Mumbai (PRJNA1240053) contains the same 50 SRR identifiers used in the Indian source subset, plus ten controls. Every India evaluation fit excludes the entire 50-row Indian source study. PRJNA782768 and PRJNA910326 were deposited by the same Shanghai publication [5]; different run identifiers do not establish different participants. All 218 Shanghai source rows are excluded from fitting, SHAP ranking, and probability calibration when scoring PRJNA782768. This is related-study re-evaluation, not independent replication. PRJNA664107 is from Moscow, Russia, with gingival-sulcus specimens [6], not China. These safeguards cannot undo benchmark reuse or establish participant independence across related publications.
+India/Mumbai (PRJNA1240053) contains the same 50 SRR identifiers used in the Indian source subset, plus ten controls. Every India evaluation fit excludes the entire 50-row Indian source study. PRJNA782768 and PRJNA910326 were deposited by the same Shanghai publication [5]; different run identifiers do not establish different participants. All 218 Shanghai source rows are excluded from fitting, SHAP (SHapley Additive exPlanations [9]) ranking, and probability calibration when scoring PRJNA782768. This is related-study re-evaluation, not independent replication. PRJNA664107 is from Moscow, Russia, with gingival-sulcus specimens [6], not China. These safeguards cannot undo benchmark reuse or establish participant independence across related publications.
 
-Public SRA-derived counts use the historical VSEARCH closed-reference workflow against HOMD v16.03 [7]. NHANES uses public-use DADA2-derived genus tables; restricted NHANES reads were not accessed. Raw processing is not uniform across all studies. Audited reruns retain the fixed historical 139-genus vocabulary for retrospective comparability, reindex missing genera to zero, and transform each row to average ranks divided by 139. This repairs eligibility, not a newly validated oral-only assay vocabulary. Future confirmation must freeze eligibility, raw processing, and vocabulary derivation independently.
+Public SRA-derived counts use the historical VSEARCH closed-reference workflow against the Human Oral Microbiome Database (HOMD) v16.03 [7]. NHANES uses public-use DADA2-derived genus tables; restricted NHANES reads were not accessed. Raw processing is not uniform across all studies. Audited reruns retain the fixed historical 139-genus vocabulary for retrospective comparability, reindex missing genera to zero, and transform each row to average ranks divided by 139. This repairs eligibility, not a newly validated oral-only assay vocabulary. Future confirmation must freeze eligibility, raw processing, and vocabulary derivation independently.
 
-NHANES retained labels correspond exactly to DIQ010: questionnaire code 1 (yes) maps to label 1 for all 830 cases, and code 2 (no) to label 0 for all 8,853 controls; no retained row has borderline, missing or refused/unknown codes [13]. DIQ010 concerns self-reported doctor-diagnosed diabetes and does not establish Type 2 subtype. No additional subtype adjudication rule was verified in the available provenance, so the source-mixture target is diabetes status. A negative self-report is not biochemical confirmation of normoglycaemia. Clinical cohorts retain their deposited labels, with no harmonized subtype/diagnostic adjudication claimed. Recruitment and case prevalence differ greatly. Harmonized adjustment for medication, age, periodontitis, and other confounders is unavailable. Public sample identities are checked, but specimen-level analyses do not prove unique participants or eliminate repeated-subject dependence. Labels are not standardized incident-disease outcomes.
+NHANES retained labels correspond exactly to DIQ010: questionnaire code 1 (yes) maps to label 1 for all 830 cases, and code 2 (no) to label 0 for all 8,853 controls; no retained row has borderline, missing or refused/unknown codes [13]. DIQ010 concerns self-reported doctor-diagnosed diabetes and does not establish Type 2 subtype. No additional subtype adjudication rule was verified in the available provenance, so the source-mixture target is diabetes status. A negative self-report is not biochemical confirmation of normoglycaemia. Clinical cohorts retain their deposited labels, with no harmonized subtype/diagnostic adjudication claimed. Recruitment and case prevalence differ greatly. Cross-cohort harmonized adjustment for medication, age, periodontitis, and other confounders is unavailable. Within NHANES, age is available, and the within-age-stratum AUCs (0.576 to 0.608, Table 4) are lower than the within-sex-stratum AUCs (0.689 and 0.707), so a substantial part of NHANES discrimination may reflect age; no age-only or age-and-sex baseline was fitted, which is a limitation. Public sample identities are checked, but specimen-level analyses do not prove unique participants or eliminate repeated-subject dependence. Labels are not standardized incident-disease outcomes.
 
 ## 3. Methods and estimands
 
@@ -83,7 +85,13 @@ The adaptation probe is balanced logistic regression, C=1. Local fits minimize l
 
 ### 3.2 Source and benchmark evaluation
 
-Pooled five-fold stratified OOF AUC estimates discrimination for this source mixture. Nested leave-one-source-study-out (LOSO) uses six outer studies; inner LOSO selects K=30 or 139 by macro-study AUC, retaining 139 on an exact tie. Every reduced fit ranks all 139 columns by mean absolute CatBoost SHAP [9] on at most 1,024 fitting rows. Outer labels do not enter fitting, ranking, or K selection. Model-family and parameter selection remain retrospective.
+Pooled five-fold stratified OOF AUC (out-of-fold: each specimen is scored by a model that did not see it) estimates discrimination for this source mixture. Nested leave-one-source-study-out (LOSO) uses six outer studies; inner LOSO selects K=30 or 139 by macro-study AUC, retaining 139 on an exact tie. Every reduced fit ranks all 139 columns by mean absolute CatBoost SHAP on at most 1,024 fitting rows. Outer labels do not enter fitting, ranking, or K selection. Model-family and parameter selection remain retrospective.
+
+Three different source-level AUCs appear in this paper and must not be read as one number. (i) The *pooled OOF AUC* is one AUC over all pooled out-of-fold predictions from a single five-fold stratified `cross_val_predict` (reported in the Abstract and Section 4.1; persisted in `data/processed/validation_pooled_oof.json`). (ii) The *mean fold AUC* is the average of the five per-fold AUCs used as the observed statistic of the permutation test (Section 4.3); it differs slightly from (i) because averaging fold AUCs is not the same as pooling predictions. (iii) The *disjoint-row calibration-split AUC* is the raw source OOF AUC on evaluation rows after a separate fit/calibration/evaluation split that trains on a smaller fitting subset (Section 4.4). Their different values reflect different estimators, not different data or contradictory results. Unrounded, the pooled OOF AUC is 0.7934 and the mean fold AUC is 0.7936; the displayed 0.793 versus 0.794 is a rounding artifact of that 0.0002 difference. The macro-study nested AUC is the unweighted mean of the six outer-study AUCs, each from a model fit on the other five studies with panel size selected inside that training set.
+
+Two panel-size summaries also differ by design. The K=30 versus 139 comparison on all six source studies (macro-study AUC 0.684 versus 0.669, "all-source selection") is descriptive: it reports each fixed panel size on every outer study (the SHAP ranking excludes the held-out study) but the choice of K=30 uses all six outer results, so it is optimistic as a selection estimate. The nested macro-study AUC of 0.661 re-selects K inside each outer fold without the held-out study and is the source-level estimate that is free of that selection leak. Neither supports an externally validated panel.
+
+Multiplicity and primary results. No confirmatory hypothesis or analysis plan was fixed before the external cohorts were inspected. The primary reported estimands are the cohort-specific transfer AUCs (Table 2) and the nested macro-study AUC (Table 3). The conditional permutation test, calibration, subgroup and Section 5 investigations, and every pairwise comparison among them are exploratory; p-values and intervals are unadjusted for the number of analyses and should be read as descriptive.
 
 For 50 paired seeds, 500 NHANES rows are sampled without replacement and all other oral-only source rows retained; 30/139-feature fits are scored on Portugal. Seed intervals summarize algorithm/subsample variability on the same 50 specimens, not patient confidence intervals or independent replications.
 
@@ -93,11 +101,11 @@ AUC intervals use 10,000 stratified case/control bootstrap draws, seed 42, condi
 
 ### 3.3 Calibration, permutation, and subgroups
 
-Five outer stratified folds separate fitting, isotonic calibration, and evaluation. Development rows split 75% fitting / 25% calibration; neither uses evaluation labels. External scores average the five fits. Related Shanghai source rows are excluded from fitting and calibration. ECE uses ten equal-width bins, including probability 1; Brier score is also reported. Calibration targets source-mixture prevalence, not destination prevalence.
+Five outer stratified folds separate fitting, isotonic calibration, and evaluation. Development rows split 75% fitting / 25% calibration; neither uses evaluation labels. External scores average the five fits. Related Shanghai source rows are excluded from fitting and calibration. ECE (expected calibration error: the weighted mean gap between predicted probability and observed case fraction) uses ten equal-width bins, including probability 1; Brier score is also reported. Calibration targets source-mixture prevalence, not destination prevalence.
 
-Observed and permuted statistics use identical five-fold mean-AUC procedures. One hundred within-study label shuffles preserve study case counts and composition. The null assumes within-study exchangeability; residual confounding or repeated participants may violate it. This tests conditional association, not causality or transfer.
+Observed and permuted statistics use identical five-fold mean-AUC procedures (this is what we call a consistent permutation test). One hundred within-study label shuffles preserve study case counts and composition. The null assumes within-study exchangeability; residual confounding or repeated participants may violate it. This tests conditional association, not causality or transfer.
 
-NHANES subgroup estimates join source OOF predictions to public CDC DEMO_F/G data by SEQN. Two thousand stratified bootstrap draws give conditional AUC intervals. Sensitivity/specificity use raw threshold 0.5 descriptively. No survey weights, intersectional analysis, clinical threshold, or fairness certification is claimed.
+NHANES subgroup estimates join source OOF predictions to public CDC DEMO_F/G data by SEQN. Two thousand stratified bootstrap draws (versus 10,000 for the cohort-transfer intervals in Section 3.2) give conditional AUC intervals. Sensitivity/specificity use raw threshold 0.5 descriptively. No survey weights, intersectional analysis, clinical threshold, or fairness certification is claimed.
 
 ### 3.4 Audit verification and reproducibility boundary
 
@@ -115,7 +123,7 @@ selected synthetic analysis controls can be checked without participant inputs;
 numerical reconstruction requires exact permitted historical derived inputs;
 complete raw-read processing and vocabulary derivation remain unverified.
 Hashes identify required bytes but do not make omitted matrices obtainable or
-redistributable. The private package therefore supports inspection without
+redistributable. The released package therefore supports inspection without
 claiming an independently reproducible raw-to-paper pipeline.
 
 ## 4. Corrected results
@@ -123,7 +131,7 @@ claiming an independently reproducible raw-to-paper pipeline.
 ### 4.1 Source discrimination and cohort transfer
 
 <!-- validation:transfer:start -->
-Pooled-source OOF AUC is 0.793. The descriptive pooled benchmark AUC is 0.594 on 176 specimens, with Shanghai-excluded fitting for its related benchmark.
+Pooled-source OOF AUC is 0.793 (pooled out-of-fold predictions, dominated by NHANES; macro-study nested AUC 0.661). The descriptive pooled benchmark AUC is 0.594 on 176 specimens, with Shanghai-excluded fitting for its related benchmark.
 
 Table 2. CatBoost transfer and separately fitted within-cohort OOF references. Intervals are conditional.
 
@@ -133,10 +141,12 @@ Table 2. CatBoost transfer and separately fitted within-cohort OOF references. I
 | Mexico | 87 | 0.611 (0.488–0.727) | 0.566 | 10228 |
 | India/Mumbai | 60 | 0.569 (0.410–0.726) | 0.638 | 10178 |
 | South Africa | 88 | 0.449 (0.323–0.578) | 0.853 | 10228 |
+| Russia/Moscow | 46 | 0.639 (interval not computed) | not computed | 10228 |
+| Related Shanghai | 80 | 0.546 (interval not computed) | not computed | 10010 |
 
-Russia/Moscow AUC 0.639; related Shanghai AUC 0.546.
+Russia/Moscow and related Shanghai come from the retained benchmark artifacts; no bootstrap interval or within-cohort reference was computed for them, and related Shanghai excludes all 218 Shanghai source rows. Within-cohort references are separate fits and not ceilings: in Mexico the within-cohort OOF AUC (0.566) is below its transfer AUC (0.611).
 
-South Africa has a below-chance point estimate, but its interval includes 0.5. The historical confident reversal does not survive oral-only reconstruction. Within-cohort structure remains measurable without proving a transferable disease signal.
+South Africa has a below-chance point estimate (0.449), but its interval includes 0.5, so a confident reversal is not supported. Secondary South African estimates are also below 0.5 (0.486 with the stable-feature restriction, 0.340 without Atopobium, 0.304 for the logistic probe with no local labels, 0.181 for diversity features), but they reuse the same 88 specimens and are not independent confirmations. Reversal is therefore neither established nor excluded. Within-cohort structure remains measurable without proving a transferable disease signal.
 
 ![Corrected cohort-specific CatBoost transfer estimates with conditional 95% bootstrap intervals. Hollow circles are separately fitted within-cohort OOF estimates without intervals. The dashed line marks chance. India excludes its overlapping source study. South Africa is not distinguishable from chance by this interval.](reports/figures/audited_transfer.png){ width=90% }
 <!-- validation:transfer:end -->
@@ -146,7 +156,7 @@ South Africa has a below-chance point estimate, but its interval includes 0.5. T
 Previous claims that 30 genera improved Portugal to 0.683 and that 50 seeds averaged 0.718 with 48 wins lacked matching generated runs and are withdrawn. Historical 49-specimen feature-selection artifacts, older model comparisons, and mixed-specimen results remain research history, not current evidence.
 
 <!-- validation:panel:start -->
-Nested source-study selection yields macro LOSO AUC 0.661; the all-source inner comparison selects K=30. The fully ranked 30-genus model scores 0.578 in Portugal versus 0.646 for 139 genera, and 0.624 versus 0.594 on the three-cohort benchmark. Source-study selection does not imply external improvement.
+Nested source-study selection yields macro LOSO AUC 0.661, which is below fixed K=139 across the same six outer studies (0.669); the all-source (outer-result) comparison, 0.684 versus 0.669, favors K=30 but is optimistic (Section 3.2). The fully ranked 30-genus model scores 0.578 in Portugal versus 0.646 for 139 genera, and 0.624 versus 0.594 on the three-cohort benchmark. Source-study selection does not imply external improvement.
 
 Across 50 paired seeds, NHANES=500 plus all other source studies gives a 30-genus mean Portugal AUC 0.631 (SD 0.048) versus 0.616 (SD 0.057) for all features; the panel wins 29/50. Its seed 2.5th to 97.5th percentiles are 0.547 to 0.722. These are correlated sensitivity runs on the same 50-person benchmark, not a patient confidence interval. No reduced assay or clinical panel is validated. Full rankings, nested fold choices, and paired runs are in `data/processed/validation_panel.json`.
 
@@ -169,13 +179,13 @@ Table 3. Outer nested source-study results; inner LOSO selects panel size.
 ### 4.3 Conditional permutation
 
 <!-- validation:permutation:start -->
-The reconstructed within-study permutation test on the final matrix gives observed mean fold AUC 0.794 versus a conditional null mean 0.660 (SD 0.008); none of 100 shuffles reaches the observed statistic (corrected p=1/101=0.0099). The null is well above chance because study case counts and study-associated features are preserved. This supports within-study association beyond study composition under the permutation assumptions, but does not establish disease causality or external transfer. See `data/processed/validation_permutation.json`.
+The reconstructed within-study permutation test on the final matrix gives observed mean fold AUC 0.794 versus a conditional null mean 0.660 (SD 0.008); none of 100 shuffles reaches the observed statistic (corrected p=1/101=0.0099). The null is well above chance because study case counts and study-associated features are preserved. This supports within-study association beyond study composition under the permutation assumptions, but does not establish disease causality or external transfer. The observed statistic is the mean of five fold AUCs, not the pooled OOF AUC (0.793) reported in the Abstract. NHANES supplies 94.7% of rows, so this single pooled test (smallest attainable p=1/101) mostly tests within-NHANES association and says little about the clinical cohorts; no per-study permutation was run. See `data/processed/validation_permutation.json`.
 <!-- validation:permutation:end -->
 
 ### 4.4 Disjoint-row probability calibration
 
 <!-- validation:calibration:start -->
-On disjoint outer evaluation rows, source-mixture ECE (10 equal-width bins) changes from 0.194 to 0.006, while Brier score changes from 0.126 to 0.079. In Portugal the ensemble's ECE changes from 0.319 to 0.169; on the three-cohort benchmark it changes from 0.317 to 0.176. Source calibration thus improves the fitted source mixture without eliminating external miscalibration. Full scores, prevalences, and fold metrics are in `data/processed/validation_calibration.json`.
+On disjoint outer evaluation rows, source-mixture ECE (10 equal-width bins) changes from 0.194 to 0.006, while Brier score changes from 0.126 to 0.079. Calibration did not improve discrimination (source AUC 0.775 to 0.769). The external ECE changes are Portugal 0.319 to 0.169, Russia/Moscow 0.447 to 0.228, related Shanghai 0.273 to 0.197; on the three-cohort benchmark the ECE changes from 0.317 to 0.176. Source calibration thus improves the fitted source mixture without eliminating external miscalibration. The raw source AUC on these disjoint evaluation rows is 0.775, a third statistic distinct from the pooled OOF AUC (0.793) and the permutation mean fold AUC (0.794). Full scores, prevalences, and fold metrics are in `data/processed/validation_calibration.json`.
 <!-- validation:calibration:end -->
 
 ### 4.5 NHANES subgroups
@@ -190,8 +200,8 @@ Table 4. Reconstructed NHANES out-of-fold subgroup discrimination; conditional s
 | sex: Male | 4868 (425) | 0.689 (0.662 to 0.716) | 0.299 / 0.895 |
 | sex: Female | 4815 (405) | 0.707 (0.682 to 0.731) | 0.254 / 0.913 |
 | age: <40 | 5079 (78) | 0.608 (0.542 to 0.678) | 0.167 / 0.963 |
-| age: 55-65 | 1523 (329) | 0.576 (0.541 to 0.610) | 0.322 / 0.771 |
 | age: 40-55 | 2471 (260) | 0.592 (0.557 to 0.627) | 0.192 / 0.882 |
+| age: 55-65 | 1523 (329) | 0.576 (0.541 to 0.610) | 0.322 / 0.771 |
 | age: 65+ | 610 (163) | 0.597 (0.550 to 0.645) | 0.374 / 0.709 |
 | race_ethnicity: White | 3490 (219) | 0.683 (0.647 to 0.721) | 0.265 / 0.899 |
 | race_ethnicity: Black | 2340 (265) | 0.697 (0.667 to 0.730) | 0.283 / 0.889 |
@@ -207,9 +217,11 @@ The raw threshold is fixed for description, not a clinical recommendation. No su
 These investigations reuse the benchmarks. They are retrospective modeling tests, not causal identification.
 
 <!-- validation:experiments:start -->
-Marker directions: 68% of 88 informative genera reverse among geographic groups excluding NHANES; 14 meet the retrospective stable-sign rule and 58 meet the broader flipper rule. Different rules produce different denominators.
+Marker directions use the per-genus point-biserial correlation r between rank abundance and the diabetes label within each group. A genus is informative in a group when |r| is at least 0.15; a flipper has r of at least +0.15 in one group and at most -0.15 in another; the stable-sign rule requires consistent sign among voting groups (thresholds are given after this section).
 
-Portability restriction: mean four-cohort AUC changes from 0.569 to 0.556. South Africa changes from 0.449 to 0.486, remaining below chance as a point estimate. Dropping Atopobium changes it to 0.340; the previous beneficial-ablation interpretation is withdrawn.
+68% of 88 genera that are informative in at least two geographic groups excluding NHANES reverse sign; separately, across all 139 genera and six groups including NHANES, 14 meet the retrospective stable-sign rule and 58 meet the broader flipper rule. These counts use different group sets and denominators; they are not parts of one partition of the 88 genera, and the retained artifact does not record their overlap.
+
+Portability restriction: mean four-cohort AUC changes from 0.569 to 0.556. South Africa changes from 0.449 to 0.486, remaining below chance as a point estimate. Dropping Atopobium changes it to 0.340; the previous beneficial-ablation interpretation is withdrawn. These South African estimates reuse the same 88 specimens and are not independent.
 
 Local adaptation: South Africa's logistic probe changes from 0.304 with no local labels to 0.615 at 40 labels; its within-cohort logistic reference is 0.859. These point estimates do not establish clinical calibration or an optimal label requirement.
 
@@ -219,10 +231,10 @@ Marker properties: median source-only prevalence is 19.8% for stable genera vers
 
 Diversity: mean transfer AUC is 0.400 versus 0.569 for taxa; 3/4 diversity point estimates are below chance.
 
-Study/geography comparison: within-China sign reversals 58% of 114 informative genera versus cross-geography 67% of 87. Association-vector correlations average 0.170 and -0.026, respectively. This nested comparison does not estimate a causal variance decomposition.
+Study/geography comparison: within-China sign reversals 58% of 114 informative genera versus cross-geography 67% of 87 (this comparison uses six groups including NHANES, hence 87 rather than 88 informative genera). Association-vector correlations average 0.170 and -0.026, respectively. This nested comparison does not estimate a causal variance decomposition.
 <!-- validation:experiments:end -->
 
-Marker stability uses point-biserial correlations of ranks with deposited labels. The cross-group reversal fraction excludes NHANES and requires absolute correlation at least 0.15 in at least two of five remaining geographic groups. Stable features require at least five votes at absolute correlation 0.05 and 80% sign agreement across six groups. These retrospective thresholds are not clinical qualification. The association-ranked top-20 list is not SHAP/model importance, excludes Atopobium, and does not monotonically predict transfer.
+Marker stability uses point-biserial correlations of ranks with deposited labels. The cross-group reversal fraction excludes NHANES and requires absolute correlation at least 0.15 in at least two of five remaining geographic groups. In the marker-stability analysis, a stable feature requires at least five of the six groups to cast a vote (absolute correlation at least 0.05) and 80% sign agreement among the votes. In the leave-one-cohort-out portability restriction, the target cohort is excluded from selection, so the rule is applied to the five remaining groups with a lower floor (`min_votes` = 4 in the code: at least four of those five voting) and the same 80% agreement; the two rules are therefore not identical and give different stable sets. These retrospective thresholds are not clinical qualification. The association-ranked top-20 list is not SHAP/model importance, excludes Atopobium, and does not monotonically predict transfer.
 
 Portability restriction chooses stable features from groups other than the target before source fitting. Other inspected benchmark labels inform selection: this differs from source-only nested panel selection. Atopobium deletion is model ablation, not microbial intervention. Movement toward chance does not prove safer decisions or useful discrimination.
 
@@ -234,7 +246,7 @@ Diversity comprises Shannon, Simpson, and richness within 139 genera, not the fu
 
 ## 6. Interpretation and limitations
 
-Source discrimination on heterogeneous diabetes labels is not evidence of a portable Type 2 diabetes assay. The elevated conditional permutation null shows study composition can itself support substantial AUC. Local fits and inconsistent directions illustrate instability, not a unique explanation.
+Source discrimination on heterogeneous diabetes labels is not evidence of a portable Type 2 diabetes assay. The elevated conditional permutation null shows study composition can itself support substantial AUC. Because NHANES supplies 94.7% of rows, the single pooled permutation test (smallest attainable p=1/101) mostly tests within-NHANES association; it says little about the clinical cohorts, and no per-study permutation was run. Local fits and inconsistent directions illustrate instability, not a unique explanation. For South Africa, the primary interval includes chance and the secondary below-chance estimates reuse the same 88 specimens, so reversal is neither established nor excluded.
 
 NHANES supplies 94.7% of eligible source rows, with 830/9,683 cases (8.6%),
 whereas the other source studies together contribute 421/545 cases (77.2%).
@@ -250,26 +262,17 @@ The audit corrected mixed specimens, related-study evaluation, country provenanc
 
 Clinical use is out of scope. No validated threshold, destination-risk calibration, prospective utility, screening interval, cost, number-needed-to-screen, or qualified qPCR panel is established. Missed cases could delay follow-up; false positives could cause anxiety, unnecessary tests, cost, and unequal access burdens. Research scores must not replace established diagnosis or care.
 
-A reusable lesson is to audit specimen eligibility and study/participant identity
-before fitting, state the actual label estimand, separate fitting/selection/
-calibration/evaluation, and require every reported claim to have a retained
-artifact and an explicit uncertainty boundary. This is a practical verification
-sequence illustrated by one project. Its novelty is the documented case and
-executable checks, not these established principles themselves. We do not
-estimate the frequency of such failures across microbiome research or show that
-the sequence guarantees their detection elsewhere.
-
 Confirmation requires a frozen eligibility/vocabulary/estimator/calibration/threshold protocol before receiving a new cohort, participant-level separation, multiple harmonized studies per population, and local decision analysis. These are research requirements, not completed actions.
 
 ## 7. Ethics, availability, and contributions
 
 This independent secondary analysis uses public-use survey tables and publicly deposited sequence-derived counts, without new participant contact, specimen collection, restricted NHANES access, or re-identification. Public availability alone is not a universal exemption. Applicable review and original consent/reuse terms must be assessed; a formal determination is required only where the relevant rules apply [10]. No new institutional review requirement has been established for the described activity, and no formal exemption or not-human-subject determination is claimed. Source publications report original ethics review and, where accessible, consent. For the Sichuan source study, the publisher's indexed text reports ethics approval and public sequence deposition, but the original consent wording could not be verified through accessible legitimate routes. This documentary gap remains disclosed and unresolved.
 
-The public dashboard accompanies this manuscript with our aggregate statistical summaries; a separately prepared analysis-code package remains private. It excludes sample-level matrices, labels, demographic linkages, raw reads, reference databases, fitted models, and repository history. NCHS public-use terms restrict use to statistical analysis/reporting and prohibit identification attempts or linkage to individually identifiable data [11]. NCBI places no restrictions of its own on molecular-data use or distribution but cannot grant third-party rights [12]. These policies support the described statistical-use route; they do not certify original consent scope or provide blanket derivative-data redistribution permission. Source-specific and exact-artifact review is documented in the private cohort dossier; no project-wide release clearance is claimed.
+The public dashboard accompanies this manuscript with our aggregate statistical summaries. The audited 59-file analysis-code archive and a separate clean public release repository (<https://github.com/Oralbiome/oral-microbiome-transfer>) were published on 2026-11-15; the original research repository and its Git/LFS history remain private. The public releases exclude sample-level matrices, labels, demographic linkages, raw reads, reference databases, fitted models, and repository history. NCHS public-use terms restrict use to statistical analysis/reporting and prohibit identification attempts or linkage to individually identifiable data [11]. NCBI places no restrictions of its own on molecular-data use or distribution but cannot grant third-party rights [12]. These policies support the described statistical-use route; they do not certify original consent scope or provide blanket derivative-data redistribution permission. Source-specific and exact-artifact review is documented in a cohort ethics and reuse dossier that is not publicly available; no project-wide release clearance is claimed.
 
 Contributions: Jonathan Scarpelli, study design, baseline/CatBoost analyses, interpretation, transfer investigations, and manuscript; Ayesha Akhter, preprocessing, exploratory analysis, feature engineering, and gradient-boosting comparison. Both contributed to methods and experiments.
 
-The public October 18 working manuscript and dashboard aggregates remain available at <https://oralbiome.scarpelli.ai/preprint.html> (HTML), <https://oralbiome.scarpelli.ai/preprint.pdf> (PDF), and <https://oralbiome.scarpelli.ai/results.json> (aggregate results). The November 15 manuscript revision and a separate analysis-code review package remain private. Sample-level derived inputs, labels, demographic linkages, raw reads, reference databases, fitted models and repository history are excluded. Numerical reconstruction requires the exact permitted historical inputs identified by hashes; full raw-to-paper reproduction is not established. Reproduction instructions distinguish the audited entrypoints from historical scripts. No DOI or peer review is claimed.
+The manuscript is available at <https://oralbiome.scarpelli.ai/preprint.html> (HTML), <https://oralbiome.scarpelli.ai/preprint.pdf> (PDF), and <https://oralbiome.scarpelli.ai/results.json> (aggregate results); this 2026-11-17 revision supersedes the 2026-10-18 and 2026-11-15 versions. The audited code archive and the public release repository were published on 2026-11-15 and are public; release v2026.11.17 of that repository contains this revision. The original research repository and its Git/LFS history remain private. Sample-level derived inputs, labels, demographic linkages, raw reads, reference databases, fitted models and repository history are excluded. Numerical reconstruction requires the exact permitted historical inputs identified by hashes; full raw-to-paper reproduction is not established. Reproduction instructions distinguish the audited entrypoints from historical scripts. No DOI or peer review is claimed.
 
 ## References
 

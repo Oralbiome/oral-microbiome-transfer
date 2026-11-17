@@ -10,14 +10,17 @@ conclusions that survive those checks.
 [Download the PDF](https://oralbiome.scarpelli.ai/preprint.pdf) ·
 [Code and reproduction guide](https://oralbiome.scarpelli.ai/code)
 
-> **Erratum, 2026-11-17.** The archived v2026.11.15 paper
-> (`studies/cross-population-t2d/docs/Preprint.*`) and `ARCHIVE_README.md` still
-> call the paper and code "private". That wording is outdated: the paper, the
-> 59-file code archive and this repository are public; only the original
-> research repository and its Git/LFS history remain private. The corrected
-> manuscript is at <https://oralbiome.scarpelli.ai/preprint> (revision
-> 2026-11-17; release-status wording and statistic labels only, no reported
-> number changed). The archived files are left byte-identical on purpose.
+> **Revision 2026-11-17 (release v2026.11.17).** The paper in
+> `studies/cross-population-t2d/docs/Preprint.*` is now the corrected 2026-11-17
+> revision, written after an independent re-read: more cautious wording on the
+> pooled figure, the South African reversal and age, defined terms, extra rows
+> and numbers already held in the retained artifacts, and a manuscript-number
+> check (`scripts/check_manuscript_numbers.py`). **No new analysis was run.** It
+> supersedes the 2026-10-18 and 2026-11-15 versions. Release v2026.11.15 and its
+> asset remain available unchanged. `ARCHIVE_README.md` still calls the paper and
+> code "private", which is outdated: the paper, the 59-file code archive and this
+> repository are public; only the original research repository and its Git/LFS
+> history remain private.
 
 > Exploratory working manuscript; not peer reviewed. All evaluation cohorts
 > informed development. This work does not establish a clinical screening tool
@@ -66,12 +69,14 @@ From the repository root, using Python 3:
 ```sh
 cd studies/cross-population-t2d
 python3 -S scripts/check_audit_evidence.py
+python3 -S scripts/check_manuscript_numbers.py
 python3 -S -m unittest discover -s tests -p test_audit_evidence.py -v
 ```
 
 No downloads or third-party packages are needed for these checks. They verify
 file identity, claim completeness and 26 retained aggregate values across nine
-findings. Deliberately incorrect fixtures exercise rejection behavior. Passing
+findings; the manuscript-number check also confirms that numbers printed in the
+paper equal the retained validation artifacts (it re-fits nothing). Deliberately incorrect fixtures exercise rejection behavior. Passing
 does not independently reproduce a model result or establish clinical truth.
 
 ### Run the synthetic analysis controls
@@ -85,7 +90,7 @@ python3.11 -m venv .venv
 .venv/bin/python scripts/run_release_analysis.py --check-inputs
 ```
 
-The tests include seven analysis controls and nine evidence-checker controls.
+The tests include seven analysis controls, nine evidence-checker controls and five manuscript-number controls.
 They do not train on participant data. The final input check intentionally exits
 with status **2** while the 11 omitted historical inputs are missing; that is
 the expected safeguard before numerical execution.
@@ -116,7 +121,9 @@ This clean repository snapshot comes from the published November 15, 2026
 [reviewed archive](https://oralbiome.scarpelli.ai/downloads/oralbiome-audit-836e92d5b54f.tar.gz).
 Its SHA-256 is
 `836e92d5b54ff2569344efe0fd191d7d054bbcb130bab41e6af2ca1ad8301248`.
-Scientific scripts, paper, reports and tests retain their reviewed bytes. The
+Scientific scripts, reports and tests retain their reviewed bytes except the
+files listed under `revision_overlay` in [MANIFEST.json](MANIFEST.json), which
+carry the corrected 2026-11-17 paper and its checks (release v2026.11.17). The
 archive's original README and manifest are retained as
 [ARCHIVE_README.md](ARCHIVE_README.md) and
 [ARCHIVE_MANIFEST.json](ARCHIVE_MANIFEST.json); their pre-release labels record

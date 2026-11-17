@@ -11,8 +11,8 @@ type: software
 license: MIT
 url: "https://oralbiome.scarpelli.ai/"
 repository-code: "https://github.com/Oralbiome/oral-microbiome-transfer"
-version: "v2026.11.15"
-date-released: "2026-11-15"
+version: "v2026.11.17"
+date-released: "2026-11-17"
 keywords:
   - oral microbiome
   - type 2 diabetes

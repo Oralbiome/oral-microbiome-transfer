@@ -37,6 +37,13 @@ function Blocks(blocks)
     local text = block.t == "Para" and pandoc.utils.stringify(block) or ""
     if following and following.t == "Table" and text:match("^Table %d+%.") then
       following.caption.long = {pandoc.Plain({pandoc.Str(text:gsub("^Table %d+%.%s*", ""))})}
+      -- Keep short tables (Tables 2 and 3) on one page: reserve room for the
+      -- caption, header and every row before the longtable starts.
+      local rows = 0
+      for _, body in ipairs(following.bodies) do rows = rows + #body.body end
+      if rows <= 9 then
+        out:insert(pandoc.RawBlock("latex", "\\Needspace{" .. (2 * rows + 6) .. "\\baselineskip}"))
+      end
       out:insert(following)
       i = i + 2
     else

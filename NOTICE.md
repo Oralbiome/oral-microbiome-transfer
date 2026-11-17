@@ -27,11 +27,13 @@ that are not part of this repository and have been corrected.
 `commandem.toml`, so the file is retained rather than deleted. It contains no
 project data and is not needed to read the paper or run the synthetic checks.
 
-## Release status and erratum
+## Release status and revision
 
 The archived `v2026.11.15` paper and `ARCHIVE_README.md` describe the paper and
 code as private. That wording predates the release: the paper, the 59-file code
 archive and this repository are public; only the original research repository
-and its Git/LFS history are private. See the dated erratum in
-[README.md](README.md) and the corrected manuscript at
+and its Git/LFS history are private. Release `v2026.11.17` replaces the paper
+with the corrected 2026-11-17 revision (see the revision note in
+[README.md](README.md) and the `revision_overlay` list in
+[MANIFEST.json](MANIFEST.json)); the paper is also at
 <https://oralbiome.scarpelli.ai/preprint>.

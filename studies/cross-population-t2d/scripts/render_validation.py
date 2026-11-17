@@ -29,8 +29,21 @@ def read(name):
     return d
 
 
+def read_pooled_oof():
+    """Persisted pooled OOF AUC (written by build_site_data.py --write-pooled-oof)."""
+    d = json.loads((ROOT / "data/processed/validation_pooled_oof.json").read_text())
+    if d.get('eligibility') != eligibility_provenance():
+        raise ValueError("Stale pooled OOF oral eligibility contract")
+    if hashlib.sha256(DATA.read_bytes()).hexdigest() != d['input_sha256']:
+        raise ValueError("Stale pooled OOF input")
+    return d
+
+
 def main():
     panel, cal, perm, sub = [read(name) for name in ("panel", "calibration", "permutation", "subgroups")]
+    pooled = read_pooled_oof()
+    nested = {r['held_study']: r for r in panel['nested_loso']['folds']}
+    nhanes_share = nested['nhanes']['n'] / sum(r['n'] for r in panel['nested_loso']['folds'])
     ext = panel["external_benchmarks"]
     down = panel["downsample_reconstruction"]
     f = lambda x: f"{x:.3f}"
@@ -41,21 +54,31 @@ def main():
             f"none of {perm['n_permutations']} shuffles reaches the observed statistic (corrected p=1/{perm['n_permutations']+1}={perm['p_value']:.4f}). "
             "The null is well above chance because study case counts and study-associated features are preserved. "
             "This supports within-study association beyond study composition under the permutation assumptions, "
-            "but does not establish disease causality or external transfer. See `data/processed/validation_permutation.json`."
+            "but does not establish disease causality or external transfer. The observed statistic is the mean of five fold AUCs, "
+            f"not the pooled OOF AUC ({f(pooled['pooled_oof_auc'])}) reported in the Abstract. "
+            f"NHANES supplies {nhanes_share:.1%} of rows, so this single pooled test (smallest attainable p=1/{perm['n_permutations']+1}) mostly tests "
+            "within-NHANES association and says little about the clinical cohorts; no per-study permutation was run. "
+            "See `data/processed/validation_permutation.json`."
         ),
         "calibration": (
             f"On disjoint outer evaluation rows, source-mixture ECE (10 equal-width bins) changes from {f(cal['source_oof']['raw']['ece10'])} "
             f"to {f(cal['source_oof']['calibrated']['ece10'])}, while Brier score changes from {f(cal['source_oof']['raw']['brier'])} "
-            f"to {f(cal['source_oof']['calibrated']['brier'])}. In Portugal the ensemble's ECE changes from "
-            f"{f(cal['external_benchmarks']['holdout']['raw']['ece10'])} to {f(cal['external_benchmarks']['holdout']['calibrated']['ece10'])}; "
-            f"on the three-cohort benchmark it changes from {f(cal['external_benchmarks']['holdout_all']['raw']['ece10'])} "
+            f"to {f(cal['source_oof']['calibrated']['brier'])}. Calibration did not improve discrimination (source AUC {f(cal['source_oof']['raw']['auc'])} "
+            f"to {f(cal['source_oof']['calibrated']['auc'])}). The external ECE changes are Portugal "
+            f"{f(cal['external_benchmarks']['holdout']['raw']['ece10'])} to {f(cal['external_benchmarks']['holdout']['calibrated']['ece10'])}, "
+            f"Russia/Moscow {f(cal['external_benchmarks']['holdout_664107']['raw']['ece10'])} to {f(cal['external_benchmarks']['holdout_664107']['calibrated']['ece10'])}, "
+            f"related Shanghai {f(cal['external_benchmarks']['holdout_782768']['raw']['ece10'])} to {f(cal['external_benchmarks']['holdout_782768']['calibrated']['ece10'])}; "
+            f"on the three-cohort benchmark the ECE changes from {f(cal['external_benchmarks']['holdout_all']['raw']['ece10'])} "
             f"to {f(cal['external_benchmarks']['holdout_all']['calibrated']['ece10'])}. Source calibration thus improves "
-            "the fitted source mixture without eliminating external miscalibration. Full scores, prevalences, and fold metrics "
+            "the fitted source mixture without eliminating external miscalibration. The raw source AUC on these disjoint evaluation rows is "
+            f"{f(cal['source_oof']['raw']['auc'])}, a third statistic distinct from the pooled OOF AUC ({f(pooled['pooled_oof_auc'])}) and the permutation mean fold AUC ({f(perm['observed_auc'])}). Full scores, prevalences, and fold metrics "
             "are in `data/processed/validation_calibration.json`."
         ),
         "panel": (
-            f"Nested source-study selection yields macro LOSO AUC {f(panel['nested_loso']['macro_auc'])}; "
-            f"the all-source inner comparison selects K={panel['source_selection']['selected_k']}. "
+            f"Nested source-study selection yields macro LOSO AUC {f(panel['nested_loso']['macro_auc'])}, which is below fixed K=139 across the same six outer studies "
+            f"({f(panel['source_selection']['candidates']['139']['macro_auc'])}); the all-source (outer-result) comparison, "
+            f"{f(panel['source_selection']['candidates']['30']['macro_auc'])} versus {f(panel['source_selection']['candidates']['139']['macro_auc'])}, "
+            f"favors K={panel['source_selection']['selected_k']} but is optimistic (Section 3.2). "
             f"The fully ranked 30-genus model scores {f(ext['Portugal']['panel30_auc'])} in Portugal versus "
             f"{f(ext['Portugal']['full_auc'])} for 139 genera, and {f(ext['three_cohort_pooled']['panel30_auc'])} "
             f"versus {f(ext['three_cohort_pooled']['full_auc'])} on the three-cohort benchmark. Source-study selection "
@@ -76,8 +99,10 @@ def main():
     }
     lines = ["Table 4. Reconstructed NHANES out-of-fold subgroup discrimination; conditional stratified-bootstrap intervals.",
              "", "| Group | N (cases) | AUC (95% CI) | Sensitivity / specificity at 0.5 |", "|---|---:|---|---|"]
+    age_order = ['<40', '40-55', '55-65', '65+']
     for category, groups in sub["subgroups"].items():
-        for label, m in groups.items():
+        items = sorted(groups.items(), key=lambda kv: age_order.index(kv[0])) if category == 'age' else groups.items()
+        for label, m in items:
             lines.append(f"| {category}: {label} | {m['n']} ({m['cases']}) | {f(m['auc'])} ({f(m['auc_ci95'][0])} to {f(m['auc_ci95'][1])}) | {f(m['sensitivity_at_0_5'])} / {f(m['specificity_at_0_5'])} |")
     lines.extend(["", "The raw threshold is fixed for description, not a clinical recommendation. No survey weighting, "
                   "subgroup-specific threshold selection, prospective calibration, or fairness certification is claimed."])
@@ -88,21 +113,28 @@ def main():
     sa = next(r for r in rows if r['cohort'] == 'South Africa')
     scopes = snapshot['related_benchmarks']
     blocks['abstract'] = (
-        f"We retrospectively audited oral-microbiome diabetes-status prediction in six source studies. "
+        f"We retrospectively audited oral-microbiome diabetes-status prediction in six source studies, scoring discrimination by the area under the ROC curve (AUC), "
+        f"mostly from out-of-fold (OOF) predictions. "
         f"Removing 129 fecal specimens mislabeled oral leaves 10,228 source specimens (1,251 cases). "
-        f"NHANES labels encode self-reported diabetes, not a verified subtype; clinical cohorts use deposited diabetes labels. Related India and Shanghai evaluations exclude their entire corresponding source study. "
-        f"Fixed CatBoost yields pooled-source OOF AUC {f(snapshot['reproduces']['cv_auc'])}, "
-        f"Portugal AUC {f(ext['Portugal']['full_auc'])}, and South Africa AUC {f(sa['auc'])} "
+        f"Labels from the US National Health and Nutrition Examination Survey (NHANES) encode self-reported diabetes, not a verified subtype; clinical cohorts use deposited diabetes labels. Related India and Shanghai evaluations exclude their entire corresponding source study. "
+        f"Fixed CatBoost yields pooled-source OOF AUC {f(pooled['pooled_oof_auc'])} (one AUC over pooled out-of-fold predictions; "
+        f"{nhanes_share:.1%} of rows are NHANES), but macro-study nested AUC is {f(panel['nested_loso']['macro_auc'])} (mean AUC over six held-out source studies, each scored by a model fit on the other five) "
+        f"and held-out NHANES AUC is {f(nested['nhanes']['selected_auc'])}. This suggests that the pooled figure largely reflects within-NHANES and study-mixture structure "
+        f"(random folds share studies) rather than transferable signal; the two estimates differ in training set and are not a controlled decomposition. "
+        f"Portugal AUC is {f(ext['Portugal']['full_auc'])} and South Africa AUC {f(sa['auc'])} "
         f"(conditional 95% interval {f(sa['auc_ci95'][0])}–{f(sa['auc_ci95'][1])}). "
-        f"The South African interval includes chance, withdrawing the earlier confident-reversal claim. "
-        f"Source-only nested panel selection yields macro-study AUC {f(panel['nested_loso']['macro_auc'])}; "
-        f"30 genera do not improve Portugal. A consistent within-study permutation test gives observed "
-        f"mean fold AUC {f(perm['observed_auc'])} versus null {f(perm['null_mean'])}, p={perm['p_value']:.4f}. "
-        f"Disjoint-row isotonic calibration reduces source ECE from {f(cal['source_oof']['raw']['ece10'])} "
+        f"The South African interval includes chance, so the earlier confident-reversal claim is withdrawn; reversal is neither established nor excluded. "
+        f"Panel size is chosen by source-only nested selection; 30 genera do not consistently improve Portugal "
+        f"({f(ext['Portugal']['panel30_auc'])} versus {f(ext['Portugal']['full_auc'])} for the full fit, but a mean {f(down['panel30']['mean'])} versus {f(down['full']['mean'])} "
+        f"across {down['n_seeds']} downsampled seeds with {down['panel_wins']}/{down['n_seeds']} wins). A consistent within-study permutation test (observed and permuted statistics computed identically) gives observed "
+        f"mean fold AUC {f(perm['observed_auc'])} (a different statistic from the pooled OOF AUC) versus null {f(perm['null_mean'])}, p={perm['p_value']:.4f}; "
+        f"because NHANES dominates the rows, this pooled test mostly addresses NHANES. "
+        f"Disjoint-row isotonic calibration reduces source ECE (expected calibration error) from {f(cal['source_oof']['raw']['ece10'])} "
         f"to {f(cal['source_oof']['calibrated']['ece10'])}, but external miscalibration remains. "
-        "Subgroup estimates replace training-row scores with OOF evaluation. Association directions vary within "
+        "Earlier NHANES subgroup AUCs scored training rows; the reported subgroup AUCs use OOF predictions instead. Association directions vary within "
         "and between countries without identifying a biological or technical cause. All external cohorts informed "
-        "development; these are exploratory, not confirmatory estimates. No clinical screening tool, biomarker "
+        "development; the cohort-specific transfer AUCs and nested macro AUC are the primary estimands and all other analyses are exploratory "
+        "with no multiplicity correction. These are not confirmatory estimates. No clinical screening tool, biomarker "
         "panel, validated failure gate, or harm-reduction benefit is established."
     )
     display = json.loads((ROOT / 'docs/Cohort_Display_Contract.json').read_text())['cohorts']
@@ -118,14 +150,25 @@ def main():
     for row in display:
         dataset.append(f"| {row['display']} | {row['specimen']} | {row['label_basis']} | {row['n']} ({row['cases']} / {row['controls']}) | {row['role']} |")
     blocks['dataset'] = '\n'.join(dataset)
-    transfer = [f"Pooled-source OOF AUC is {f(snapshot['reproduces']['cv_auc'])}. The descriptive pooled benchmark AUC is "
+    pt, adapt, diversity = [snapshot[k] for k in ('portability', 'sign_adaptation', 'diversity_transfer')]
+    sa_div = next(c for c in diversity['cohorts'] if c['cohort'] == 'South Africa')['diversity_transfer']
+    sa_stable = next(r['auc_stable'] for r in pt['loco'] if r['cohort'] == 'South Africa')
+    transfer = [f"Pooled-source OOF AUC is {f(pooled['pooled_oof_auc'])} (pooled out-of-fold predictions, dominated by NHANES; macro-study nested AUC {f(panel['nested_loso']['macro_auc'])}). The descriptive pooled benchmark AUC is "
                 f"{f(snapshot['reproduces']['holdout3_auc'])} on 176 specimens, with Shanghai-excluded fitting for its related benchmark.",
                 '', 'Table 2. CatBoost transfer and separately fitted within-cohort OOF references. Intervals are conditional.', '',
                 '| Cohort | N | Transfer AUC (95% interval) | Within-cohort OOF AUC | Source N |', '|---|---:|---|---:|---:|']
     for r in rows:
         transfer.append(f"| {r['cohort']} | {r['n']} | {f(r['auc'])} ({f(r['auc_ci95'][0])}–{f(r['auc_ci95'][1])}) | {f(r['within_auc'])} | {r['training_scope']['source_n']} |")
-    transfer += ['', 'Russia/Moscow AUC ' + f(ext['Russia/Moscow']['full_auc']) + '; related Shanghai AUC ' + f(ext['Shanghai/related']['full_auc']) + '.', '',
-                 'South Africa has a below-chance point estimate, but its interval includes 0.5. The historical confident reversal does not survive oral-only reconstruction. Within-cohort structure remains measurable without proving a transferable disease signal.', '',
+    for key, name in (('Russia/Moscow', 'Russia/Moscow'), ('Shanghai/related', 'Related Shanghai')):
+        b = ext[key]
+        transfer.append(f"| {name} | {b['n']} | {f(b['full_auc'])} (interval not computed) | not computed | {b['training_scope']['source_n']} |")
+    transfer += ['', 'Russia/Moscow and related Shanghai come from the retained benchmark artifacts; no bootstrap interval or within-cohort reference was computed for them, and related Shanghai excludes all 218 Shanghai source rows. '
+                 'Within-cohort references are separate fits and not ceilings: in Mexico the within-cohort OOF AUC (' + f(next(r for r in rows if r['cohort'] == 'Mexico')['within_auc']) + ') is below its transfer AUC (' + f(next(r for r in rows if r['cohort'] == 'Mexico')['auc']) + ').', '',
+                 f"South Africa has a below-chance point estimate ({f(sa['auc'])}), but its interval includes 0.5, so a confident reversal is not supported. "
+                 f"Secondary South African estimates are also below 0.5 ({f(sa_stable)} with the stable-feature restriction, {f(pt['ablation']['sa_transfer_no_atopobium'])} without Atopobium, "
+                 f"{f(adapt['summary']['sa_transfer'])} for the logistic probe with no local labels, {f(sa_div)} for diversity features), "
+                 "but they reuse the same 88 specimens and are not independent confirmations. Reversal is therefore neither established nor excluded. "
+                 "Within-cohort structure remains measurable without proving a transferable disease signal.", '',
                  '![Corrected cohort-specific CatBoost transfer estimates with conditional 95% bootstrap intervals. Hollow circles are separately fitted within-cohort OOF estimates without intervals. The dashed line marks chance. India excludes its overlapping source study. South Africa is not distinguishable from chance by this interval.](reports/figures/audited_transfer.png){ width=90% }']
     blocks['transfer'] = '\n'.join(transfer)
     nested = ['Table 3. Outer nested source-study results; inner LOSO selects panel size.', '',
@@ -135,13 +178,14 @@ def main():
     blocks['nested'] = '\n'.join(nested)
     mp, pt, adapt, ood, props, diversity, pvs = [snapshot[k] for k in ('marker_panel','portability','sign_adaptation','ood_detection','marker_properties','diversity_transfer','population_vs_study')]
     summary = mp['summary']
-    investigation = [f"Marker directions: {summary['reversal_prevalence_ex_nhanes']:.0%} of {summary['reversal_tested_ex_nhanes']} informative genera reverse among geographic groups excluding NHANES; {summary['n_robust']} meet the retrospective stable-sign rule and {summary['n_flippers']} meet the broader flipper rule. Different rules produce different denominators.", '',
-        f"Portability restriction: mean four-cohort AUC changes from {f(pt['summary']['mean_transfer_full'])} to {f(pt['summary']['mean_transfer_stable'])}. South Africa changes from {f(pt['ablation']['sa_transfer_full'])} to {f(next(r['auc_stable'] for r in pt['loco'] if r['cohort']=='South Africa'))}, remaining below chance as a point estimate. Dropping Atopobium changes it to {f(pt['ablation']['sa_transfer_no_atopobium'])}; the previous beneficial-ablation interpretation is withdrawn.", '',
+    investigation = ["Marker directions use the per-genus point-biserial correlation r between rank abundance and the diabetes label within each group. A genus is informative in a group when |r| is at least 0.15; a flipper has r of at least +0.15 in one group and at most -0.15 in another; the stable-sign rule requires consistent sign among voting groups (thresholds are given after this section).", '',
+        f"{summary['reversal_prevalence_ex_nhanes']:.0%} of {summary['reversal_tested_ex_nhanes']} genera that are informative in at least two geographic groups excluding NHANES reverse sign; separately, across all 139 genera and six groups including NHANES, {summary['n_robust']} meet the retrospective stable-sign rule and {summary['n_flippers']} meet the broader flipper rule. These counts use different group sets and denominators; they are not parts of one partition of the 88 genera, and the retained artifact does not record their overlap.", '',
+        f"Portability restriction: mean four-cohort AUC changes from {f(pt['summary']['mean_transfer_full'])} to {f(pt['summary']['mean_transfer_stable'])}. South Africa changes from {f(pt['ablation']['sa_transfer_full'])} to {f(next(r['auc_stable'] for r in pt['loco'] if r['cohort']=='South Africa'))}, remaining below chance as a point estimate. Dropping Atopobium changes it to {f(pt['ablation']['sa_transfer_no_atopobium'])}; the previous beneficial-ablation interpretation is withdrawn. These South African estimates reuse the same 88 specimens and are not independent.", '',
         f"Local adaptation: South Africa's logistic probe changes from {f(adapt['summary']['sa_transfer'])} with no local labels to {f(adapt['summary']['sa_auc_at_max_k'])} at 40 labels; its within-cohort logistic reference is {f(adapt['summary']['sa_ceiling'])}. These point estimates do not establish clinical calibration or an optimal label requirement.", '',
         f"Distribution diagnostics: domain AUC spans {f(min(r['domain_auc'] for r in ood['cohorts']))} to {f(max(r['domain_auc'] for r in ood['cohorts']))}. Mahalanobis distances are " + ', '.join(f"{r['cohort']} {r['mahalanobis']:.2f}" for r in ood['cohorts']) + '. The largest distance is not proof of a calibrated failure detector.', '',
         f"Marker properties: median source-only prevalence is {props['prevalence']['stable_median']:.1%} for stable genera versus {props['prevalence']['flipper_median']:.1%} for flippers (Mann–Whitney p={props['prevalence']['p']:.4f}). This underpowered association does not qualify a panel.", '',
         f"Diversity: mean transfer AUC is {f(diversity['summary']['mean_diversity_transfer'])} versus {f(diversity['summary']['mean_taxa_transfer'])} for taxa; {diversity['summary']['diversity_reversed_cohorts']}/4 diversity point estimates are below chance.", '',
-        f"Study/geography comparison: within-China sign reversals {pvs['sign_flip_rate']['within_china']:.0%} of {pvs['sign_flip_rate']['within_china_n']} informative genera versus cross-geography {pvs['sign_flip_rate']['cross_population']:.0%} of {pvs['sign_flip_rate']['cross_population_n']}. Association-vector correlations average {f(pvs['assoc_vector_correlation']['within_china_mean'])} and {f(pvs['assoc_vector_correlation']['cross_population_mean'])}, respectively. This nested comparison does not estimate a causal variance decomposition."]
+        f"Study/geography comparison: within-China sign reversals {pvs['sign_flip_rate']['within_china']:.0%} of {pvs['sign_flip_rate']['within_china_n']} informative genera versus cross-geography {pvs['sign_flip_rate']['cross_population']:.0%} of {pvs['sign_flip_rate']['cross_population_n']} (this comparison uses six groups including NHANES, hence 87 rather than 88 informative genera). Association-vector correlations average {f(pvs['assoc_vector_correlation']['within_china_mean'])} and {f(pvs['assoc_vector_correlation']['cross_population_mean'])}, respectively. This nested comparison does not estimate a causal variance decomposition."]
     blocks['experiments'] = '\n'.join(investigation)
     path = ROOT / "docs/Preprint.md"
     manuscript = path.read_text()

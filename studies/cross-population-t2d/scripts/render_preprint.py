@@ -7,6 +7,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs"
+CANONICAL = "https://oralbiome.scarpelli.ai/preprint"
 
 
 def main():
@@ -18,6 +19,14 @@ def main():
                             "--template=docs/preprint.html.template",
                             "--metadata", "title=Oral Microbiome Models of Diabetes Status: A Retrospective Audit of Cross-Study Transfer"],
                    cwd=ROOT, check=True)
+    # The canonical link is added after Pandoc: with --embed-resources Pandoc would try to fetch
+    # any <link href> over the network and inline the fetched page as a data: URI.
+    html_path = ROOT / "docs/Preprint.html"
+    html = html_path.read_text()
+    anchor = '<meta name="description"'
+    if html.count(anchor) != 1 or "rel=\"canonical\"" in html:
+        raise ValueError("Unexpected preprint head; cannot place canonical link")
+    html_path.write_text(html.replace(anchor, '<link rel="canonical" href="' + CANONICAL + '">\n  ' + anchor))
     names = ["docs/Preprint.md", "docs/Preprint.pdf", "docs/Preprint.html", "docs/tight.tex", "docs/preprint.html.template",
              "reports/figures/validation_reconstruction.png", "reports/figures/audited_transfer.png", "scripts/preprint-tables.lua"]
     manifest = {"schema_version": 1, "command": "python scripts/render_preprint.py",

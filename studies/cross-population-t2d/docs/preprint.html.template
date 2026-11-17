@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>$title$</title>
+  <meta name="description" content="Retrospective audit of oral-microbiome diabetes-status models across studies: corrected eligibility, uncertainty-first transfer estimates and limitations. Working manuscript, not peer reviewed; no clinical use.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Oralbiome">
+  <meta property="og:title" content="$title$">
+  <meta property="og:description" content="Retrospective audit of cross-study transfer of oral-microbiome diabetes-status models. Working manuscript; not peer reviewed.">
+  <meta property="og:url" content="https://oralbiome.scarpelli.ai/preprint">
+  <meta property="og:image" content="https://oralbiome.scarpelli.ai/og.png">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     :root { color-scheme: light; --paper-bg: #ffffff; --paper-ink: #0f172a; --paper-link: #075985; --paper-border: #64748b; }
     @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --paper-bg: #080b10; --paper-ink: #e2e8f0; --paper-link: #7dd3fc; --paper-border: #94a3b8; } }
@@ -13,6 +21,8 @@
     img { max-width: 100%; height: auto; }
     figure { margin: 1.5rem 0; }
     figcaption { font-size: .9rem; }
+    main { overflow-wrap: anywhere; }
+    pre, code { overflow-wrap: anywhere; white-space: pre-wrap; }
     table { border-collapse: collapse; display: block; max-width: 100%; overflow-x: auto; }
     th, td { border: 1px solid var(--paper-border); padding: .35rem .6rem; }
     :focus-visible { outline: 3px solid var(--paper-link); outline-offset: 3px; }

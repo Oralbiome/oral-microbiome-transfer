@@ -8,7 +8,7 @@ interim counts are absent (e.g. a fresh clone) are skipped gracefully.
 
   .venv/bin/python scripts/build_site_data.py
 """
-import hashlib, json, tomllib
+import argparse, hashlib, json, re, tomllib
 from datetime import datetime, timezone
 from pathlib import Path
 from audited_data import load_data
@@ -167,14 +167,51 @@ def load_roadmap():
     return [{"title": m["title"], "status": m["status"], "why": m.get("why", "")} for m in campaigns]
 
 
+POOLED_OOF = ROOT / "data/processed/validation_pooled_oof.json"
+
+
+def pooled_oof_record(X, y):
+    """The headline pooled OOF AUC: one AUC over all out-of-fold predictions of a single
+    5-fold stratified cross_val_predict. Distinct from the permutation test's mean of fold AUCs."""
+    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    oof = cross_val_predict(cb(), X, y, cv=skf, method="predict_proba", n_jobs=1)[:, 1]
+    folds = [float(roc_auc_score(y[te], oof[te])) for _, te in skf.split(X, y)]
+    return {"schema_version": 1,
+            "statistic": "pooled out-of-fold AUC: roc_auc_score over all pooled 5-fold stratified cross_val_predict probabilities",
+            "input": "data/models/processed_data_vsearch.pkl",
+            "eligibility": eligibility_provenance(),
+            "input_sha256": hashlib.sha256((ROOT / "data/models/processed_data_vsearch.pkl").read_bytes()).hexdigest(),
+            "estimator": "CatBoost 200 iterations, depth 4, learning rate 0.1, balanced class weights, seed 42",
+            "cv": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)",
+            "n": int(len(y)), "cases": int(y.sum()),
+            "pooled_oof_auc": float(roc_auc_score(y, oof)),
+            "fold_aucs": folds, "mean_fold_auc": float(np.mean(folds)),
+            "computed_by": "scripts/build_site_data.py (pooled_oof_record)",
+            "note": "Pooled across a study mixture in which NHANES is 94.7% of rows; see macro nested AUC in validation_panel.json."}
+
+
+def check_pooled_oof(computed, write):
+    """Persist the live computation once (--write-pooled-oof); afterwards every run verifies it."""
+    if write:
+        POOLED_OOF.write_text(json.dumps(computed, indent=2) + "\n")
+    stored = json.loads(POOLED_OOF.read_text())
+    for key in ("input_sha256", "eligibility", "n", "cases"):
+        if stored[key] != computed[key]:
+            raise ValueError(f"Stale pooled OOF artifact ({key}); rerun with --write-pooled-oof")
+    if abs(stored["pooled_oof_auc"] - computed["pooled_oof_auc"]) > 1e-6:
+        raise ValueError(f"Pooled OOF AUC {computed['pooled_oof_auc']} differs from persisted {stored['pooled_oof_auc']}")
+    return stored
+
+
 def load_validation():
     records, hashes = {}, {}
-    for name in ("panel", "calibration", "permutation", "subgroups"):
+    for name in ("panel", "calibration", "permutation", "subgroups", "pooled_oof"):
         relative = f"data/processed/validation_{name}.json"
         raw = (ROOT / relative).read_bytes()
         records[name] = json.loads(raw)
         hashes[relative] = hashlib.sha256(raw).hexdigest()
     panel, cal, perm = [records[n] for n in ("panel", "calibration", "permutation")]
+    pooled = records["pooled_oof"]
     down = panel["downsample_reconstruction"]
     return {"status": "retrospective reconstruction; external benchmarks exploratory",
             "artifacts_sha256": hashes, "details": "/validation.json",
@@ -186,17 +223,21 @@ def load_validation():
             "calibration": {"source": {k: cal["source_oof"][k] for k in ("raw", "calibrated")},
                             "external": cal["external_benchmarks"]},
             "permutation": {k: perm[k] for k in ("observed_auc", "null_mean", "p_value", "n_permutations")},
+            "pooled_oof": {k: pooled[k] for k in ("pooled_oof_auc", "mean_fold_auc", "n", "cases")},
             "subgroups": records["subgroups"]["subgroups"]}
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--write-pooled-oof", action="store_true",
+                        help="persist the pooled OOF AUC to data/processed/validation_pooled_oof.json")
+    args = parser.parse_args()
     d = load_data()
     feats = list(d["feature_names"])
     Xtr, ytr = np.asarray(d["X_train"]), np.asarray(d["y_train"])
 
     # reproduction (baseline)
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-    oof = cross_val_predict(cb(), Xtr, ytr, cv=skf, method="predict_proba", n_jobs=1)[:, 1]
-    cv_auc = round(float(roc_auc_score(ytr, oof)), 3)
+    pooled = check_pooled_oof(pooled_oof_record(Xtr, ytr), args.write_pooled_oof)
+    cv_auc = round(pooled["pooled_oof_auc"], 3)
     model = cb().fit(Xtr, ytr)
     port = round(float(roc_auc_score(d["y_holdout"], model.predict_proba(d["X_holdout"])[:, 1])), 3)
     benchmarks = benchmark_scores(d, model, lambda: cb().fit(*training_for_target(d, 'Shanghai/related')))
@@ -319,17 +360,22 @@ def main():
     pdf = ROOT / "docs" / "Preprint.pdf"
     if pdf.exists():
         (OUT.parents[2] / "public" / "preprint.pdf").write_bytes(pdf.read_bytes())
-    # sitemap with a real lastmod (crawlers can see freshness; regenerated per data build)
+    # sitemap: every public HTML route, with lastmod taken from the content it serves
+    # (latest research-log entry for /, manuscript revision for /preprint, code release for /code)
+    site_data = OUT.parent
+    publication = json.loads((site_data / "publication.json").read_text())
+    code_release = json.loads((site_data / "code-release.json").read_text())
+    log_dates = re.findall(r"^## (\d{4}-\d{2}-\d{2})\.", (ROOT / "docs" / "Experiments_Log.md").read_text(), re.M)
+    urls = [("/", max(log_dates + [publication["revised_at"]]), "weekly", "1.0"),
+            ("/preprint", publication["revised_at"], "monthly", "0.9"),
+            ("/code", code_release["approved_at"], "monthly", "0.6")]
     (OUT.parents[2] / "public" / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        '  <url>\n'
-        '    <loc>https://oralbiome.scarpelli.ai/</loc>\n'
-        f'    <lastmod>{datetime.now(timezone.utc).date().isoformat()}</lastmod>\n'
-        '    <changefreq>weekly</changefreq>\n'
-        '    <priority>1.0</priority>\n'
-        '  </url>\n'
-        '</urlset>\n')
+        + "".join(f'  <url>\n    <loc>https://oralbiome.scarpelli.ai{path}</loc>\n    <lastmod>{mod}</lastmod>\n'
+                   f'    <changefreq>{freq}</changefreq>\n    <priority>{prio}</priority>\n  </url>\n'
+                   for path, mod, freq, prio in urls)
+        + '</urlset>\n')
     print(f"WROTE {OUT}")
     print(f"  reproduces: CV {cv_auc} | Portugal {port} | 3-cohort {allh}")
     print("  leaderboard:")

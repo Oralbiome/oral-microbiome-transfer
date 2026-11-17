@@ -22,7 +22,7 @@
       "bytes": 1202,
       "origin": "Publication metadata update: public repository URL, release tag version, release date and canonical paper URL; all other citation bytes unchanged; original retained in source archive",
       "path": "CITATION.cff",
-      "sha256": "d85f3d2f681a7941f661b7ae870e2ff238f15057614d2c76dfe2ce9ce29ecc03"
+      "sha256": "1dd87a3099983f6474d9bcaef4806626c935edee9daa6d2b6b7a9bcad22da73c"
     },
     {
       "bytes": 2531,
@@ -37,16 +37,16 @@
       "sha256": "0e828e90ca8a5092047e6f9cdac2c1239e5342132bc73ad79634b046537148a3"
     },
     {
-      "bytes": 1899,
+      "bytes": 2038,
       "origin": "release/public-repository-NOTICE.md",
       "path": "NOTICE.md",
-      "sha256": "61451e901872e35fd79aaf83e268ac346b2ea9684d8e24f15127946b361a6dd6"
+      "sha256": "7156f4f29f40769bdb7ed797805dd38efa10a76899f413de1a3362fd6890fce0"
     },
     {
-      "bytes": 7015,
+      "bytes": 7613,
       "origin": "release/public-repository-README.md",
       "path": "README.md",
-      "sha256": "ce95e0811f93ed6f93d3c1ad74ebe48ea2887bd4076ce20ab8494d964dc81736"
+      "sha256": "3dca0bfc226cd4ea12144959fb117888496c462ab03747d17d5d7ad9906a521c"
     },
     {
       "bytes": 2130,
@@ -76,7 +76,7 @@
       "bytes": 1156,
       "origin": "Publication metadata update: public repository URL, release tag version, release date and canonical paper URL; all other citation bytes unchanged; original retained in source archive",
       "path": "studies/cross-population-t2d/CITATION.cff",
-      "sha256": "f9567a46e6055400a071bf98550f3ff8c0122d2e6a85bab68798aa0ef9785c43"
+      "sha256": "b35d9ef9a4068213049a2b839b4ccf84cd68301335c78892da49c26355b97fe9"
     },
     {
       "bytes": 3974,
@@ -139,6 +139,12 @@
       "sha256": "5368b3a921e5b66224223517ec6746f4e0c801dded2f79f0624b66214499d89d"
     },
     {
+      "bytes": 2629,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
+      "path": "studies/cross-population-t2d/data/processed/validation_pooled_oof.json",
+      "sha256": "4add2b4e2af52e5aef5bb0ba5af0b663d93ea01f52a260dd5ddd9868f8b28ee1"
+    },
+    {
       "bytes": 8621,
       "origin": "studies/cross-population-t2d/data/processed/validation_subgroups.json",
       "path": "studies/cross-population-t2d/data/processed/validation_subgroups.json",
@@ -188,39 +194,39 @@
     },
     {
       "bytes": 902,
-      "origin": "studies/cross-population-t2d/docs/Preprint.build.json",
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.build.json",
-      "sha256": "dd447b2ba96402eb94ff1658eb71b7a1faab04b7c1e5c3cc6f47996aab84360c"
+      "sha256": "513e84421546c525bccb432798f55c758fd3d0648060efdac37ab3295c071030"
     },
     {
-      "bytes": 418180,
-      "origin": "studies/cross-population-t2d/docs/Preprint.html",
+      "bytes": 428010,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.html",
-      "sha256": "2d786b6ff31cd67078975adf100926cc32c43c26cf33f31057cfef28e3794809"
+      "sha256": "c30b3e359bb0c862482335ccd748efa2fb883d919a840e95735e1c69af4977ca"
     },
     {
-      "bytes": 33524,
-      "origin": "studies/cross-population-t2d/docs/Preprint.md",
+      "bytes": 41909,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.md",
-      "sha256": "f74a3bb1d922e605cd09b5a7f17d617bc426238f8de3e5a14f12a3b360b28967"
+      "sha256": "125660414d3a13f7fb80d079000a9301567d53931c35bbfe86eb3147465adbc6"
     },
     {
-      "bytes": 334276,
-      "origin": "studies/cross-population-t2d/docs/Preprint.pdf",
+      "bytes": 350128,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.pdf",
-      "sha256": "012f2cfe49b17ee57430c5697c7287e4debece772d79074a6b34ab5bed7f3e69"
+      "sha256": "ea0b63eceac53fb850a36838785058212eec5d78cbac99184665a2e5e2d3ee5c"
     },
     {
-      "bytes": 1680,
-      "origin": "studies/cross-population-t2d/docs/preprint.html.template",
+      "bytes": 2563,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/preprint.html.template",
-      "sha256": "d3207d027e29f108a6407036fe3fcc182c68dcbd10f65996842e987751d80483"
+      "sha256": "b689cdea54155283d3fc9bbb12caa696aff5bc918994eb8daca4e297e4e01b03"
     },
     {
-      "bytes": 261,
-      "origin": "studies/cross-population-t2d/docs/tight.tex",
+      "bytes": 566,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/tight.tex",
-      "sha256": "9f11f46adef4cc3850e42b2ff76e6a6bfae638c39e70248d107dd3dd33135852"
+      "sha256": "33051749114b94d791899111beb34bc796ba634861a09a1084662d604d8b52ee"
     },
     {
       "bytes": 80864,
@@ -253,10 +259,10 @@
       "sha256": "df8a4bde2413e19e1fc0d28e432ad5f86aed6ccd90d0a43f5aa87c73eeac572d"
     },
     {
-      "bytes": 19001,
-      "origin": "studies/cross-population-t2d/scripts/build_site_data.py",
+      "bytes": 22153,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/scripts/build_site_data.py",
-      "sha256": "13223db93f475e530b23220c9c54d7f3aa7cc946259e4f7630f9ab0d5254f36d"
+      "sha256": "0f12c0e019051b2fb5013281dcf0ec81a76fbf41fbcd23c43ff3b7608d7864af"
     },
     {
       "bytes": 10589,
@@ -269,6 +275,12 @@
       "origin": "studies/cross-population-t2d/scripts/check_audit_evidence.py",
       "path": "studies/cross-population-t2d/scripts/check_audit_evidence.py",
       "sha256": "1f38bd3f11cccce95a35f67e5e7951b4dd3e16fcf08ad07cdc8747e8622cd9d1"
+    },
+    {
+      "bytes": 8948,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
+      "path": "studies/cross-population-t2d/scripts/check_manuscript_numbers.py",
+      "sha256": "100fefb8ca73418e735ffd4b11da7cd8e66fae3958392307704e727453464dd1"
     },
     {
       "bytes": 7503,
@@ -313,10 +325,10 @@
       "sha256": "ad9cb5c92956aec1e21299a32cd7366d8330266f1841fabbf46de94927094766"
     },
     {
-      "bytes": 1663,
-      "origin": "studies/cross-population-t2d/scripts/preprint-tables.lua",
+      "bytes": 2042,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/scripts/preprint-tables.lua",
-      "sha256": "190e096429dbed55a06bec088f1e2d7962055df8f904f5c02412d9abd2a84602"
+      "sha256": "1cfe12ef589abc7ee9125be6a94747b82b0c97366c50b56a7a544214d6552dcd"
     },
     {
       "bytes": 4517,
@@ -331,22 +343,22 @@
       "sha256": "0d3b1c7687b9829c23f72000e244d5d7f74c20cbafb70597d57e69ac000948d5"
     },
     {
-      "bytes": 1653,
-      "origin": "studies/cross-population-t2d/scripts/render_preprint.py",
+      "bytes": 2260,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/scripts/render_preprint.py",
-      "sha256": "52203fa261c2f4c8caf7238357f5eba383842b10b1274b2aa1938d4b2f322b20"
+      "sha256": "55bff6bbbf41b8e66315fd47034b48549005a4cb0d99d435463067567d6e20af"
     },
     {
-      "bytes": 17914,
-      "origin": "studies/cross-population-t2d/scripts/render_validation.py",
+      "bytes": 24035,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/scripts/render_validation.py",
-      "sha256": "3164226f2758c8798375e68850d3d0f5922bd8be94957a6d38e124e3e5e9ecc3"
+      "sha256": "bceb1cb5fe75752644db0d9f9dd68bf6efd541e89353e0634f7ebd6950676da9"
     },
     {
-      "bytes": 1286,
-      "origin": "studies/cross-population-t2d/scripts/reproduce_audit.py",
+      "bytes": 1308,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/scripts/reproduce_audit.py",
-      "sha256": "81ec995d6f8a301414f39892cb6d0d78dd453a4e7805bfea1c54403ace72dd5c"
+      "sha256": "0f644a84a0155f7c3cfa3909cc300e3061152b988dbefae8d4e2c4e97118207f"
     },
     {
       "bytes": 3203,
@@ -371,6 +383,12 @@
       "origin": "studies/cross-population-t2d/tests/test_audit_evidence.py",
       "path": "studies/cross-population-t2d/tests/test_audit_evidence.py",
       "sha256": "4330e55c5772c21936cc07a29511054f2af23cfdf5139569d4c8f0c19b38d7ac"
+    },
+    {
+      "bytes": 2878,
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript and its checks); archive bytes replaced",
+      "path": "studies/cross-population-t2d/tests/test_manuscript_numbers.py",
+      "sha256": "6e78d9e2047e94f9af29fc5ed39e834066ae910828adf05f8e46210511b54611"
     }
   ],
   "manifest_scope": "All snapshot files except this MANIFEST.json; .git is not a payload artifact.",
@@ -383,6 +401,22 @@
     "MANIFEST.json": "ARCHIVE_MANIFEST.json",
     "README.md": "ARCHIVE_README.md"
   },
+  "revision_overlay": [
+    "studies/cross-population-t2d/docs/Preprint.md",
+    "studies/cross-population-t2d/docs/Preprint.pdf",
+    "studies/cross-population-t2d/docs/Preprint.html",
+    "studies/cross-population-t2d/docs/Preprint.build.json",
+    "studies/cross-population-t2d/docs/tight.tex",
+    "studies/cross-population-t2d/docs/preprint.html.template",
+    "studies/cross-population-t2d/scripts/preprint-tables.lua",
+    "studies/cross-population-t2d/scripts/render_preprint.py",
+    "studies/cross-population-t2d/scripts/render_validation.py",
+    "studies/cross-population-t2d/scripts/build_site_data.py",
+    "studies/cross-population-t2d/scripts/reproduce_audit.py",
+    "studies/cross-population-t2d/scripts/check_manuscript_numbers.py",
+    "studies/cross-population-t2d/data/processed/validation_pooled_oof.json",
+    "studies/cross-population-t2d/tests/test_manuscript_numbers.py"
+  ],
   "schema_version": 1,
   "scope": "Clean repository snapshot; no original Git/LFS history",
   "source_archive_sha256": "836e92d5b54ff2569344efe0fd191d7d054bbcb130bab41e6af2ca1ad8301248"
