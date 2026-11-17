@@ -27,6 +27,60 @@ def load(root, name):
     return json.loads((root / DATA.format(name)).read_text())
 
 
+BASELINE = 'data/processed/baseline_age_sex_v1.json'
+BASELINE_CONTROLS = 'data/processed/baseline_age_sex_controls_v1.json'
+
+
+def d3(x):
+    return f'{x:.3f}'.replace('-', '\u2212')
+
+
+def d4(x):
+    return f'{x:.4f}'.replace('-', '\u2212')
+
+
+def baseline_checks(root):
+    """Statements about the preregistered NHANES age-and-sex baseline (Section 4.6 and where it is cited)."""
+    base = json.loads((root / BASELINE).read_text())
+    ctl = json.loads((root / BASELINE_CONTROLS).read_text())
+    if not ctl['all_pass'] or base['decision_C_minus_A'] != 'no evidence microbiome adds beyond age+sex':
+        raise ValueError('Baseline artifact no longer supports the manuscript verdict; revise the text')
+    a, b, c, cnh = (base['auc'][k] for k in ('A', 'B', 'C', 'C_nh'))
+    dca, dba, dnh = (base['delta'][k] for k in ('C_minus_A', 'B_minus_A', 'C_nh_minus_A'))
+    st = base['strata']
+    ci3 = lambda m: (f3(m['ci95'][0]), f3(m['ci95'][1]))
+    return [
+        ('baseline abstract AUCs', r'age-and-sex-only logistic model reaches OOF AUC (\d\.\d+) versus (\d\.\d+) for the microbiome-only model, and adding the microbiome to age and sex does not improve it \((\d\.\d+)\)',
+         (f3(a['auc']), f3(b['auc']), f3(c['auc'])), 1),
+        ('baseline Section 2 AUCs', r'out-of-fold AUC (\d\.\d+), 95% CI (\d\.\d+)\u2013(\d\.\d+), versus (\d\.\d+)\)',
+         (f3(a['auc']), *ci3(a), f3(b['auc'])), 1),
+        ('baseline C versus A (Sections 2 and 6)', r'\((\d\.\d+); difference (\u2212\d\.\d+), (\u2212\d\.\d+) to (\d\.\d+)\)',
+         (f3(c['auc']), d3(dca['delta']), d3(dca['ci95'][0]), d3(dca['ci95'][1])), 1),
+        ('baseline C versus A (Section 6)', r'microbiome adds nothing measurable to them \(difference (\u2212\d\.\d+), (\u2212\d\.\d+) to (\d\.\d+)\)',
+         (d3(dca['delta']), d3(dca['ci95'][0]), d3(dca['ci95'][1])), 1),
+        ('baseline Section 6 A versus B', r'age and sex alone reach a higher out-of-fold AUC \((\d\.\d+)\) than the microbiome \((\d\.\d+)\)',
+         (f3(a['auc']), f3(b['auc'])), 1),
+        ('baseline Table 5 row A', r'\| A: age \(spline\) \+ sex \| (\d\.\d+) \((\d\.\d+)\u2013(\d\.\d+)\) \|', (f3(a['auc']), *ci3(a)), 1),
+        ('baseline Table 5 row B', r'\| B: microbiome only \| (\d\.\d+) \((\d\.\d+)\u2013(\d\.\d+)\) \|', (f3(b['auc']), *ci3(b)), 1),
+        ('baseline Table 5 row C', r'\| C: microbiome \+ age \+ sex \| (\d\.\d+) \((\d\.\d+)\u2013(\d\.\d+)\) \|', (f3(c['auc']), *ci3(c)), 1),
+        ('baseline C minus A (Section 4.6)', r'changes AUC by (\u2212\d\.\d+) \(95% CI (\u2212\d\.\d+) to (\d\.\d+); C minus A\)',
+         (d4(dca['delta']), d4(dca['ci95'][0]), d4(dca['ci95'][1])), 1),
+        ('baseline verdict', r'preregistered verdict is "([^"]+)"', (base['decision_C_minus_A'],), 1),
+        ('baseline B minus A', r'\(B minus A (\u2212\d\.\d+), (\u2212\d\.\d+) to (\u2212\d\.\d+)\)',
+         (d3(dba['delta']), d3(dba['ci95'][0]), d3(dba['ci95'][1])), 1),
+        ('baseline NHANES-only sensitivity', r'with age and sex reaches (\d\.\d+) and its difference from A is (\u2212\d\.\d+) \((\u2212\d\.\d+) to (\d\.\d+)\)',
+         (f3(cnh['auc']), d4(dnh['delta']), d4(dnh['ci95'][0]), f'{dnh["ci95"][1]:.4f}'), 1),
+        ('baseline controls', r'microbiome-only AUC exactly \((\d\.\d+)\); label-permuted models scored near chance \(mean (\d\.\d+) for A and (\d\.\d+) for C, inside the preregistered (\d\.\d+)\u2013(\d\.\d+) range\); '
+         r'a synthetic feature with marginal AUC (\d\.\d+) added to A was detected \(difference (\d\.\d+) to (\d\.\d+)\)',
+         (f"{ctl['C1']['reproduced_auc_B']:.5f}", f3(ctl['C2']['A_mean']), f3(ctl['C2']['C_mean']), f"{ctl['C2']['range'][0]:.2f}", f"{ctl['C2']['range'][1]:.2f}",
+          f3(ctl['C3']['synthetic_marginal_auc']), f3(ctl['C3']['delta_ci95'][0]), f3(ctl['C3']['delta_ci95'][1])), 1),
+        ('baseline exploratory strata', r'55\u201365 and 65\+ strata the microbiome-only model ranks above age and sex \((\d\.\d+) versus (\d\.\d+); (\d\.\d+) versus (\d\.\d+)\), '
+         r'whereas in the under-40 stratum it ranks below \((\d\.\d+) versus (\d\.\d+)\)',
+         (f3(st['age 55-65']['B']), f3(st['age 55-65']['A']), f3(st['age 65+']['B']), f3(st['age 65+']['A']), f3(st['age <40']['B']), f3(st['age <40']['A'])), 1),
+        ('baseline stratified cases', r'(\d[\d,]*) rows \((\d+) cases\), one fold split', (f"{base['n']:,}", str(base['cases'])), 1),
+    ]
+
+
 def checks(root):
     """Return (label, regex, expected_tuple, min_matches) for every guarded statement."""
     panel, perm, cal, pooled, sub = (load(root, n) for n in ('panel', 'permutation', 'calibration', 'pooled_oof', 'subgroups'))
@@ -75,6 +129,7 @@ def checks(root):
         ('unrounded pooled and mean fold AUC', r'pooled OOF AUC is (\d\.\d{4}) and the mean fold AUC is (\d\.\d{4});',
          (f"{pooled['pooled_oof_auc']:.4f}", f"{pooled['mean_fold_auc']:.4f}"), 1),
     ]
+    out += baseline_checks(root)
     results = root.parents[1] / RESULTS
     if results.exists():  # present in the research repository only; see RESULTS_LABELS
         sa = next(r for r in json.loads(results.read_text())['studies'][0]['leaderboard'] if r['cohort'] == 'South Africa')

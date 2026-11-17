@@ -42,6 +42,7 @@ def read_pooled_oof():
 def main():
     panel, cal, perm, sub = [read(name) for name in ("panel", "calibration", "permutation", "subgroups")]
     pooled = read_pooled_oof()
+    base = json.loads((ROOT / "data/processed/baseline_age_sex_v1.json").read_text())
     nested = {r['held_study']: r for r in panel['nested_loso']['folds']}
     nhanes_share = nested['nhanes']['n'] / sum(r['n'] for r in panel['nested_loso']['folds'])
     ext = panel["external_benchmarks"]
@@ -54,7 +55,8 @@ def main():
             f"none of {perm['n_permutations']} shuffles reaches the observed statistic (corrected p=1/{perm['n_permutations']+1}={perm['p_value']:.4f}). "
             "The null is well above chance because study case counts and study-associated features are preserved. "
             "This supports within-study association beyond study composition under the permutation assumptions, "
-            "but does not establish disease causality or external transfer. The observed statistic is the mean of five fold AUCs, "
+            "but does not establish disease causality or external transfer. It does not adjust for age or sex, so the association it detects within NHANES "
+            "is not evidence of microbiome signal beyond demographics (see the preregistered age-and-sex baseline below). The observed statistic is the mean of five fold AUCs, "
             f"not the pooled OOF AUC ({f(pooled['pooled_oof_auc'])}) reported in the Abstract. "
             f"NHANES supplies {nhanes_share:.1%} of rows, so this single pooled test (smallest attainable p=1/{perm['n_permutations']+1}) mostly tests "
             "within-NHANES association and says little about the clinical cohorts; no per-study permutation was run. "
@@ -70,7 +72,7 @@ def main():
             f"related Shanghai {f(cal['external_benchmarks']['holdout_782768']['raw']['ece10'])} to {f(cal['external_benchmarks']['holdout_782768']['calibrated']['ece10'])}; "
             f"on the three-cohort benchmark the ECE changes from {f(cal['external_benchmarks']['holdout_all']['raw']['ece10'])} "
             f"to {f(cal['external_benchmarks']['holdout_all']['calibrated']['ece10'])}. Source calibration thus improves "
-            "the fitted source mixture without eliminating external miscalibration. The raw source AUC on these disjoint evaluation rows is "
+            "the fitted source mixture without eliminating external miscalibration; it concerns the probability scale of a mixture dominated by NHANES and is not evidence of microbiome signal beyond age and sex. The raw source AUC on these disjoint evaluation rows is "
             f"{f(cal['source_oof']['raw']['auc'])}, a third statistic distinct from the pooled OOF AUC ({f(pooled['pooled_oof_auc'])}) and the permutation mean fold AUC ({f(perm['observed_auc'])}). Full scores, prevalences, and fold metrics "
             "are in `data/processed/validation_calibration.json`."
         ),
@@ -105,7 +107,8 @@ def main():
         for label, m in items:
             lines.append(f"| {category}: {label} | {m['n']} ({m['cases']}) | {f(m['auc'])} ({f(m['auc_ci95'][0])} to {f(m['auc_ci95'][1])}) | {f(m['sensitivity_at_0_5'])} / {f(m['specificity_at_0_5'])} |")
     lines.extend(["", "The raw threshold is fixed for description, not a clinical recommendation. No survey weighting, "
-                  "subgroup-specific threshold selection, prospective calibration, or fairness certification is claimed."])
+                  "subgroup-specific threshold selection, prospective calibration, or fairness certification is claimed. These subgroup AUCs concern the microbiome model alone: "
+                  "within a stratum they are not adjusted for the remaining demographic structure and do not show signal beyond age and sex (see the preregistered baseline in the next section)."])
     blocks["subgroups"] = "\n".join(lines)
     snapshot = json.loads((ROOT.parents[1] / 'site/app/data/results.json').read_text())['studies'][0]
     data = load_data()
@@ -121,6 +124,9 @@ def main():
         f"{nhanes_share:.1%} of rows are NHANES), but macro-study nested AUC is {f(panel['nested_loso']['macro_auc'])} (mean AUC over six held-out source studies, each scored by a model fit on the other five) "
         f"and held-out NHANES AUC is {f(nested['nhanes']['selected_auc'])}. This suggests that the pooled figure largely reflects within-NHANES and study-mixture structure "
         f"(random folds share studies) rather than transferable signal; the two estimates differ in training set and are not a controlled decomposition. "
+        f"In a preregistered NHANES comparison on the same folds, an age-and-sex-only logistic model reaches OOF AUC {f(base['auc']['A']['auc'])} versus {f(base['auc']['B']['auc'])} for the microbiome-only model, "
+        f"and adding the microbiome to age and sex does not improve it ({f(base['auc']['C']['auc'])}); NHANES discrimination is therefore not evidence of microbiome signal beyond demographics. "
+        f"This does not test the external transfer estimates, whose cohorts lack harmonized age and sex. "
         f"Portugal AUC is {f(ext['Portugal']['full_auc'])} and South Africa AUC {f(sa['auc'])} "
         f"(conditional 95% interval {f(sa['auc_ci95'][0])}–{f(sa['auc_ci95'][1])}). "
         f"The South African interval includes chance, so the earlier confident-reversal claim is withdrawn; reversal is neither established nor excluded. "
@@ -128,7 +134,7 @@ def main():
         f"({f(ext['Portugal']['panel30_auc'])} versus {f(ext['Portugal']['full_auc'])} for the full fit, but a mean {f(down['panel30']['mean'])} versus {f(down['full']['mean'])} "
         f"across {down['n_seeds']} downsampled seeds with {down['panel_wins']}/{down['n_seeds']} wins). A consistent within-study permutation test (observed and permuted statistics computed identically) gives observed "
         f"mean fold AUC {f(perm['observed_auc'])} (a different statistic from the pooled OOF AUC) versus null {f(perm['null_mean'])}, p={perm['p_value']:.4f}; "
-        f"because NHANES dominates the rows, this pooled test mostly addresses NHANES. "
+        f"because NHANES dominates the rows, this pooled test mostly addresses NHANES and does not adjust for age or sex. "
         f"Disjoint-row isotonic calibration reduces source ECE (expected calibration error) from {f(cal['source_oof']['raw']['ece10'])} "
         f"to {f(cal['source_oof']['calibrated']['ece10'])}, but external miscalibration remains. "
         "Earlier NHANES subgroup AUCs scored training rows; the reported subgroup AUCs use OOF predictions instead. Association directions vary within "
@@ -153,8 +159,8 @@ def main():
     pt, adapt, diversity = [snapshot[k] for k in ('portability', 'sign_adaptation', 'diversity_transfer')]
     sa_div = next(c for c in diversity['cohorts'] if c['cohort'] == 'South Africa')['diversity_transfer']
     sa_stable = next(r['auc_stable'] for r in pt['loco'] if r['cohort'] == 'South Africa')
-    transfer = [f"Pooled-source OOF AUC is {f(pooled['pooled_oof_auc'])} (pooled out-of-fold predictions, dominated by NHANES; macro-study nested AUC {f(panel['nested_loso']['macro_auc'])}). The descriptive pooled benchmark AUC is "
-                f"{f(snapshot['reproduces']['holdout3_auc'])} on 176 specimens, with Shanghai-excluded fitting for its related benchmark.",
+    transfer = [f"Pooled-source OOF AUC is {f(pooled['pooled_oof_auc'])} (pooled out-of-fold predictions, dominated by NHANES; macro-study nested AUC {f(panel['nested_loso']['macro_auc'])}). Within NHANES, an age-and-sex model alone discriminates at least as well (preregistered baseline below), so this pooled figure is not evidence of microbiome signal beyond demographics. The descriptive pooled benchmark AUC is "
+                f"{f(snapshot['reproduces']['holdout3_auc'])} on 176 specimens, with Shanghai-excluded fitting for its related benchmark. The external cohorts have no harmonized age or sex, so the baseline cannot be applied to them: whether the transfer AUCs below reflect demographics is untested.",
                 '', 'Table 2. CatBoost transfer and separately fitted within-cohort OOF references. Intervals are conditional.', '',
                 '| Cohort | N | Transfer AUC (95% interval) | Within-cohort OOF AUC | Source N |', '|---|---:|---|---:|---:|']
     for r in rows:

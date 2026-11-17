@@ -10,7 +10,16 @@ conclusions that survive those checks.
 [Download the PDF](https://oralbiome.scarpelli.ai/preprint.pdf) ·
 [Code and reproduction guide](https://oralbiome.scarpelli.ai/code)
 
-> **Revision 2026-11-17 (release v2026.11.17).** The paper in
+> **Release v2026.11.17.1 (2026-11-17).** Adds a preregistered NHANES age-and-sex-only
+> baseline (`studies/cross-population-t2d/PREREGISTRATION_AGE_SEX_BASELINE.md`, results in
+> `data/processed/baseline_age_sex_v1.json`). Within NHANES, age and sex alone reach
+> out-of-fold AUC 0.803 versus 0.698 for the microbiome-only model, and adding the microbiome
+> to age and sex does not improve discrimination (0.802; difference -0.001, -0.009 to 0.007), so
+> NHANES discrimination is not evidence of microbiome signal beyond demographics. The external
+> transfer estimates are unchanged and untested for demographics (those cohorts lack harmonized
+> age and sex). **No other number changed.** v2026.11.17 and v2026.11.15 remain available.
+
+> **Revision 2026-11-17 (release v2026.11.17; second correction).** The paper in
 > `studies/cross-population-t2d/docs/Preprint.*` is now the corrected 2026-11-17
 > revision, written after an independent re-read: more cautious wording on the
 > pooled figure, the South African reversal and age, defined terms, extra rows
@@ -90,7 +99,7 @@ python3.11 -m venv .venv
 .venv/bin/python scripts/run_release_analysis.py --check-inputs
 ```
 
-The tests include seven analysis controls, nine evidence-checker controls and five manuscript-number controls.
+The tests include seven analysis controls, nine evidence-checker controls, six manuscript-number controls and the age-and-sex baseline unit tests.
 They do not train on participant data. The final input check intentionally exits
 with status **2** while the 11 omitted historical inputs are missing; that is
 the expected safeguard before numerical execution.
@@ -123,7 +132,7 @@ Its SHA-256 is
 `836e92d5b54ff2569344efe0fd191d7d054bbcb130bab41e6af2ca1ad8301248`.
 Scientific scripts, reports and tests retain their reviewed bytes except the
 files listed under `revision_overlay` in [MANIFEST.json](MANIFEST.json), which
-carry the corrected 2026-11-17 paper and its checks (release v2026.11.17). The
+carry the corrected 2026-11-17 paper, the age-and-sex baseline and their checks (releases v2026.11.17 and v2026.11.17.1). The
 archive's original README and manifest are retained as
 [ARCHIVE_README.md](ARCHIVE_README.md) and
 [ARCHIVE_MANIFEST.json](ARCHIVE_MANIFEST.json); their pre-release labels record
