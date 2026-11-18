@@ -43,10 +43,10 @@
       "sha256": "7156f4f29f40769bdb7ed797805dd38efa10a76899f413de1a3362fd6890fce0"
     },
     {
-      "bytes": 8850,
+      "bytes": 10485,
       "origin": "release/public-repository-README.md",
       "path": "README.md",
-      "sha256": "5eb8b8dfc783e09978e387be17aa75f4b15a2a0114f4dedb2602ecc3e9919c67"
+      "sha256": "b319e0de7ac440925bd02a9c6a2260ab027dba34a5b579de4b28072350574815"
     },
     {
       "bytes": 2130,
@@ -214,31 +214,31 @@
       "bytes": 902,
       "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.build.json",
-      "sha256": "fb860d0af03e3d59b3007be70bc2ed941fa39af5676908afd1ba465bd3a6a51b"
+      "sha256": "c3a9e02b308e378a587563e20dbc7b6239469bad722a16f4d57d57467c6916f6"
     },
     {
-      "bytes": 441514,
+      "bytes": 444129,
       "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.html",
-      "sha256": "3bb90e6c46886a55e5700bc5517acaf92fdd39b9d0cf9ee99bc66d6ff99a966a"
+      "sha256": "cc702d243cbb8d6b7f4bab6f325126790765af0b3ac78ce52ab23e1bc7033423"
     },
     {
-      "bytes": 54039,
+      "bytes": 56255,
       "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.md",
-      "sha256": "4b1671bac2cb5759912db56932bbf760197190fa7bc084843493426ad82a805e"
+      "sha256": "7d58685b3b9ba0ce0a0656f20761f8648251b5a6523b3fe2eccdb6d8b78aef9a"
     },
     {
-      "bytes": 369871,
+      "bytes": 383564,
       "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/Preprint.pdf",
-      "sha256": "a8824ecce79c3e0136940f7f63ed380bf4e15924cb4ec564311583870a520932"
+      "sha256": "13543a1d1c5c84f21e20d095472c505023028da90e99b10aa6518dc4949df89b"
     },
     {
-      "bytes": 2563,
+      "bytes": 2779,
       "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/docs/preprint.html.template",
-      "sha256": "b689cdea54155283d3fc9bbb12caa696aff5bc918994eb8daca4e297e4e01b03"
+      "sha256": "dc00f9857f92c934c0fbf3484ff7c0b2f3279f56680bdc9c25dee7e6a6f4c9c3"
     },
     {
       "bytes": 566,
@@ -278,7 +278,7 @@
     },
     {
       "bytes": 11361,
-      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
+      "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced (held at the released bytes, private commit 5067d34)",
       "path": "studies/cross-population-t2d/scripts/baseline_age_sex.py",
       "sha256": "7f15b91e0d6436da89d2237ff48f15ec14339de087a95cbbb3591a759a52398c"
     },
@@ -349,10 +349,10 @@
       "sha256": "ad9cb5c92956aec1e21299a32cd7366d8330266f1841fabbf46de94927094766"
     },
     {
-      "bytes": 2047,
+      "bytes": 2503,
       "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/scripts/preprint-tables.lua",
-      "sha256": "09249fbb0bcb2c59c1d9fe7d6194bd888b368ab5aa5b23e42a12b287e1e73f51"
+      "sha256": "ba1c0bbc7073210041c605633f1e940fe381a6a2bcc9167e4a3ad5dc8fc0cd16"
     },
     {
       "bytes": 4517,
@@ -373,10 +373,10 @@
       "sha256": "55bff6bbbf41b8e66315fd47034b48549005a4cb0d99d435463067567d6e20af"
     },
     {
-      "bytes": 25818,
+      "bytes": 26482,
       "origin": "Revision 2026-11-17 overlay from the private research repository (corrected manuscript, age-and-sex baseline and their checks); archive bytes replaced",
       "path": "studies/cross-population-t2d/scripts/render_validation.py",
-      "sha256": "0d1d856444b96748485a9a3c6e634ff7338aa6a8b16ede3a60305f959f7e7aaa"
+      "sha256": "69d4032a6ad15851b032fa145a7722347e4cfea99a42674e4b6c703d3149496e"
     },
     {
       "bytes": 1308,

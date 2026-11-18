@@ -1,5 +1,26 @@
 # Oral Microbiome Transfer
 
+## Interim correction notice (2026-11-17)
+
+**Genus-level results in this repository's paper and code outputs are invalid.** Genera absent from a cohort
+were filled with zero and then ranked within each sample, so every absent genus's coordinate encodes how many
+genera that sample lacks, not abundance (a detection-count artifact).
+
+- **Withdrawn:** the cross-population marker, sign-reversal ("flipper") and stable-feature results and their
+  prevalence figures, the marker heatmap, the Atopobium correlation (r=+0.47 in South Africa, where Atopobium is
+  entirely absent) and the 0.340 ablation. Sign adaptation, feature reversal, out-of-distribution and
+  population-versus-study analyses use the same coordinates and are under review.
+- **Representation-sensitive, not corrected:** all external transfer AUCs, including the South Africa
+  below-chance estimate (0.449). Scoring the same fitted models with absent genera at a neutral rank or as
+  missing moves every cohort by at least 0.04, and four of six by at least 0.08; South Africa moves to 0.529 or
+  0.386. The within-South-Africa 0.853 largely reflects a detection-count signal (a count-only model scores 0.791).
+- **Not affected:** the NHANES results and the preregistered age-and-sex baseline.
+
+This is an interim notice only: no number was changed and nothing was refit. A corrected, preregistered
+reanalysis is in preparation, and the Zenodo deposit is on hold until it is done. The live notice is at
+<https://oralbiome.scarpelli.ai/preprint#interim-correction>. Release v2026.11.17.2 and the earlier tags and
+assets are unchanged and carry the uncorrected analysis.
+
 **Can an oral-microbiome model trained in one collection of studies transfer to another?**
 This repository accompanies a retrospective audit of diabetes-status prediction:
 checking specimen eligibility, overlapping studies, evaluation procedures and the

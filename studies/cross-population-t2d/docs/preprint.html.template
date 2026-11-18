@@ -25,6 +25,8 @@
     pre, code { overflow-wrap: anywhere; white-space: pre-wrap; }
     table { border-collapse: collapse; display: block; max-width: 100%; overflow-x: auto; }
     th, td { border: 1px solid var(--paper-border); padding: .35rem .6rem; }
+    .correction-notice { border: 3px solid #b45309; border-radius: .4rem; padding: .75rem 1rem; margin: 1rem 0; background: color-mix(in srgb, #f59e0b 14%, var(--paper-bg)); }
+    .correction-notice p { margin: 0; }
     :focus-visible { outline: 3px solid var(--paper-link); outline-offset: 3px; }
     .skip { position: absolute; top: -5rem; }
     .skip:focus { top: .5rem; }

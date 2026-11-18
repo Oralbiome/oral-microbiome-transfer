@@ -53,3 +53,13 @@ function Blocks(blocks)
   end
   return out
 end
+
+-- Frame the interim correction notice (a fenced div with class correction-notice) in the PDF.
+-- HTML styles the same div through docs/preprint.html.template.
+function Div(div)
+  if div.classes:includes("correction-notice") and FORMAT:match("latex") then
+    return {pandoc.RawBlock("latex", "\\noindent\\fbox{\\begin{minipage}{0.97\\linewidth}\\small"),
+            div,
+            pandoc.RawBlock("latex", "\\end{minipage}}\\par\\medskip")}
+  end
+end

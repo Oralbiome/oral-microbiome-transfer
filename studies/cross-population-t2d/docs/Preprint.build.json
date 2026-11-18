@@ -2,13 +2,13 @@
   "schema_version": 1,
   "command": "python scripts/render_preprint.py",
   "sha256": {
-    "docs/Preprint.md": "4b1671bac2cb5759912db56932bbf760197190fa7bc084843493426ad82a805e",
-    "docs/Preprint.pdf": "a8824ecce79c3e0136940f7f63ed380bf4e15924cb4ec564311583870a520932",
-    "docs/Preprint.html": "3bb90e6c46886a55e5700bc5517acaf92fdd39b9d0cf9ee99bc66d6ff99a966a",
+    "docs/Preprint.md": "7d58685b3b9ba0ce0a0656f20761f8648251b5a6523b3fe2eccdb6d8b78aef9a",
+    "docs/Preprint.pdf": "13543a1d1c5c84f21e20d095472c505023028da90e99b10aa6518dc4949df89b",
+    "docs/Preprint.html": "cc702d243cbb8d6b7f4bab6f325126790765af0b3ac78ce52ab23e1bc7033423",
     "docs/tight.tex": "33051749114b94d791899111beb34bc796ba634861a09a1084662d604d8b52ee",
-    "docs/preprint.html.template": "b689cdea54155283d3fc9bbb12caa696aff5bc918994eb8daca4e297e4e01b03",
+    "docs/preprint.html.template": "dc00f9857f92c934c0fbf3484ff7c0b2f3279f56680bdc9c25dee7e6a6f4c9c3",
     "reports/figures/validation_reconstruction.png": "fa98cc0c50b8441d160a23d684251e4167ed43f65d7ff16593b858c9156f5e45",
     "reports/figures/audited_transfer.png": "66cb7b5954695ae6d98e55a66b4d1604a812dc3564caa3af424f12ddb6e5caf7",
-    "scripts/preprint-tables.lua": "09249fbb0bcb2c59c1d9fe7d6194bd888b368ab5aa5b23e42a12b287e1e73f51"
+    "scripts/preprint-tables.lua": "ba1c0bbc7073210041c605633f1e940fe381a6a2bcc9167e4a3ad5dc8fc0cd16"
   }
 }
