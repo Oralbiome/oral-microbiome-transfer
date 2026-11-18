@@ -19,10 +19,10 @@
       "sha256": "488a5c4d1fa70cc1cae574eae8397b8948440d26135faf944aea97722977fa57"
     },
     {
-      "bytes": 1204,
-      "origin": "Publication metadata update: public repository URL, release tag version, release date and canonical paper URL; all other citation bytes unchanged; original retained in source archive",
+      "bytes": 1255,
+      "origin": "Publication metadata update: public repository URL, release tag version, release date and canonical paper URL, and (2026-11-18) the first author's ORCID iD; all other citation bytes unchanged; original retained in source archive",
       "path": "CITATION.cff",
-      "sha256": "fda9ba397ab2ca3cd90b2bee0a77e8a0023620949ab98577b9a86026df79d14c"
+      "sha256": "8cd385b7d7d18c0493270f82669d38302a4cb569de2ba80eaeec6a49417390cb"
     },
     {
       "bytes": 2531,
@@ -73,10 +73,10 @@
       "sha256": "b3eb88fd482aa1ec6cd95d3cef0213cbf2c461115641efe22ab37e37bf6456b0"
     },
     {
-      "bytes": 1158,
-      "origin": "Publication metadata update: public repository URL, release tag version, release date and canonical paper URL; all other citation bytes unchanged; original retained in source archive",
+      "bytes": 1209,
+      "origin": "Publication metadata update: public repository URL, release tag version, release date and canonical paper URL, and (2026-11-18) the first author's ORCID iD; all other citation bytes unchanged; original retained in source archive",
       "path": "studies/cross-population-t2d/CITATION.cff",
-      "sha256": "9b10b213b873515e4db05b00981f019a540038567a0a277f97bb674c68278274"
+      "sha256": "7f9d139232b723af971079921b60d9a7df9a546e63adabb8f991720464a183ca"
     },
     {
       "bytes": 5470,

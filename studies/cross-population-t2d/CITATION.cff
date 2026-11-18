@@ -24,6 +24,7 @@ authors:
   # Emails intentionally omitted from this published artifact.
   - family-names: Scarpelli
     given-names: Jonathan
+    orcid: "https://orcid.org/0009-0001-0112-8271"
   - family-names: Akhter
     given-names: Ayesha
     affiliation: "UC Berkeley School of Information"
